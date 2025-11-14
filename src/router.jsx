@@ -5,6 +5,7 @@ import TaxPayment from "./pages/TaxPayment/TaxPayment";
 import UserRegistration from "./services/UserRegistration";
 import CheckUserId from "./services/CheckUserId";
 import TrackApplication from "./pages/Services/TrackApplication";
+import CertificateApplication from "./pages/certificates/CertificateApplication";
 
 // Lazy load components for better performance
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -81,9 +82,11 @@ function Router() {
         <Route path="/e-learning" element={<Elearning />} />
         <Route path="/pmay" element={<PMAY />} />
         <Route path="/services/register" element={<UserRegistration />} />
-        <Route path="/services/property-tax" element={<TaxPayment />} />
+        <Route path="/services/property-tax/apply" element={<TaxPayment />} />
         <Route path="/services/check-user" element={<CheckUserId />} />
-        <Route path="/services/track" element={<TrackApplication />} />
+        <Route path="/services/track" element={<TrackApplication />} />        
+        <Route path="/services/certificate-application" element={<CertificateApplication />} />        
+
       </Routes>
     </Suspense>
   );

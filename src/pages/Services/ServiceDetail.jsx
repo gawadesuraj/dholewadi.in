@@ -146,9 +146,7 @@ function ServiceDetail() {
                     {service.isOnline ? (
                       <Link
                         to={
-                          service.slug === "tax-payment"
-                            ? "/services/tax-payment"
-                            : "#"
+                          service.applyRoute
                         }
                       >
                         <Button className="w-full">Apply Online</Button>

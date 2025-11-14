@@ -68,6 +68,11 @@ const navItems = [
       { label: "property tax", path: "/services/property-tax" },
       { label: "check-user", path: "/services/check-user" },
       { label: "track", path: "/services/track" },
+      {
+        label: "certificate application",
+        path: "/services/certificate-application",
+      },
+      { label: "certificate status", path: "/services/certificate-status" },
     ],
   },
 ];
