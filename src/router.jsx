@@ -7,7 +7,6 @@ import CheckUserId from "./services/CheckUserId";
 import TrackApplication from "./pages/Services/TrackApplication";
 import CertificateApplication from "./pages/certificates/CertificateApplication";
 
-<<<<<<< HEAD
 import BirthCertificateForm from "./pages/Services/forms/BirthCertificate";
 import DeathCertificateForm from "./pages/Services/forms/DeathCertificate";
 import MarriageCertificateForm from "./pages/Services/forms/MarriageCertificate";
@@ -21,8 +20,6 @@ import PropertyTaxPaymentForm from "./pages/Services/forms/PropertyTaxPayment";
 import WaterConnectionForm from "./pages/Services/forms/WaterConnection";
 import TradeLicenseForm from "./pages/Services/forms/TradeLicense";
 
-=======
->>>>>>> 7cfd3fe715e4d0f85099831aedc91be331ffecc6
 // Lazy load components for better performance
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
@@ -101,7 +98,6 @@ function Router() {
         <Route path="/services/register" element={<UserRegistration />} />
         <Route path="/services/property-tax/apply" element={<TaxPayment />} />
         <Route path="/services/check-user" element={<CheckUserId />} />
-<<<<<<< HEAD
         <Route path="/services/track" element={<TrackApplication />} />
         <Route
           path="/services/certificate-application"
@@ -151,12 +147,10 @@ function Router() {
         />
 
         <Route path="/services/trade-license" element={<TradeLicenseForm />} />
-=======
         <Route path="/services/track" element={<TrackApplication />} />        
         <Route path="/services/certificate-application" element={<CertificateApplication />} />    
         <Route path="/mnrega" element={<MNREGA />} />    
 
->>>>>>> 7cfd3fe715e4d0f85099831aedc91be331ffecc6
       </Routes>
     </Suspense>
   );
