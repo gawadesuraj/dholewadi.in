@@ -46,6 +46,7 @@ const EGovernance = lazy(() =>
 );
 const Elearning = lazy(() => import("./pages/Comfort/Elearning"));
 const PMAY = lazy(() => import("./pages/Beneficiary/PMAY"));
+const MNREGA = lazy(() => import("./pages/Beneficiary/MNREGA"));
 
 function Router() {
   return (
@@ -85,7 +86,8 @@ function Router() {
         <Route path="/services/property-tax/apply" element={<TaxPayment />} />
         <Route path="/services/check-user" element={<CheckUserId />} />
         <Route path="/services/track" element={<TrackApplication />} />        
-        <Route path="/services/certificate-application" element={<CertificateApplication />} />        
+        <Route path="/services/certificate-application" element={<CertificateApplication />} />    
+        <Route path="/mnrega" element={<MNREGA />} />    
 
       </Routes>
     </Suspense>

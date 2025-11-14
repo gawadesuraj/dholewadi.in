@@ -1,27 +1,22 @@
 // Frontend/src/pages/grievances/Grievance.jsx
 
-/* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { supabase } from "../../services/supabaseClient";
 import PageHeader from "../../components/common/PageHeader";
 import Card from "../../components/ui/Card";
 import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import { toast } from "react-toastify";
-import { supabase } from "../../services/supabaseClient";
 
-function Grievance() {
+export default function Grievance() {
+  const [mobile, setMobile] = useState("");
+  const [user, setUser] = useState(null);
   const [grievances, setGrievances] = useState([]);
   const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    address: "",
-    grievance_type: "",
     subject: "",
     description: "",
+    grievance_type: "",
   });
-  const [statusId, setStatusId] = useState("");
-  const [statusResult, setStatusResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const grievanceTypes = [
@@ -37,276 +32,280 @@ function Grievance() {
     "Others",
   ];
 
-  const breadcrumbs = [{ label: "Grievance", href: null }];
+  // 🔍 Validate User by mobile number
+  const validateUser = async () => {
+    if (!mobile || mobile.trim().length !== 10) {
+      toast.error("Please enter a valid 10-digit mobile number");
+      return;
+    }
 
-  // ✅ Realtime grievance updates
+    setLoading(true);
+    const { data: userData, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("mobile", mobile.trim())
+      .single();
+
+    if (error || !userData) {
+      toast.error("No registered user found with this mobile number.");
+      setUser(null);
+      setGrievances([]);
+      setLoading(false);
+      return;
+    }
+
+    setUser(userData);
+    toast.success(`Welcome, ${userData.name || "user"}!`);
+    fetchUserGrievances(userData.mobile);
+    setLoading(false);
+  };
+
+  // 🧾 Fetch user’s past grievances
+  const fetchUserGrievances = async (phone) => {
+    const { data, error } = await supabase
+      .from("grievances")
+      .select("*")
+      .eq("phone", phone)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error(error);
+      toast.error("Error loading your previous grievances.");
+      setGrievances([]);
+    } else {
+      setGrievances(data || []);
+    }
+  };
+
+  // 🧭 Submit new grievance
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!user) {
+      toast.error("Please validate your mobile number first.");
+      return;
+    }
+
+    const payload = {
+      user_id: user.id,
+      name: user.name,
+      phone: user.mobile,
+      email: user.email || null,
+      address: user.address || null,
+      grievance_type: form.grievance_type,
+      subject: form.subject,
+      description: form.description,
+      status: "new",
+      created_at: new Date().toISOString(),
+    };
+
+    const { data, error } = await supabase
+      .from("grievances")
+      .insert([payload])
+      .select()
+      .single();
+
+    if (error) {
+      toast.error("Failed to submit grievance.");
+      console.error(error);
+    } else {
+      toast.success(`Grievance submitted successfully! ID: ${data.id}`);
+      setForm({ subject: "", description: "", grievance_type: "" });
+      setGrievances((prev) => [data, ...prev]);
+    }
+  };
+
+  // 🔁 Real-time updates
   useEffect(() => {
+    if (!user) return;
+
     const channel = supabase
       .channel("realtime-grievances")
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "grievances" },
         (payload) => {
-          if (payload.eventType === "UPDATE") {
-            setGrievances((prev) =>
-              prev.map((g) => (g.id === payload.new.id ? payload.new : g))
-            );
-            if (statusResult?.id === payload.new.id) {
-              setStatusResult(payload.new);
-            }
+          if (payload.new && payload.new.phone === user.mobile) {
+            setGrievances((prev) => {
+              const existing = prev.find((g) => g.id === payload.new.id);
+              if (existing) {
+                return prev.map((g) =>
+                  g.id === payload.new.id ? payload.new : g
+                );
+              } else {
+                return [payload.new, ...prev];
+              }
+            });
           }
         }
       )
       .subscribe();
 
-    return () => supabase.removeChannel(channel);
-  }, [statusResult]);
-
-  // ✅ Handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // ✅ Handle grievance submission
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!form.name || !form.phone || !form.subject || !form.description) {
-      toast.error("Please fill all required fields.");
-      return;
-    }
-
-    if (form.phone.length !== 10) {
-      toast.error("Enter a valid 10-digit phone number.");
-      return;
-    }
-
-    setLoading(true);
-
-    const { data, error } = await supabase.from("grievances").insert([
-      {
-        ...form,
-        status: "new",
-        created_at: new Date().toISOString(),
-      },
-    ]);
-
-    if (error) {
-      console.error(error);
-      toast.error("Failed to submit grievance. Try again.");
-    } else {
-      toast.success("Grievance submitted successfully!");
-      setForm({
-        name: "",
-        phone: "",
-        email: "",
-        address: "",
-        grievance_type: "",
-        subject: "",
-        description: "",
-      });
-    }
-
-    setLoading(false);
-  }
-
-  // ✅ Track grievance status by ID
-  async function handleTrackStatus() {
-    if (!statusId.trim()) {
-      toast.error("Enter a grievance ID.");
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from("grievances")
-      .select("*")
-      .eq("id", statusId)
-      .single();
-
-    if (error || !data) {
-      setStatusResult(null);
-      toast.error("No grievance found with that ID.");
-    } else {
-      setStatusResult(data);
-      toast.success("Status fetched successfully!");
-    }
-  }
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user]);
 
   return (
     <div>
       <PageHeader
-        title="Public Grievance System"
-        subtitle="Submit your complaints and track their status online"
-        breadcrumbs={breadcrumbs}
+        title="Citizen Grievance Portal"
+        subtitle="Registered users can submit grievances"
       />
 
-      <div className="container py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Form Section */}
-          <div className="lg:col-span-2">
-            <Card>
-              <div className="p-6">
-                <h2 className="text-xl font-semibold mb-6">
-                  Submit New Grievance
-                </h2>
+      <div className="container py-12 grid lg:grid-cols-3 gap-8">
+        {/* Left Section */}
+        <div className="lg:col-span-2 space-y-6">
+          <Card>
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-4">
+                Grievance Registration
+              </h2>
 
-                <form className="space-y-6" onSubmit={handleSubmit}>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <Input
-                      label="Full Name *"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Enter your full name"
-                      required
-                    />
-                    <Input
-                      label="Mobile Number *"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="Enter 10-digit number"
-                      required
-                      maxLength="10"
-                    />
-                  </div>
-
-                  <Input
-                    label="Email Address"
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="your.email@example.com"
-                  />
-
-                  <Input
-                    label="Address"
-                    name="address"
-                    value={form.address}
-                    onChange={handleChange}
-                    placeholder="Your complete address"
-                  />
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Grievance Type *
-                    </label>
-                    <select
-                      name="grievance_type"
-                      value={form.grievance_type}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary"
-                    >
-                      <option value="">Select type</option>
-                      {grievanceTypes.map((type) => (
-                        <option key={type} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <Input
-                    label="Subject *"
-                    name="subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    placeholder="Brief subject of your grievance"
-                    required
-                  />
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Detailed Description *
-                    </label>
-                    <textarea
-                      name="description"
-                      value={form.description}
-                      onChange={handleChange}
-                      rows="5"
-                      placeholder="Provide detailed description..."
-                      className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
-                      required
-                    />
-                  </div>
-
-                  <Button type="submit" disabled={loading} className="w-full">
-                    {loading ? "Submitting..." : "Submit Grievance"}
-                  </Button>
-                </form>
-              </div>
-            </Card>
-          </div>
-
-          {/* Sidebar Section */}
-          <div className="space-y-6">
-            <Card>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold mb-4">
-                  Track Grievance Status
-                </h3>
+              {!user ? (
                 <div className="space-y-4">
                   <Input
-                    placeholder="Enter Grievance ID"
-                    value={statusId}
-                    onChange={(e) => setStatusId(e.target.value)}
+                    label="Enter Registered Mobile Number"
+                    type="tel"
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                    placeholder="10-digit mobile number"
+                    maxLength="10"
                   />
-                  <Button variant="outline" className="w-full" onClick={handleTrackStatus}>
-                    Check Status
+                  <Button
+                    onClick={validateUser}
+                    className="w-full"
+                    disabled={loading}
+                  >
+                    {loading ? "Checking..." : "Validate User"}
                   </Button>
+                  <p className="text-sm text-gray-600 text-center mt-2">
+                    Only registered users can access the grievance portal.
+                  </p>
                 </div>
-
-                {statusResult && (
-                  <div className="mt-6 p-4 bg-gray-50 rounded-md border">
-                    <p className="text-sm text-gray-700 mb-2">
-                      <strong>Subject:</strong> {statusResult.subject}
+              ) : (
+                <div>
+                  <div className="bg-green-50 border border-green-200 p-4 rounded-lg mb-6">
+                    <p className="font-semibold text-green-700">
+                      ✅ Verified User: {user.name}
                     </p>
-                    <p className="text-sm text-gray-700 mb-1">
-                      <strong>Status:</strong>{" "}
-                      <span
-                        className={`font-medium ${
-                          statusResult.status === "resolved"
-                            ? "text-green-600"
-                            : statusResult.status === "in_progress"
-                            ? "text-yellow-600"
-                            : statusResult.status === "rejected"
-                            ? "text-red-600"
-                            : "text-blue-600"
-                        }`}
-                      >
-                        {statusResult.status.replace("_", " ")}
-                      </span>
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      Updated:{" "}
-                      {new Date(statusResult.updated_at).toLocaleString()}
+                    <p className="text-sm text-gray-600">
+                      Phone: {user.mobile} | Address:{" "}
+                      {user.address || "Not specified"}
                     </p>
                   </div>
-                )}
-              </div>
-            </Card>
 
-            <Card>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold mb-4">
-                  Grievance Process
-                </h3>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>1️⃣ Submit → File your grievance online.</li>
-                  <li>2️⃣ Assign → Sent to concerned department.</li>
-                  <li>3️⃣ Action → Department works on it.</li>
-                  <li>4️⃣ Resolution → Marked resolved by admin.</li>
-                </ul>
-              </div>
-            </Card>
-          </div>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        Grievance Type *
+                      </label>
+                      <select
+                        value={form.grievance_type}
+                        onChange={(e) =>
+                          setForm({ ...form, grievance_type: e.target.value })
+                        }
+                        required
+                        className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
+                      >
+                        <option value="">Select Type</option>
+                        {grievanceTypes.map((type) => (
+                          <option key={type} value={type}>
+                            {type}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <Input
+                      label="Subject"
+                      value={form.subject}
+                      onChange={(e) =>
+                        setForm({ ...form, subject: e.target.value })
+                      }
+                      required
+                    />
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        Description *
+                      </label>
+                      <textarea
+                        value={form.description}
+                        onChange={(e) =>
+                          setForm({ ...form, description: e.target.value })
+                        }
+                        rows="5"
+                        className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
+                        placeholder="Describe your grievance..."
+                        required
+                      />
+                    </div>
+
+                    <Button type="submit" className="w-full">
+                      Submit Grievance
+                    </Button>
+                  </form>
+                </div>
+              )}
+            </div>
+          </Card>
+        </div>
+
+        {/* Right Section: Past Grievances */}
+        <div>
+          <Card>
+            <div className="p-6">
+              <h3 className="text-lg font-semibold mb-4">
+                Your Past Grievances
+              </h3>
+              {!user ? (
+                <p className="text-gray-500 text-sm">
+                  Validate your mobile number to view past grievances.
+                </p>
+              ) : grievances.length === 0 ? (
+                <p className="text-gray-500 text-sm">
+                  No previous grievances found.
+                </p>
+              ) : (
+                <div className="space-y-4">
+                  {grievances.map((g) => (
+                    <div
+                      key={g.id}
+                      className="border rounded-lg p-4 bg-gray-50 hover:bg-gray-100 transition"
+                    >
+                      <div className="flex justify-between items-center mb-1">
+                        <p className="font-semibold text-sm">
+                          #{g.id} — {g.subject}
+                        </p>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            g.status === "resolved"
+                              ? "bg-green-100 text-green-700"
+                              : g.status === "in_progress"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : g.status === "rejected"
+                              ? "bg-red-100 text-red-700"
+                              : "bg-blue-100 text-blue-700"
+                          }`}
+                        >
+                          {g.status ? g.status.replace("_", " ") : "new"}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        {new Date(g.created_at).toLocaleString()}
+                      </p>
+                      <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                        {g.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </Card>
         </div>
       </div>
     </div>
   );
 }
-
-export default Grievance;

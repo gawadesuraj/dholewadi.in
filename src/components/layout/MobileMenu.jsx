@@ -34,7 +34,7 @@ const navItems = [
   {
     label: "Beneficiary Scheme",
     children: [
-      { label: "MNREGA", path: "" },
+      { label: "MNREGA", path: "/mnrega" },
       { label: "Pradhan Mantri Awas Yojna Beneficiary", path: "/pmay" },
     ],
   },
