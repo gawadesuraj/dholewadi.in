@@ -1,5 +1,4 @@
 export const mockData = {
-  
   services: [
     {
       id: 1,
@@ -94,21 +93,6 @@ export const mockData = {
     },
     {
       id: 7,
-      name: "Residence/Occupancy Certificate (निवारा/निवास असल्याचा दाखला)",
-      slug: "residence-certificate",
-      applyRoute: "/services/residence-certificate/apply",
-      category: "certificates",
-      description: "Certificate proving residence/occupancy",
-      fullDescription:
-        "Certificate issued to confirm a person's residence or occupancy at a given address.",
-      processingTime: "20 working days",
-      loksevaTime: "२० दिवस",
-      officer: "ग्रामसेवक",
-      fee: "Free",
-      isOnline: false,
-    },
-    {
-      id: 8,
       name: "Property Tax Payment",
       slug: "property-tax",
       applyRoute: "/services/property-tax/apply",
@@ -121,7 +105,7 @@ export const mockData = {
       isOnline: true,
     },
     {
-      id: 9,
+      id: 8,
       name: "Water Tax Panchayat",
       slug: "water-tax",
       applyRoute: "/services/water-tax/apply",
@@ -134,7 +118,7 @@ export const mockData = {
       isOnline: true,
     },
     {
-      id: 10,
+      id: 9,
       name: "Water Connection",
       slug: "water-connection",
       applyRoute: "/services/water-connection/apply",
@@ -145,19 +129,6 @@ export const mockData = {
       processingTime: "30 working days",
       fee: "₹2,500 (connection charges)",
       isOnline: false,
-    },
-    {
-      id: 11,
-      name: "Trade License",
-      slug: "trade-license",
-      applyRoute: "/services/trade-license/apply",
-      category: "licenses",
-      description: "License for starting a business or trade",
-      fullDescription:
-        "Required license for operating any business or trade within the taluka jurisdiction.",
-      processingTime: "30 working days",
-      fee: "₹1,000 - ₹5,000 (based on business type)",
-      isOnline: true,
     },
   ],
 
