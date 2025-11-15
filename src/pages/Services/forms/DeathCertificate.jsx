@@ -1,140 +1,227 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeader from "../../../components/common/PageHeader";
 import Card from "../../../components/ui/Card";
 import Button from "../../../components/ui/Button";
 import Modal from "../../../components/ui/Modal";
+import { supabase } from "../../../services/supabaseClient";
 import { toast } from "react-toastify";
 
-// Reusable Input Block
-function InputBlock({ label, name, type = "text", onChange }) {
+function InputBlock({ label, name, type = "text", value, onChange }) {
   return (
     <div>
-      <label className="block text-sm mb-1 font-medium">{label}</label>
+      <label className="block text-sm font-medium mb-1">{label}</label>
       <input
-        name={name}
         type={type}
+        name={name}
+        value={value}
         onChange={onChange}
-        className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200"
+        className="w-full px-3 py-2 border rounded bg-gray-50"
       />
     </div>
   );
 }
 
 export default function DeathCertificateForm() {
-  const [showForm, setShowForm] = useState(false);
-  const [step, setStep] = useState(1);
-  const fileInputRef = useRef(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [qrCode, setQrCode] = useState("");
+  const [amount, setAmount] = useState(0);
+
+  const [proofPreview, setProofPreview] = useState(null);
+  const [paymentPreview, setPaymentPreview] = useState(null);
 
   const [form, setForm] = useState({
-    financial_year: "",
-    deceased_name: "",
-    aadhaar_number: "",
+    // Applicant info
+    applicant_name: "",
+    mobile: "",
     address: "",
+    utr_number: "",
+
+    // Proofs
+    proof_file: null,
+    payment_file: null,
+
+    // Certificate specific fields → stored in JSON
+    deceased_name: "",
     death_date: "",
     death_time: "",
-    death_reason: "",
-    applicant_name_en: "",
-    applicant_name_mr: "",
-    whatsapp: "",
-    email: "",
-    aadhaar_again: "",
-    payment_option: "UPI",
-    utr_number: "",
-    payment_file: null,
+    death_time_period: "AM",
+    death_place: "",
+    father_husband_name: "",
   });
+
+  // Load QR + Amount
+  useEffect(() => {
+    async function loadSettings() {
+      const { data } = await supabase
+        .from("service_settings")
+        .select("amount, qr_code_url")
+        .eq("service_key", "death_certificate")
+        .single();
+
+      if (data) {
+        setQrCode(data.qr_code_url);
+        setAmount(data.amount);
+      }
+    }
+    loadSettings();
+  }, []);
 
   function handleChange(e) {
     const { name, value, files } = e.target;
 
     if (files) {
       const file = files[0];
-      setForm((p) => ({ ...p, [name]: file }));
-      if (file.type.startsWith("image/")) setPreviewUrl(URL.createObjectURL(file));
-    } else {
-      setForm((p) => ({ ...p, [name]: value }));
+      setForm((prev) => ({ ...prev, [name]: file }));
+
+      if (name === "proof_file") setProofPreview(URL.createObjectURL(file));
+      if (name === "payment_file") setPaymentPreview(URL.createObjectURL(file));
+      return;
     }
+
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  // NEXT STEP VALIDATION
-  function nextStep() {
-    if (step === 1) {
-      if (!form.financial_year || !form.deceased_name || !form.death_date) {
-        return toast.error("Step 1: कृपया आवश्यक माहिती भरा");
-      }
-    }
-    if (step === 2) {
-      if (!form.applicant_name_mr || !form.whatsapp) {
-        return toast.error("Step 2: कृपया अर्जदाराची माहिती भरा");
-      }
-    }
-    if (step === 3) {
-      if (!form.payment_file) {
-        return toast.error("Step 3: कृपया पेमेंट स्क्रीनशॉट अपलोड करा");
-      }
-    }
-    setStep((s) => s + 1);
+  function validate() {
+    if (!form.deceased_name) return toast.error("मृत व्यक्तीचे नाव भरा");
+    if (!form.death_date) return toast.error("मृत्यूची तारीख भरा");
+    if (!form.death_place) return toast.error("मृत्यूचे ठिकाण भरा");
+
+    if (!form.applicant_name) return toast.error("अर्जदाराचे नाव भरा");
+    if (!form.mobile) return toast.error("मोबाईल नंबर भरा");
+    if (!form.address) return toast.error("पत्ता भरा");
+
+    if (!form.proof_file) return toast.error("मृत्यूचा पुरावा अपलोड करा");
+    if (!form.payment_file) return toast.error("पेमेंट स्क्रीनशॉट अपलोड करा");
+
+    return true;
   }
 
-  function prevStep() {
-    if (step > 1) setStep((s) => s - 1);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    toast.success("Application submitted (UI only)");
-    setShowForm(false);
-    setStep(1);
-  }
+    if (!validate()) return;
 
-  const steps = ["Deceased", "Applicant", "Payment", "Review"];
+    try {
+      // ---------- Upload Proof ----------
+      const proofName = `death_proof_${Date.now()}_${form.proof_file.name}`;
+      const { error: proofErr } = await supabase.storage
+        .from("death_certificate_uploads")
+        .upload(proofName, form.proof_file);
+
+      if (proofErr) throw proofErr;
+
+      const proofUrl = supabase.storage
+        .from("death_certificate_uploads")
+        .getPublicUrl(proofName).data.publicUrl;
+
+      // ---------- Upload Payment Screenshot ----------
+      const paymentName = `death_payment_${Date.now()}_${
+        form.payment_file.name
+      }`;
+      const { error: payErr } = await supabase.storage
+        .from("death_certificate_uploads")
+        .upload(paymentName, form.payment_file);
+
+      if (payErr) throw payErr;
+
+      const paymentUrl = supabase.storage
+        .from("death_certificate_uploads")
+        .getPublicUrl(paymentName).data.publicUrl;
+
+      // ---------- Build time string ----------
+      const finalTime = form.death_time
+        ? `${form.death_time} ${form.death_time_period}`
+        : "";
+
+      // ---------- Prepare JSON form_data ----------
+      const formDataJson = {
+        deceased_name: form.deceased_name,
+        death_date: form.death_date,
+        death_time: finalTime,
+        death_place: form.death_place,
+        father_husband_name: form.father_husband_name,
+      };
+
+      // ---------- Insert into Universal Table ----------
+      const { error } = await supabase.from("certificate_requests").insert([
+        {
+          service_key: "death_certificate",
+
+          applicant_name: form.applicant_name,
+          mobile: form.mobile,
+          address: form.address,
+          utr_number: form.utr_number,
+
+          proof_url: proofUrl,
+          payment_screenshot_url: paymentUrl,
+
+          form_data: formDataJson,
+        },
+      ]);
+
+      if (error) throw error;
+
+      toast.success("Death Certificate Application Submitted!");
+
+      setOpen(false);
+      setForm({
+        applicant_name: "",
+        mobile: "",
+        address: "",
+        utr_number: "",
+
+        proof_file: null,
+        payment_file: null,
+
+        deceased_name: "",
+        death_date: "",
+        death_time: "",
+        death_time_period: "AM",
+        death_place: "",
+        father_husband_name: "",
+      });
+
+      setProofPreview(null);
+      setPaymentPreview(null);
+    } catch (err) {
+      toast.error("Error: " + err.message);
+    }
+  }
 
   return (
     <>
-      {/* HEADER */}
       <PageHeader
-        title="Death Certificate (मृत्यू प्रमाणपत्र)"
-        subtitle="Apply online for official death certificate"
+        title="Death Certificate"
+        subtitle="मृत्यू प्रमाणपत्रासाठी ऑनलाइन अर्ज करा"
         breadcrumbs={[
           { label: "Services", href: "/services" },
           { label: "Death Certificate", href: null },
         ]}
       />
 
-      {/* PAGE CONTENT */}
       <div className="container py-12 grid lg:grid-cols-3 gap-8">
-
-        {/* LEFT SIDE */}
+        {/* LEFT – QR Section */}
         <div className="lg:col-span-2">
           <Card>
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2">Service Overview</h2>
-              <p className="text-gray-600">
-                Apply online for a death certificate. Processing time: 7 working days.
-              </p>
+            <div className="p-6 space-y-4">
+              <h2 className="text-xl font-semibold">Scan & Pay</h2>
+              <p className="text-gray-600">शुल्क भरून पावती अपलोड करा.</p>
+
+              <div className="p-4 border rounded bg-gray-50 text-center space-y-4">
+                <img src={qrCode} className="mx-auto max-h-64" alt="QR" />
+                <div className="font-bold text-green-700 text-lg">
+                  शुल्क: ₹ {amount}
+                </div>
+              </div>
             </div>
           </Card>
         </div>
 
-        {/* RIGHT SIDE — ACTIONS */}
-        <div className="space-y-6">
+        {/* RIGHT – Button */}
+        <div>
           <Card>
-            <div className="p-6 space-y-3 text-center">
-              <Button className="w-full" onClick={() => setShowForm(true)}>
+            <div className="p-6 text-center space-y-3">
+              <Button className="w-full" onClick={() => setOpen(true)}>
                 Apply Online
-              </Button>
-
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement("a");
-                  link.href = "/documents/death_certificate_form.pdf";
-                  link.download = "Death_Certificate_Form.pdf";
-                  link.click();
-                }}
-              >
-                Download Form
               </Button>
 
               <Button variant="ghost" className="w-full">
@@ -145,138 +232,156 @@ export default function DeathCertificateForm() {
         </div>
       </div>
 
-      {/* WIZARD MODAL */}
+      {/* FORM MODAL */}
       <Modal
-        isOpen={showForm}
-        onClose={() => setShowForm(false)}
+        isOpen={open}
+        onClose={() => setOpen(false)}
         title="Death Certificate Application"
         size="xl"
       >
-        {/* STEP HEADER */}
-        <div className="flex justify-between mb-6">
-          {steps.map((label, idx) => (
-            <div
-              key={idx}
-              className={`flex-1 mx-1 text-center py-2 rounded text-sm font-medium
-                ${
-                  step === idx + 1
-                    ? "bg-blue-100 text-blue-700"
-                    : "bg-gray-100 text-gray-500"
-                }
-              `}
-            >
-              {idx + 1}. {label}
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 max-h-[70vh] overflow-auto"
+        >
+          {/* Applicant Information */}
+          <h3 className="font-semibold text-lg mt-3">Applicant Information</h3>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <InputBlock
+              label="अर्जदाराचे नाव *"
+              name="applicant_name"
+              value={form.applicant_name}
+              onChange={handleChange}
+            />
+
+            <InputBlock
+              label="मोबाईल नंबर *"
+              name="mobile"
+              value={form.mobile}
+              onChange={handleChange}
+            />
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-1">पत्ता *</label>
+              <textarea
+                name="address"
+                rows="2"
+                value={form.address}
+                onChange={handleChange}
+                className="w-full px-3 py-2 rounded bg-gray-50 border"
+              ></textarea>
             </div>
-          ))}
-        </div>
 
-        {/* FORM */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+            <InputBlock
+              label="UTR / व्यवहार ID"
+              name="utr_number"
+              value={form.utr_number}
+              onChange={handleChange}
+            />
+          </div>
 
-          {/* STEP 1 */}
-          {step === 1 && (
-            <div className="grid md:grid-cols-2 gap-4">
-              <InputBlock label="आर्थिक वर्ष *" name="financial_year" onChange={handleChange} />
-              <InputBlock label="मृत व्यक्तीचे नाव *" name="deceased_name" onChange={handleChange} />
-              <InputBlock label="आधार क्रमांक" name="aadhaar_number" onChange={handleChange} />
-              <InputBlock label="पत्ता" name="address" onChange={handleChange} />
-              <InputBlock label="मृत्यु दिनांक *" type="date" name="death_date" onChange={handleChange} />
-              <InputBlock label="मृत्यु वेळ" type="time" name="death_time" onChange={handleChange} />
-              <InputBlock label="मृत्यु कारण" name="death_reason" onChange={handleChange} />
-            </div>
-          )}
+          {/* Death Information */}
+          <h3 className="font-semibold text-lg mt-3">Death Details</h3>
 
-          {/* STEP 2 */}
-          {step === 2 && (
-            <div className="grid md:grid-cols-2 gap-4">
-              <InputBlock label="अर्जदाराचे नाव (इंग्रजी)" name="applicant_name_en" onChange={handleChange} />
-              <InputBlock label="अर्जदाराचे नाव (देवनागरी) *" name="applicant_name_mr" onChange={handleChange} />
-              <InputBlock label="व्हाट्सअप क्रमांक *" name="whatsapp" onChange={handleChange} />
-              <InputBlock label="ईमेल" name="email" type="email" onChange={handleChange} />
-              <InputBlock label="आधार क्रमांक (पुन्हा)" name="aadhaar_again" onChange={handleChange} />
-            </div>
-          )}
+          <div className="grid md:grid-cols-2 gap-4">
+            <InputBlock
+              label="मृत व्यक्तीचे नाव *"
+              name="deceased_name"
+              value={form.deceased_name}
+              onChange={handleChange}
+            />
 
-          {/* STEP 3 */}
-          {step === 3 && (
-            <div className="space-y-4">
-              <label className="font-medium text-sm">Payment Option</label>
-              <div className="flex gap-5">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="payment_option"
-                    value="UPI"
-                    checked={form.payment_option === "UPI"}
-                    onChange={handleChange}
-                  />
-                  UPI
-                </label>
+            <InputBlock
+              label="मृत्यूची तारीख *"
+              type="date"
+              name="death_date"
+              value={form.death_date}
+              onChange={handleChange}
+            />
 
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="payment_option"
-                    value="NetBanking"
-                    checked={form.payment_option === "NetBanking"}
-                    onChange={handleChange}
-                  />
-                  NetBanking
-                </label>
-              </div>
-
-              <InputBlock label="UTR Number (optional)" name="utr_number" onChange={handleChange} />
-
-              <div>
-                <label className="block mb-2">पेमेंट स्क्रीनशॉट *</label>
+            {/* TIME + AMPM */}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                मृत्यूची वेळ
+              </label>
+              <div className="flex gap-2">
                 <input
-                  type="file"
-                  ref={fileInputRef}
-                  accept="image/*"
-                  name="payment_file"
+                  type="time"
+                  name="death_time"
+                  value={form.death_time}
                   onChange={handleChange}
-                  required
+                  className="w-full px-3 py-2 border rounded bg-gray-50"
                 />
-
-                {previewUrl && (
-                  <img src={previewUrl} className="max-h-40 mt-3 rounded shadow" alt="preview" />
-                )}
+                <select
+                  name="death_time_period"
+                  value={form.death_time_period}
+                  onChange={handleChange}
+                  className="px-3 py-2 border rounded bg-gray-50"
+                >
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
               </div>
             </div>
-          )}
 
-          {/* STEP 4 — REVIEW */}
-          {step === 4 && (
-            <div className="space-y-2 text-sm">
-              <div><strong>Year:</strong> {form.financial_year}</div>
-              <div><strong>Name:</strong> {form.deceased_name}</div>
-              <div><strong>Applicant:</strong> {form.applicant_name_mr}</div>
-              <div><strong>WhatsApp:</strong> {form.whatsapp}</div>
-              <div><strong>Payment:</strong> {form.payment_option}</div>
+            <InputBlock
+              label="मृत्यूचे ठिकाण *"
+              name="death_place"
+              value={form.death_place}
+              onChange={handleChange}
+            />
 
-              {previewUrl && (
-                <img src={previewUrl} className="max-h-40 rounded mt-2" alt="payment" />
+            <InputBlock
+              label="वडील / पतीचे नाव"
+              name="father_husband_name"
+              value={form.father_husband_name}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* FILE UPLOADS */}
+          <h3 className="font-semibold text-lg mt-3">Uploads</h3>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Proof */}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                मृत्यूचा पुरावा *
+              </label>
+              <input
+                type="file"
+                name="proof_file"
+                accept="image/*,application/pdf"
+                onChange={handleChange}
+              />
+              {proofPreview && (
+                <img src={proofPreview} className="max-h-40 mt-2 rounded" />
               )}
             </div>
-          )}
 
-          {/* BUTTONS */}
-          <div className="flex justify-between pt-4">
-            {step > 1 ? (
-              <Button variant="outline" type="button" onClick={prevStep}>
-                Back
-              </Button>
-            ) : (
-              <span></span>
-            )}
+            {/* Payment */}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                पेमेंट स्क्रीनशॉट *
+              </label>
+              <input
+                type="file"
+                name="payment_file"
+                accept="image/*"
+                onChange={handleChange}
+              />
+              {paymentPreview && (
+                <img src={paymentPreview} className="max-h-40 mt-2 rounded" />
+              )}
+            </div>
+          </div>
 
-            {step < 4 ? (
-              <Button type="button" onClick={nextStep}>
-                Next →
-              </Button>
-            ) : (
-              <Button type="submit">Submit Application</Button>
-            )}
+          {/* Buttons */}
+          <div className="flex justify-end gap-3">
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button type="submit">Submit Application</Button>
           </div>
         </form>
       </Modal>

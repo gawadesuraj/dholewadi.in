@@ -19,6 +19,7 @@ import IncomeCertificateForm from "./pages/Services/forms/IncomeCertificate";
 import PropertyTaxPaymentForm from "./pages/Services/forms/PropertyTaxPayment";
 import WaterConnectionForm from "./pages/Services/forms/WaterConnection";
 import TradeLicenseForm from "./pages/Services/forms/TradeLicense";
+import WaterTaxPayment from "./pages/Services/forms/waterTaxPayment";
 
 // Lazy load components for better performance
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -141,16 +142,16 @@ function Router() {
           element={<PropertyTaxPaymentForm />}
         />
 
-        <Route
-          path="/services/water-connection"
-          element={<WaterConnectionForm />}
-        />
+        <Route path="/services/water-connection"element={<WaterConnectionForm />}/>
+        <Route path="/services/water-tax"element={<WaterTaxPayment />}/>
 
         <Route path="/services/trade-license" element={<TradeLicenseForm />} />
-        <Route path="/services/track" element={<TrackApplication />} />        
-        <Route path="/services/certificate-application" element={<CertificateApplication />} />    
-        <Route path="/mnrega" element={<MNREGA />} />    
-
+        <Route path="/services/track" element={<TrackApplication />} />
+        <Route
+          path="/services/certificate-application"
+          element={<CertificateApplication />}
+        />
+        <Route path="/mnrega" element={<MNREGA />} />
       </Routes>
     </Suspense>
   );

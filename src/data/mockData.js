@@ -107,22 +107,8 @@ export const mockData = {
       fee: "Free",
       isOnline: false,
     },
-
     {
       id: 8,
-      name: "Income Certificate",
-      slug: "income-certificate",
-      applyRoute: "/services/income-certificate/apply",
-      category: "certificates",
-      description: "Certificate stating annual family income",
-      fullDescription:
-        "Income certificate is required for various government schemes, educational concessions, and job applications.",
-      processingTime: "15 working days",
-      fee: "₹30",
-      isOnline: true,
-    },
-    {
-      id: 9,
       name: "Property Tax Payment",
       slug: "property-tax",
       applyRoute: "/services/property-tax/apply",
@@ -132,6 +118,19 @@ export const mockData = {
         "Pay your annual property tax online through our secure payment gateway.",
       processingTime: "Immediate",
       fee: "As per property assessment",
+      isOnline: true,
+    },
+    {
+      id: 9,
+      name: "Water Tax Panchayat",
+      slug: "water-tax",
+      applyRoute: "/services/water-tax/apply",
+      category: "utilities",
+      description: "Online water tax payment facility",
+      fullDescription:
+        "Pay your monthly water tax online through our secure payment gateway.",
+      processingTime: "30 working days",
+      fee: "₹2,500 (connection charges)",
       isOnline: true,
     },
     {

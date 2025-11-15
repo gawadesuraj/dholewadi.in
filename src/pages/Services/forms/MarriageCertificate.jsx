@@ -1,20 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeader from "../../../components/common/PageHeader";
 import Card from "../../../components/ui/Card";
 import Button from "../../../components/ui/Button";
 import Modal from "../../../components/ui/Modal";
+import { supabase } from "../../../services/supabaseClient";
 import { toast } from "react-toastify";
 
-// Reusable Input Block
-function InputBlock({ label, name, type = "text", onChange }) {
+function InputBlock({ label, name, value, type = "text", onChange }) {
   return (
     <div>
-      <label className="block text-sm mb-1 font-medium">{label}</label>
+      <label className="block text-sm font-medium mb-1">{label}</label>
       <input
-        name={name}
         type={type}
+        name={name}
+        value={value}
         onChange={onChange}
-        className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200"
+        className="w-full px-3 py-2 border rounded bg-gray-50"
       />
     </div>
   );
@@ -22,90 +23,164 @@ function InputBlock({ label, name, type = "text", onChange }) {
 
 export default function MarriageCertificateForm() {
   const [open, setOpen] = useState(false);
-  const [step, setStep] = useState(1);
-  const fileRef = useRef(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [qrCode, setQrCode] = useState("");
+  const [amount, setAmount] = useState(0);
+
+  const [previewProof, setPreviewProof] = useState(null);
+  const [previewPay, setPreviewPay] = useState(null);
 
   const [form, setForm] = useState({
-    financial_year: "",
+    // Applicant info
+    applicant_name: "",
+    mobile: "",
+    address: "",
+    utr_number: "",
+
+    // Files
+    proof_file: null,
+    payment_file: null,
+
+    // Marriage-specific fields (will go inside form_data JSON)
+    husband_name: "",
+    wife_name: "",
     marriage_date: "",
     marriage_place: "",
-    husband_name: "",
-    husband_aadhaar: "",
-    wife_name: "",
-    wife_aadhaar: "",
-    applicant_name_en: "",
-    applicant_name_mr: "",
-    whatsapp: "",
-    email: "",
-    utr_number: "",
-    payment_file: null,
   });
 
-  // Handle input
+  // Load QR + Amount for marriage certificate
+  useEffect(() => {
+    async function loadSettings() {
+      const { data } = await supabase
+        .from("service_settings")
+        .select("amount, qr_code_url")
+        .eq("service_key", "marriage_certificate")
+        .single();
+
+      if (data) {
+        setQrCode(data.qr_code_url);
+        setAmount(data.amount);
+      }
+    }
+    loadSettings();
+  }, []);
+
   function handleChange(e) {
     const { name, value, files } = e.target;
 
     if (files) {
       const file = files[0];
-      setForm((p) => ({ ...p, [name]: file }));
-      if (file.type.startsWith("image/")) {
-        setPreviewUrl(URL.createObjectURL(file));
-      }
-    } else {
-      setForm((p) => ({ ...p, [name]: value }));
+      setForm((prev) => ({ ...prev, [name]: file }));
+
+      if (name === "proof_file") setPreviewProof(URL.createObjectURL(file));
+      if (name === "payment_file") setPreviewPay(URL.createObjectURL(file));
+      return;
     }
+
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  // Validation per step
-  function nextStep() {
-    if (step === 1) {
-      if (!form.financial_year || !form.marriage_date || !form.marriage_place) {
-        return toast.error("कृपया Step 1 मधील सर्व माहिती भरा");
-      }
-    }
+  function validate() {
+    if (!form.husband_name) return toast.error("वराचे नाव भरा");
+    if (!form.wife_name) return toast.error("वधूचे नाव भरा");
+    if (!form.marriage_date) return toast.error("लग्नाची तारीख भरा");
+    if (!form.marriage_place) return toast.error("लग्नाचे ठिकाण भरा");
 
-    if (step === 2) {
-      if (!form.husband_name || !form.wife_name) {
-        return toast.error("कृपया Step 2: पती / पत्नीची माहिती भरा");
-      }
-    }
+    if (!form.applicant_name) return toast.error("अर्जदाराचे नाव भरा");
+    if (!form.mobile) return toast.error("मोबाईल नंबर भरा");
+    if (!form.address) return toast.error("पत्ता भरा");
 
-    if (step === 3) {
-      if (!form.whatsapp || !form.applicant_name_mr) {
-        return toast.error("कृपया Step 3: अर्जदाराची माहिती भरा");
-      }
-    }
+    if (!form.proof_file) return toast.error("पुरावा अपलोड करा");
+    if (!form.payment_file) return toast.error("पेमेंट स्क्रीनशॉट भरा");
 
-    if (step === 4) {
-      if (!form.utr_number || !form.payment_file) {
-        return toast.error("कृपया Step 4: UTR व स्क्रीनशॉट अपलोड करा");
-      }
-    }
-
-    setStep((s) => s + 1);
+    return true;
   }
 
-  function prevStep() {
-    if (step > 1) setStep((s) => s - 1);
-  }
-
-  function submitForm(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    if (!validate()) return;
 
-    toast.success("Marriage Certificate Application Submitted (UI Only)");
-    setOpen(false);
-    setStep(1);
+    try {
+      // Upload proof
+      const proofName = `marriage_proof_${Date.now()}_${form.proof_file.name}`;
+      const { error: proofErr } = await supabase.storage
+        .from("marriage_certificate_uploads")
+        .upload(proofName, form.proof_file);
+
+      if (proofErr) throw proofErr;
+
+      const proofUrl = supabase.storage
+        .from("marriage_certificate_uploads")
+        .getPublicUrl(proofName).data.publicUrl;
+
+      // Upload payment screenshot
+      const payName = `marriage_payment_${Date.now()}_${
+        form.payment_file.name
+      }`;
+      const { error: payErr } = await supabase.storage
+        .from("marriage_certificate_uploads")
+        .upload(payName, form.payment_file);
+
+      if (payErr) throw payErr;
+
+      const paymentUrl = supabase.storage
+        .from("marriage_certificate_uploads")
+        .getPublicUrl(payName).data.publicUrl;
+
+      // Prepare JSON for certificate-specific data
+      const formDataJson = {
+        husband_name: form.husband_name,
+        wife_name: form.wife_name,
+        marriage_date: form.marriage_date,
+        marriage_place: form.marriage_place,
+      };
+
+      // Insert into universal certificate table
+      const { error } = await supabase.from("certificate_requests").insert([
+        {
+          service_key: "marriage_certificate",
+
+          applicant_name: form.applicant_name,
+          mobile: form.mobile,
+          address: form.address,
+          utr_number: form.utr_number,
+
+          proof_url: proofUrl,
+          payment_screenshot_url: paymentUrl,
+
+          form_data: formDataJson,
+        },
+      ]);
+
+      if (error) throw error;
+
+      toast.success("Marriage Certificate Application Submitted!");
+
+      setOpen(false);
+      setForm({
+        applicant_name: "",
+        mobile: "",
+        address: "",
+        utr_number: "",
+        proof_file: null,
+        payment_file: null,
+        husband_name: "",
+        wife_name: "",
+        marriage_date: "",
+        marriage_place: "",
+      });
+
+      setPreviewProof(null);
+      setPreviewPay(null);
+    } catch (err) {
+      toast.error("Error: " + err.message);
+    }
   }
-
-  const steps = ["Marriage Info", "Husband/Wife", "Applicant", "Payment", "Review"];
 
   return (
     <>
-      {/* PAGE HEADER */}
       <PageHeader
-        title="Marriage Certificate (विवाह प्रमाणपत्र)"
-        subtitle="Apply online for marriage certificate"
+        title="Marriage Certificate"
+        subtitle="लग्न प्रमाणपत्रासाठी ऑनलाइन अर्ज करा"
         breadcrumbs={[
           { label: "Services", href: "/services" },
           { label: "Marriage Certificate", href: null },
@@ -113,39 +188,30 @@ export default function MarriageCertificateForm() {
       />
 
       <div className="container py-12 grid lg:grid-cols-3 gap-8">
-        {/* LEFT */}
-        <div className="lg:col-span-2 space-y-6">
+        {/* LEFT – QR CODE */}
+        <div className="lg:col-span-2">
           <Card>
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2">Service Overview</h2>
-              <p className="text-gray-600">
-                Apply online for a legal marriage certificate. Processing time: 7 working days.
-              </p>
+            <div className="p-6 space-y-4">
+              <h2 className="text-xl font-semibold">Scan & Pay</h2>
+              <p className="text-gray-600">शुल्क भरून पावती अपलोड करा.</p>
+
+              <div className="p-4 border rounded bg-gray-50 text-center space-y-4">
+                <img src={qrCode} className="mx-auto max-h-64" alt="QR Code" />
+                <div className="font-bold text-green-700 text-lg">
+                  शुल्क: ₹ {amount}
+                </div>
+              </div>
             </div>
           </Card>
         </div>
 
-        {/* RIGHT ACTIONS */}
-        <div className="space-y-6">
+        {/* RIGHT – Apply Button */}
+        <div>
           <Card>
-            <div className="p-6 space-y-3 text-center">
+            <div className="p-6 text-center space-y-3">
               <Button className="w-full" onClick={() => setOpen(true)}>
                 Apply Online
               </Button>
-
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => {
-                  const a = document.createElement("a");
-                  a.href = "/documents/marriage_certificate_form.pdf";
-                  a.download = "Marriage_Certificate_Form.pdf";
-                  a.click();
-                }}
-              >
-                Download Form
-              </Button>
-
               <Button variant="ghost" className="w-full">
                 Check Status
               </Button>
@@ -154,119 +220,133 @@ export default function MarriageCertificateForm() {
         </div>
       </div>
 
-      {/* ★ WIZARD MODAL ★ */}
+      {/* FORM MODAL */}
       <Modal
         isOpen={open}
         onClose={() => setOpen(false)}
         title="Marriage Certificate Application"
         size="xl"
       >
-        {/* Step Indicator */}
-        <div className="flex justify-between mb-6">
-          {steps.map((label, i) => (
-            <div
-              key={i}
-              className={`flex-1 text-center mx-1 py-2 rounded text-sm font-medium 
-                ${
-                  step === i + 1
-                    ? "bg-blue-100 text-blue-700"
-                    : "bg-gray-100 text-gray-500"
-                }`}
-            >
-              {i + 1}. {label}
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 max-h-[70vh] overflow-auto"
+        >
+          {/* Applicant Info */}
+          <h3 className="font-semibold text-lg mt-3">Applicant Information</h3>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <InputBlock
+              label="अर्जदाराचे नाव *"
+              name="applicant_name"
+              value={form.applicant_name}
+              onChange={handleChange}
+            />
+            <InputBlock
+              label="मोबाईल नंबर *"
+              name="mobile"
+              value={form.mobile}
+              onChange={handleChange}
+            />
+            <div className="md:col-span-2">
+              <label className="block text-sm mb-1 font-medium">पत्ता *</label>
+              <textarea
+                name="address"
+                value={form.address}
+                rows="2"
+                onChange={handleChange}
+                className="w-full px-3 py-2 rounded bg-gray-50 border"
+              ></textarea>
             </div>
-          ))}
-        </div>
+            <InputBlock
+              label="UTR / व्यवहार ID"
+              name="utr_number"
+              value={form.utr_number}
+              onChange={handleChange}
+            />
+          </div>
 
-        {/* FORM */}
-        <form onSubmit={submitForm} className="space-y-6">
+          {/* Marriage Details */}
+          <h3 className="font-semibold text-lg mt-3">Marriage Details</h3>
 
-          {/* STEP 1: Marriage Info */}
-          {step === 1 && (
-            <div className="grid md:grid-cols-2 gap-4">
-              <InputBlock label="आर्थिक वर्ष *" name="financial_year" onChange={handleChange} />
-              <InputBlock label="विवाह दिनांक *" type="date" name="marriage_date" onChange={handleChange} />
-              <InputBlock label="विवाह ठिकाण *" name="marriage_place" onChange={handleChange} />
-            </div>
-          )}
+          <div className="grid md:grid-cols-2 gap-4">
+            <InputBlock
+              label="वराचे नाव *"
+              name="husband_name"
+              value={form.husband_name}
+              onChange={handleChange}
+            />
+            <InputBlock
+              label="वधूचे नाव *"
+              name="wife_name"
+              value={form.wife_name}
+              onChange={handleChange}
+            />
+            <InputBlock
+              label="लग्नाची तारीख *"
+              name="marriage_date"
+              type="date"
+              value={form.marriage_date}
+              onChange={handleChange}
+            />
+            <InputBlock
+              label="लग्नाचे ठिकाण *"
+              name="marriage_place"
+              value={form.marriage_place}
+              onChange={handleChange}
+            />
+          </div>
 
-          {/* STEP 2: Husband / Wife details */}
-          {step === 2 && (
-            <div className="grid md:grid-cols-2 gap-4">
-              <InputBlock label="पतीचे नाव *" name="husband_name" onChange={handleChange} />
-              <InputBlock label="पतीचा आधार क्रमांक" name="husband_aadhaar" onChange={handleChange} />
-              <InputBlock label="पत्नीचे नाव *" name="wife_name" onChange={handleChange} />
-              <InputBlock label="पत्नीचा आधार क्रमांक" name="wife_aadhaar" onChange={handleChange} />
-            </div>
-          )}
+          {/* Uploads */}
+          <h3 className="font-semibold text-lg mt-3">Uploads</h3>
 
-          {/* STEP 3: Applicant */}
-          {step === 3 && (
-            <div className="grid md:grid-cols-2 gap-4">
-              <InputBlock label="अर्जदाराचे नाव (इंग्रजी)" name="applicant_name_en" onChange={handleChange} />
-              <InputBlock label="अर्जदाराचे नाव (देवनागरी) *" name="applicant_name_mr" onChange={handleChange} />
-              <InputBlock label="व्हाट्सअप क्रमांक *" name="whatsapp" onChange={handleChange} />
-              <InputBlock label="ई मेल आय डी" name="email" onChange={handleChange} />
-            </div>
-          )}
-
-          {/* STEP 4: Payment */}
-          {step === 4 && (
-            <div className="space-y-4">
-              <InputBlock label="UTR Number *" name="utr_number" onChange={handleChange} />
-
-              <div>
-                <label className="block text-sm mb-1 font-medium">
-                  पेमेंट स्क्रीनशॉट *
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name="payment_file"
-                  ref={fileRef}
-                  onChange={handleChange}
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Proof */}
+            <div>
+              <label className="block text-sm mb-1 font-medium">
+                विवाहाचा पुरावा *
+              </label>
+              <input
+                type="file"
+                accept="image/*,application/pdf"
+                name="proof_file"
+                onChange={handleChange}
+              />
+              {previewProof && (
+                <img
+                  src={previewProof}
+                  alt=""
+                  className="max-h-40 mt-2 rounded"
                 />
-
-                {previewUrl && (
-                  <img src={previewUrl} className="max-h-40 mt-3 rounded shadow" />
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* STEP 5: Review */}
-          {step === 5 && (
-            <div className="space-y-2 text-sm">
-              <p><strong>आर्थिक वर्ष:</strong> {form.financial_year}</p>
-              <p><strong>विवाह दिनांक:</strong> {form.marriage_date}</p>
-              <p><strong>विवाह ठिकाण:</strong> {form.marriage_place}</p>
-              <p><strong>पती:</strong> {form.husband_name}</p>
-              <p><strong>पत्नी:</strong> {form.wife_name}</p>
-              <p><strong>अर्जदार:</strong> {form.applicant_name_mr}</p>
-              <p><strong>UTR:</strong> {form.utr_number}</p>
-              {previewUrl && (
-                <img src={previewUrl} className="max-h-40 mt-2 rounded shadow" />
               )}
             </div>
-          )}
+
+            {/* Payment */}
+            <div>
+              <label className="block text-sm mb-1 font-medium">
+                पेमेंट स्क्रीनशॉट *
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                name="payment_file"
+                onChange={handleChange}
+              />
+              {previewPay && (
+                <img
+                  src={previewPay}
+                  alt=""
+                  className="max-h-40 mt-2 rounded"
+                />
+              )}
+            </div>
+          </div>
 
           {/* Buttons */}
-          <div className="flex justify-between">
-            {step > 1 ? (
-              <Button variant="outline" type="button" onClick={prevStep}>
-                Back
-              </Button>
-            ) : (
-              <span />
-            )}
-
-            {step < 5 ? (
-              <Button type="button" onClick={nextStep}>
-                Next →
-              </Button>
-            ) : (
-              <Button type="submit">Submit Application</Button>
-            )}
+          <div className="flex justify-end gap-3">
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button type="submit">Submit Application</Button>
           </div>
         </form>
       </Modal>

@@ -1,4 +1,4 @@
-// src/pages/Services/forms/PropertyTaxPayment.jsx
+// src/pages/Services/forms/WaterTaxPayment.jsx
 import React, { useState, useRef, useEffect } from "react";
 import PageHeader from "../../../components/common/PageHeader";
 import Card from "../../../components/ui/Card";
@@ -23,7 +23,7 @@ function InputBlock({ label, name, type = "text", onChange, value, readOnly }) {
   );
 }
 
-export default function PropertyTaxPayment() {
+export default function WaterTaxPayment() {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -31,13 +31,12 @@ export default function PropertyTaxPayment() {
   const fileRef = useRef(null);
 
   const [form, setForm] = useState({
-    property_id: "",
-    owner_name: "",
-    property_address: "",
-    tax_year: "",
+    connection_number: "",
+    consumer_name: "",
+    address: "",
+    billing_year: "",
     amount: "",
     mobile: "",
-    email: "",
     utr_number: "",
     payment_file: null,
   });
@@ -48,7 +47,7 @@ export default function PropertyTaxPayment() {
       const { data, error } = await supabase
         .from("service_settings")
         .select("amount, qr_code_url")
-        .eq("service_key", "property_tax")
+        .eq("service_key", "water_tax")
         .single();
 
       if (error) {
@@ -77,8 +76,8 @@ export default function PropertyTaxPayment() {
   }
 
   function validate() {
-    if (!form.property_id) {
-      toast.error("कृपया मालमत्ता आयडी भरा");
+    if (!form.connection_number) {
+      toast.error("कृपया कनेक्शन नंबर भरा");
       return false;
     }
     if (!form.amount) {
@@ -86,7 +85,7 @@ export default function PropertyTaxPayment() {
       return false;
     }
     if (!form.payment_file) {
-      toast.error("कृपया पेमेंटची पावती / स्क्रीनशॉट अपलोड करा");
+      toast.error("कृपया पेमेंट पावती अपलोड करा");
       return false;
     }
     return true;
@@ -100,28 +99,27 @@ export default function PropertyTaxPayment() {
 
     try {
       // 🔵 1) UPLOAD FILE
-      const fileName = `tax_${Date.now()}_${form.payment_file.name}`;
+      const fileName = `water_${Date.now()}_${form.payment_file.name}`;
 
       const { error: uploadError } = await supabase.storage
-        .from("property_tax_uploads")
+        .from("water_tax_uploads")
         .upload(fileName, form.payment_file);
 
       if (uploadError) throw uploadError;
 
       const { data: fileData } = supabase.storage
-        .from("property_tax_uploads")
+        .from("water_tax_uploads")
         .getPublicUrl(fileName);
 
-      // 🔵 2) INSERT DATABASE RECORD
-      const { error } = await supabase.from("property_tax_payments").insert([
+      // 🔵 2) INSERT INTO DATABASE
+      const { error } = await supabase.from("water_tax_payments").insert([
         {
-          property_id: form.property_id,
-          owner_name: form.owner_name,
-          property_address: form.property_address,
-          tax_year: form.tax_year,
+          connection_number: form.connection_number,
+          consumer_name: form.consumer_name,
+          address: form.address,
+          billing_year: form.billing_year,
           amount: form.amount,
           mobile: form.mobile,
-          email: form.email,
           utr_number: form.utr_number,
           screenshot_url: fileData.publicUrl,
         },
@@ -129,25 +127,23 @@ export default function PropertyTaxPayment() {
 
       if (error) throw error;
 
-      toast.success("Property tax payment submitted successfully!");
+      toast.success("Water tax payment submitted successfully!");
 
-      // Reset
       setOpen(false);
       setForm({
-        property_id: "",
-        owner_name: "",
-        property_address: "",
-        tax_year: "",
+        connection_number: "",
+        consumer_name: "",
+        address: "",
+        billing_year: "",
         amount: form.amount,
         mobile: "",
-        email: "",
         utr_number: "",
         payment_file: null,
       });
       setPreview(null);
     } catch (err) {
       console.error(err);
-      toast.error("Error submitting form: " + err.message);
+      toast.error("Error submitting: " + err.message);
     }
 
     setSubmitting(false);
@@ -156,11 +152,11 @@ export default function PropertyTaxPayment() {
   return (
     <>
       <PageHeader
-        title="Property Tax Payment"
-        subtitle="Pay your property tax online"
+        title="Water Tax Payment"
+        subtitle="Pay your water tax online"
         breadcrumbs={[
           { label: "Services", href: "/services" },
-          { label: "Property Tax", href: null },
+          { label: "Water Tax", href: null },
         ]}
       />
 
@@ -171,19 +167,16 @@ export default function PropertyTaxPayment() {
             <div className="p-6 space-y-4">
               <h2 className="text-xl font-semibold">Scan & Pay</h2>
               <p className="text-gray-600">
-                स्कॅन करून खालील रक्कम भरा आणि पावती अपलोड करा.
+                स्कॅन करून खालील रक्कम भरा आणि पेमेंटची पावती अपलोड करा.
               </p>
 
-              {/* QR BLOCK */}
               <div className="p-4 border rounded-md bg-gray-50 text-center space-y-3">
-                {/* QR CODE */}
                 <img
                   src={qrCode || "/placeholder_qr.png"}
                   alt="QR Code"
                   className="mx-auto max-h-64"
                 />
 
-                {/* DYNAMIC AMOUNT */}
                 <div className="mt-4 p-3 border rounded bg-white shadow-sm inline-block">
                   <div className="text-sm text-gray-600">
                     भरणा करावयाची रक्कम
@@ -197,25 +190,12 @@ export default function PropertyTaxPayment() {
           </Card>
         </div>
 
-        {/* RIGHT SIDE — BUTTONS */}
+        {/* RIGHT SIDE BUTTONS */}
         <div>
           <Card>
             <div className="p-6 text-center space-y-3">
               <Button className="w-full" onClick={() => setOpen(true)}>
                 Pay / Apply
-              </Button>
-
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => {
-                  const a = document.createElement("a");
-                  a.href = "/documents/property_tax_receipt_template.pdf";
-                  a.download = "PropertyTax_Form.pdf";
-                  a.click();
-                }}
-              >
-                Download Form
               </Button>
 
               <Button variant="ghost" className="w-full">
@@ -230,7 +210,7 @@ export default function PropertyTaxPayment() {
       <Modal
         isOpen={open}
         onClose={() => setOpen(false)}
-        title="Property Tax Payment"
+        title="Water Tax Payment"
         size="xl"
       >
         <form
@@ -239,26 +219,24 @@ export default function PropertyTaxPayment() {
         >
           <div className="grid md:grid-cols-2 gap-4">
             <InputBlock
-              label="Property ID / Assessment No *"
-              name="property_id"
-              value={form.property_id}
+              label="Connection Number *"
+              name="connection_number"
+              value={form.connection_number}
               onChange={handleChange}
             />
 
             <InputBlock
-              label="Owner Name"
-              name="owner_name"
-              value={form.owner_name}
+              label="Consumer Name"
+              name="consumer_name"
+              value={form.consumer_name}
               onChange={handleChange}
             />
 
             <div className="md:col-span-2">
-              <label className="block text-sm mb-1 font-medium">
-                Property Address
-              </label>
+              <label className="block text-sm mb-1 font-medium">Address</label>
               <textarea
-                name="property_address"
-                value={form.property_address}
+                name="address"
+                value={form.address}
                 onChange={handleChange}
                 rows="2"
                 className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200"
@@ -266,9 +244,9 @@ export default function PropertyTaxPayment() {
             </div>
 
             <InputBlock
-              label="Tax Year"
-              name="tax_year"
-              value={form.tax_year}
+              label="Billing Year"
+              name="billing_year"
+              value={form.billing_year}
               onChange={handleChange}
             />
 
@@ -280,17 +258,9 @@ export default function PropertyTaxPayment() {
             />
 
             <InputBlock
-              label="व्हाट्सअप / मोबाईल"
+              label="Mobile Number"
               name="mobile"
               value={form.mobile}
-              onChange={handleChange}
-            />
-
-            <InputBlock
-              label="ईमेल"
-              name="email"
-              type="email"
-              value={form.email}
               onChange={handleChange}
             />
 
@@ -301,7 +271,6 @@ export default function PropertyTaxPayment() {
               onChange={handleChange}
             />
 
-            {/* FILE UPLOAD */}
             <div className="md:col-span-2">
               <label className="block text-sm mb-1 font-medium">
                 Payment Screenshot *
