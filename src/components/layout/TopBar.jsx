@@ -134,7 +134,7 @@ function TopBar() {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-white border hover:bg-gray-50"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-white border hover:bg-gray-50 z-50"
                 >
                   <FaGlobe />
                   <span className="text-xs uppercase">भाषा</span>
