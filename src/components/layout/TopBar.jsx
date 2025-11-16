@@ -141,7 +141,7 @@ function TopBar() {
                 </button>
 
                 {isTranslateOpen && (
-                  <div className="absolute right-0 mt-2 py-2 w-32 bg-white rounded-md shadow-lg border">
+                  <div className="absolute right-0 mt-2 py-2 w-32 bg-white rounded-md shadow-lg border z-50">
                     <button
                       onClick={() => changeLanguage("mr")}
                       className="block w-full px-4 py-2 text-sm hover:bg-gray-100"
