@@ -37,7 +37,6 @@ export default function PropertyTaxPayment() {
     tax_year: "",
     amount: "",
     mobile: "",
-    email: "",
     utr_number: "",
     payment_file: null,
   });
@@ -121,7 +120,6 @@ export default function PropertyTaxPayment() {
           tax_year: form.tax_year,
           amount: form.amount,
           mobile: form.mobile,
-          email: form.email,
           utr_number: form.utr_number,
           screenshot_url: fileData.publicUrl,
         },
@@ -140,7 +138,6 @@ export default function PropertyTaxPayment() {
         tax_year: "",
         amount: form.amount,
         mobile: "",
-        email: "",
         utr_number: "",
         payment_file: null,
       });
@@ -176,14 +173,12 @@ export default function PropertyTaxPayment() {
 
               {/* QR BLOCK */}
               <div className="p-4 border rounded-md bg-gray-50 text-center space-y-3">
-                {/* QR CODE */}
                 <img
                   src={qrCode || "/placeholder_qr.png"}
                   alt="QR Code"
                   className="mx-auto max-h-64"
                 />
 
-                {/* DYNAMIC AMOUNT */}
                 <div className="mt-4 p-3 border rounded bg-white shadow-sm inline-block">
                   <div className="text-sm text-gray-600">
                     भरणा करावयाची रक्कम
@@ -283,14 +278,6 @@ export default function PropertyTaxPayment() {
               label="व्हाट्सअप / मोबाईल"
               name="mobile"
               value={form.mobile}
-              onChange={handleChange}
-            />
-
-            <InputBlock
-              label="ईमेल"
-              name="email"
-              type="email"
-              value={form.email}
               onChange={handleChange}
             />
 
