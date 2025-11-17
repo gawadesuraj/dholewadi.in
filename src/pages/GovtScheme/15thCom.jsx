@@ -3,24 +3,10 @@ import { FileText, Calendar, Award, TrendingUp, Landmark } from "lucide-react";
 
 function FifteenthFinanceCommission() {
   return (
-    <div className="min-h-screen w-full bg-white relative text-gray-800">
-      {/* 🎨 Crosshatch Background Pattern */}
-      <div
-  className="absolute inset-0 z-0 pointer-events-none contrast-125 brightness-95"
-  style={{
-    backgroundImage: `
-      repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.18) 2px, rgba(75, 85, 99, 0.18) 3px, transparent 3px, transparent 8px),
-      repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.16) 2px, rgba(107, 114, 128, 0.16) 3px, transparent 3px, transparent 8px),
-      repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.14) 2px, rgba(55, 65, 81, 0.14) 3px, transparent 3px, transparent 8px),
-      repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.12) 2px, rgba(31, 41, 55, 0.12) 3px, transparent 3px, transparent 8px)
-    `,
-  }}
-/>
-
-
+    <div className="min-h-screen w-full relative text-gray-800">
       {/* 📘 Page Content */}
-      <div className="relative z-10 min-h-screen bg-gray-50/70 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-white/90 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
+      <div className="relative z-10 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
           {/* Header Section */}
           <div className="relative bg-gradient-to-r from-amber-600 to-orange-700 p-8 sm:p-12 text-center text-white">
             <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png')] opacity-10"></div>
