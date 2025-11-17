@@ -1,5 +1,4 @@
 export const mockData = {
-  
   services: [
     {
       id: 1,
@@ -94,35 +93,6 @@ export const mockData = {
     },
     {
       id: 7,
-      name: "Residence/Occupancy Certificate (निवारा/निवास असल्याचा दाखला)",
-      slug: "residence-certificate",
-      applyRoute: "/services/residence-certificate/apply",
-      category: "certificates",
-      description: "Certificate proving residence/occupancy",
-      fullDescription:
-        "Certificate issued to confirm a person's residence or occupancy at a given address.",
-      processingTime: "20 working days",
-      loksevaTime: "२० दिवस",
-      officer: "ग्रामसेवक",
-      fee: "Free",
-      isOnline: false,
-    },
-
-    {
-      id: 8,
-      name: "Income Certificate",
-      slug: "income-certificate",
-      applyRoute: "/services/income-certificate/apply",
-      category: "certificates",
-      description: "Certificate stating annual family income",
-      fullDescription:
-        "Income certificate is required for various government schemes, educational concessions, and job applications.",
-      processingTime: "15 working days",
-      fee: "₹30",
-      isOnline: true,
-    },
-    {
-      id: 9,
       name: "Property Tax Payment",
       slug: "property-tax",
       applyRoute: "/services/property-tax/apply",
@@ -135,7 +105,20 @@ export const mockData = {
       isOnline: true,
     },
     {
-      id: 10,
+      id: 8,
+      name: "Water Tax Panchayat",
+      slug: "water-tax",
+      applyRoute: "/services/water-tax/apply",
+      category: "utilities",
+      description: "Online water tax payment facility",
+      fullDescription:
+        "Pay your monthly water tax online through our secure payment gateway.",
+      processingTime: "30 working days",
+      fee: "₹2,500 (connection charges)",
+      isOnline: true,
+    },
+    {
+      id: 9,
       name: "Water Connection",
       slug: "water-connection",
       applyRoute: "/services/water-connection/apply",
@@ -146,19 +129,6 @@ export const mockData = {
       processingTime: "30 working days",
       fee: "₹2,500 (connection charges)",
       isOnline: false,
-    },
-    {
-      id: 11,
-      name: "Trade License",
-      slug: "trade-license",
-      applyRoute: "/services/trade-license/apply",
-      category: "licenses",
-      description: "License for starting a business or trade",
-      fullDescription:
-        "Required license for operating any business or trade within the taluka jurisdiction.",
-      processingTime: "30 working days",
-      fee: "₹1,000 - ₹5,000 (based on business type)",
-      isOnline: true,
     },
   ],
 

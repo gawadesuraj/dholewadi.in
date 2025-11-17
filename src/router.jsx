@@ -7,6 +7,20 @@ import CheckUserId from "./services/CheckUserId";
 import TrackApplication from "./pages/Services/TrackApplication";
 import CertificateApplication from "./pages/certificates/CertificateApplication";
 
+import BirthCertificateForm from "./pages/Services/forms/BirthCertificate";
+import DeathCertificateForm from "./pages/Services/forms/DeathCertificate";
+import MarriageCertificateForm from "./pages/Services/forms/MarriageCertificate";
+import Extract8AForm from "./pages/Services/forms/8AExtract";
+
+import PovertyRationCertificateForm from "./pages/Services/forms/PovertyRationCertificate";
+import NoPendingGramPanchayatForm from "./pages/Services/forms/NoPendingGramPanchayat";
+import ResidenceCertificateForm from "./pages/Services/forms/ResidenceCertificate";
+import IncomeCertificateForm from "./pages/Services/forms/IncomeCertificate";
+import PropertyTaxPaymentForm from "./pages/Services/forms/PropertyTaxPayment";
+import WaterConnectionForm from "./pages/Services/forms/WaterConnection";
+import TradeLicenseForm from "./pages/Services/forms/TradeLicense";
+import WaterTaxPayment from "./pages/Services/forms/waterTaxPayment";
+
 // Lazy load components for better performance
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
@@ -85,10 +99,59 @@ function Router() {
         <Route path="/services/register" element={<UserRegistration />} />
         <Route path="/services/property-tax/apply" element={<TaxPayment />} />
         <Route path="/services/check-user" element={<CheckUserId />} />
-        <Route path="/services/track" element={<TrackApplication />} />        
-        <Route path="/services/certificate-application" element={<CertificateApplication />} />    
-        <Route path="/mnrega" element={<MNREGA />} />    
+        <Route path="/services/track" element={<TrackApplication />} />
+        <Route
+          path="/services/certificate-application"
+          element={<CertificateApplication />}
+        />
+        <Route path="/mnrega" element={<MNREGA />} />
+        <Route
+          path="/services/birth-certificate"
+          element={<BirthCertificateForm />}
+        />
+        <Route
+          path="/services/death-certificate"
+          element={<DeathCertificateForm />}
+        />
+        <Route
+          path="/services/marriage-certificate"
+          element={<MarriageCertificateForm />}
+        />
+        <Route path="/services/8a-extract" element={<Extract8AForm />} />
+        <Route
+          path="/services/no-pending-grampanchayat"
+          element={<NoPendingGramPanchayatForm />}
+        />
+        <Route
+          path="/services/poverty-ration-certificate"
+          element={<PovertyRationCertificateForm />}
+        />
 
+        <Route
+          path="/services/residence-certificate"
+          element={<ResidenceCertificateForm />}
+        />
+
+        <Route
+          path="/services/income-certificate"
+          element={<IncomeCertificateForm />}
+        />
+
+        <Route
+          path="/services/property-tax"
+          element={<PropertyTaxPaymentForm />}
+        />
+
+        <Route path="/services/water-connection"element={<WaterConnectionForm />}/>
+        <Route path="/services/water-tax"element={<WaterTaxPayment />}/>
+
+        <Route path="/services/trade-license" element={<TradeLicenseForm />} />
+        <Route path="/services/track" element={<TrackApplication />} />
+        <Route
+          path="/services/certificate-application"
+          element={<CertificateApplication />}
+        />
+        <Route path="/mnrega" element={<MNREGA />} />
       </Routes>
     </Suspense>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Button from '../ui/Button'
 
-function SearchBar({ onSearch, placeholder = "Search..." }) {
+function SearchBar({ onSearch, placeholder = "शोधा..." }) {
   const [query, setQuery] = useState('')
 
   const handleSubmit = (e) => {
@@ -21,7 +21,7 @@ function SearchBar({ onSearch, placeholder = "Search..." }) {
         />
       </div>
       <Button type="submit">
-        Search
+        शोधा
       </Button>
     </form>
   )

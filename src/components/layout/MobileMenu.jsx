@@ -6,59 +6,66 @@ import { Link, useLocation } from "react-router-dom";
 import { X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ---------- MENU DATA ----------
+// ---------- MENU DATA (Translated to Marathi) ----------
 const navItems = [
   { label: "मुख्यपृष्ठ", path: "/" },
+
   {
     label: "माहिती",
     children: [
-      { label: "माहिती", path: "/about" },
+      { label: "गावाबद्दल माहिती", path: "/about" },
       { label: "कार्यक्रम", path: "/events" },
       { label: "अधिकारी", path: "/officers" },
       { label: "नागरिक सनद", path: "/citizensCharter" },
     ],
   },
+
   {
-    label: "Govt Scheme",
+    label: "शासकीय योजना",
     children: [
-      { label: "Jaljeevan Mission Scheme", path: "https://water.maharashtra.gov.in" },
-      { label: "Aysuhman Bharat Scheme", path: "/ayushman-bharat" },
-      { label: "15th Finance Commission", path: "/15thCommission" },
-      { label: "Ladki Bahin Scheme", path: "/ladli-bahin" },
-      { label: "Bhaghyashree Lek My Laadki Scheme", path: "/bhagyashree" },
-      { label: "Swachh Bharat Mission", path: "/swachh-bharat" },
-      { label: "Mahatma Gandhi Nationl Rural Employment Gaurantee Scheme", path: "/mgnrega" },
-      { label: "PrimeMinister Matru Vandana Scheme", path: "/PMMVY" },
+      { label: "जलजीवन मिशन योजना", path: "https://water.maharashtra.gov.in" },
+      { label: "आयुष्मान भारत योजना", path: "/ayushman-bharat" },
+      { label: "१५ वे वित्त आयोग", path: "/15thCommission" },
+      { label: "लाडकी बहिण योजना", path: "/ladli-bahin" },
+      { label: "भाग्यश्री, लेक माझी लाडकी योजना", path: "/bhagyashree" },
+      { label: "स्वच्छ भारत मिशन", path: "/swachh-bharat" },
+      { label: "महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी योजना", path: "/mgnrega" },
+      { label: "प्रधानमंत्री मातृ वंदना योजना", path: "/PMMVY" },
     ],
   },
+
   {
-    label: "Beneficiary Scheme",
+    label: "लाभार्थी योजना",
     children: [
-      { label: "MNREGA", path: "/mnrega" },
-      { label: "Pradhan Mantri Awas Yojna Beneficiary", path: "/pmay" },
+      { label: "मनरेगा", path: "/mnrega" },
+      { label: "प्रधानमंत्री आवास योजना (लाभार्थी)", path: "/pmay" },
     ],
   },
+
   {
-    label: "Comfort",
+    label: "सोयी",
     children: [
-      { label: "Self Declarations", path: "/declaration" },
-      { label: "E-Learning", path: "/e-learning" },
-      { label: "Weather Forecast", path: "/weather" },
-      { label: "Important Links", path: "/imp-links" },
+      { label: "स्व-घोषणा", path: "/declaration" },
+      { label: "ई-लर्निंग", path: "/e-learning" },
+      { label: "हवामान अंदाज", path: "/weather" },
+      { label: "महत्वाचे दुवे", path: "/imp-links" },
     ],
   },
+
   { label: "गॅलरी", path: "/gallery" },
   { label: "विभाग", path: "/departments" },
   { label: "सेवा", path: "/services" },
   { label: "बातम्या", path: "/news" },
+
   {
     label: "शासन",
     children: [
-      { label: "माहितीचा अधिकार", path: "/rti" },
+      { label: "माहितीचा अधिकार (RTI)", path: "/rti" },
       { label: "आर.पी.एस.ए.", path: "/rpa" },
     ],
   },
-  { label: "E-Governance Policy", path: "/e-governance" },
+
+  { label: "ई-गव्हर्नन्स धोरण", path: "/e-governance" },
   { label: "संपर्क", path: "/contact" },
 ];
 
@@ -67,7 +74,6 @@ function MobileMenu({ isOpen, onClose }) {
   const location = useLocation();
   const [openSubmenus, setOpenSubmenus] = useState(new Set());
 
-  // toggle submenu open/close
   const toggleSubmenu = (label) => {
     setOpenSubmenus((prev) => {
       const newSet = new Set(prev);
@@ -92,14 +98,13 @@ function MobileMenu({ isOpen, onClose }) {
             .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
           `}</style>
 
-          {/* Overlay */}
+          {/* Dim Background */}
           <motion.div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseAll}
-            aria-hidden="true"
           />
 
           {/* Drawer */}
@@ -109,25 +114,19 @@ function MobileMenu({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 260, damping: 30 }}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="mobile-menu-title"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
-              <h2 id="mobile-menu-title" className="text-lg font-semibold text-gray-800">
-                Menu
-              </h2>
+              <h2 className="text-lg font-semibold text-gray-800">मेनू</h2>
               <button
                 onClick={handleCloseAll}
-                className="p-2 rounded-md hover:bg-gray-100 transition"
-                aria-label="Close Menu"
+                className="p-2 rounded-md hover:bg-gray-100"
               >
                 <X className="w-5 h-5 text-gray-700" />
               </button>
             </div>
 
-            {/* Navigation Items */}
+            {/* Navigation */}
             <nav className="flex-1 overflow-y-auto p-5 hide-scrollbar">
               <ul className="space-y-1">
                 {navItems.map((item) => {
@@ -136,36 +135,34 @@ function MobileMenu({ isOpen, onClose }) {
                   const isSubmenuOpen = openSubmenus.has(item.label);
 
                   return (
-                    <li key={item.path}>
-                      {/* Menu Item with Submenu */}
+                    <li key={item.path || item.label}>
                       {hasChildren ? (
                         <>
                           <button
                             onClick={() => toggleSubmenu(item.label)}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-md text-base font-medium transition-colors ${
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-md text-base font-medium ${
                               isActive
-                                ? "bg-primary/10 text-primary font-semibold"
+                                ? "bg-primary/10 text-primary"
                                 : "text-gray-800 hover:bg-gray-100"
                             }`}
-                            aria-expanded={isSubmenuOpen}
                           >
                             <span>{item.label}</span>
                             <ChevronDown
-                              className={`w-4 h-4 transition-transform duration-300 ${
+                              className={`w-4 h-4 transition-transform ${
                                 isSubmenuOpen ? "rotate-180" : ""
                               }`}
                             />
                           </button>
 
-                          {/* Submenu Items */}
-                          <AnimatePresence initial={false}>
+                          {/* Submenu */}
+                          <AnimatePresence>
                             {isSubmenuOpen && (
                               <motion.ul
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="pl-6 mt-1 overflow-hidden border-l border-gray-100"
+                                transition={{ duration: 0.3 }}
+                                className="pl-6 mt-1 border-l border-gray-200"
                               >
                                 {item.children.map((sub) => {
                                   const isSubActive = location.pathname === sub.path;
@@ -174,12 +171,11 @@ function MobileMenu({ isOpen, onClose }) {
                                       <Link
                                         to={sub.path}
                                         onClick={handleCloseAll}
-                                        className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                                        className={`block px-3 py-2 rounded-md text-sm ${
                                           isSubActive
                                             ? "text-primary font-semibold"
                                             : "text-gray-700 hover:bg-gray-100"
                                         }`}
-                                        aria-current={isSubActive ? "page" : undefined}
                                       >
                                         {sub.label}
                                       </Link>
@@ -191,16 +187,15 @@ function MobileMenu({ isOpen, onClose }) {
                           </AnimatePresence>
                         </>
                       ) : (
-                        // Simple Menu Item
+                        // Simple Item
                         <Link
                           to={item.path}
-                          className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${
+                          onClick={handleCloseAll}
+                          className={`block px-4 py-3 rounded-md text-base ${
                             isActive
-                              ? "bg-primary/10 text-primary font-semibold"
+                              ? "bg-primary/10 text-primary"
                               : "text-gray-800 hover:bg-gray-100"
                           }`}
-                          onClick={handleCloseAll}
-                          aria-current={isActive ? "page" : undefined}
                         >
                           {item.label}
                         </Link>
@@ -211,21 +206,22 @@ function MobileMenu({ isOpen, onClose }) {
               </ul>
             </nav>
 
-            {/* CTA Buttons */}
+            {/* CTA BUTTONS (Translated) */}
             <div className="border-t border-gray-200 p-5 space-y-3">
               <Link
                 to="/grievance"
                 onClick={handleCloseAll}
-                className="block w-full text-center px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md shadow-sm transition"
+                className="block w-full text-center px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md"
               >
-                File a Grievance
+                तक्रार नोंदवा
               </Link>
+
               <Link
                 to="/services"
                 onClick={handleCloseAll}
-                className="block w-full text-center px-4 py-2.5 bg-green-700 hover:bg-green-800 text-white font-semibold rounded-md shadow-sm transition"
+                className="block w-full text-center px-4 py-2.5 bg-green-700 hover:bg-green-800 text-white font-semibold rounded-md"
               >
-                View Services
+                सेवा पहा
               </Link>
             </div>
           </motion.aside>
