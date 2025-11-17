@@ -153,32 +153,32 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   const logos = [
-    { src: "/h3logo.png", alt: "Partner logo 1" },
-    { src: "/digital.png", alt: "Partner logo 2" },
-    { src: "/emblem.png", alt: "Partner logo 3" },
+    { src: "/h3logo.png", alt: "भागीदार लोगो 1" },
+    { src: "/digital.png", alt: "भागीदार लोगो 2" },
+    { src: "/emblem.png", alt: "भागीदार लोगो 3" },
   ];
 
   const emergencyContacts = [
     {
-      label: "Police",
+      label: "पोलीस",
       number: "100",
       color: "bg-red-500 hover:bg-red-600",
       icon: <FaPhone className="text-lg" />,
     },
     {
-      label: "Fire Brigade",
+      label: "अग्निशमन दल",
       number: "101",
       color: "bg-orange-500 hover:bg-orange-600",
       icon: <FaFire className="text-lg" />,
     },
     {
-      label: "Ambulance",
+      label: "रुग्णवाहिका",
       number: "108",
       color: "bg-green-500 hover:bg-green-600",
       icon: <FaTruck className="text-lg" />,
     },
     {
-      label: "Disaster",
+      label: "आपत्ती",
       number: "1077",
       color: "bg-blue-500 hover:bg-blue-600",
       icon: <FaExclamationTriangle className="text-lg" />,
@@ -189,7 +189,7 @@ function Footer() {
     e.preventDefault();
     const email = new FormData(e.currentTarget).get("email");
     if (!email) return;
-    window.location.href = `mailto:gpdholewadi415408gmail.com?subject=Newsletter%20Subscription&body=Please%20subscribe:%20${encodeURIComponent(
+    window.location.href = `mailto:gpdholewadi415408@gmail.com?subject=Newsletter%20Subscription&body=Please%20subscribe:%20${encodeURIComponent(
       email
     )}`;
   };
@@ -224,7 +224,7 @@ function Footer() {
                   <div className="font-semibold text-sm sm:text-base md:text-lg leading-snug break-words sm:truncate">
                     +91 93733 56931
                   </div>
-                  <div className="text-xs text-gray-300 mt-0.5">Helpline</div>
+                  <div className="text-xs text-gray-300 mt-0.5">हेल्पलाईन</div>
                 </div>
               </div>
             </a>
@@ -242,7 +242,7 @@ function Footer() {
                   <div className="font-semibold text-sm md:text-base lg:text-lg leading-snug break-words sm:truncate">
                     gpdholewadi415408@gmail.com
                   </div>
-                  <div className="text-xs text-gray-300 mt-0.5">Email ID</div>
+                  <div className="text-xs text-gray-300 mt-0.5">ईमेल आयडी</div>
                 </div>
               </div>
             </a>
@@ -255,10 +255,10 @@ function Footer() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="font-semibold text-sm sm:text-base md:text-lg leading-snug">
-                    GramPanchayat Dholewadi
+                    ग्रामपंचायत ढोलेवाडी
                   </div>
                   <div className="text-xs text-gray-300 mt-0.5 break-words">
-                    Ta. Shirala, Dist. Sangli, Maharashtra 415 408
+                    ता. शिराळा, जि. सांगली, महाराष्ट्र ४१५ ४०८
                   </div>
                 </div>
               </div>
@@ -271,7 +271,7 @@ function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Quick Links
+              द्रुत दुवे
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
@@ -279,7 +279,7 @@ function Footer() {
                   to="/services"
                   className="text-gray-300 hover:text-white text-sm transition"
                 >
-                  Services
+                  सेवा
                 </Link>
               </li>
               <li>
@@ -287,7 +287,7 @@ function Footer() {
                   to="/events"
                   className="text-gray-300 hover:text-white text-sm transition"
                 >
-                  Events
+                  कार्यक्रम
                 </Link>
               </li>
               <li>
@@ -295,7 +295,7 @@ function Footer() {
                   to="/news"
                   className="text-gray-300 hover:text-white text-sm transition"
                 >
-                  News
+                  बातम्या
                 </Link>
               </li>
               <li>
@@ -303,7 +303,7 @@ function Footer() {
                   to="/officers"
                   className="text-gray-300 hover:text-white text-sm transition"
                 >
-                  Officers
+                  अधिकारी
                 </Link>
               </li>
             </ul>
@@ -312,7 +312,7 @@ function Footer() {
           {/* Government */}
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Government
+              शासन
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
@@ -320,7 +320,7 @@ function Footer() {
                   to="/departments"
                   className="text-gray-300 hover:text-white text-sm transition"
                 >
-                  Departments
+                  विभाग
                 </Link>
               </li>
               <li>
@@ -328,7 +328,7 @@ function Footer() {
                   to="/grievance"
                   className="text-gray-300 hover:text-white text-sm transition"
                 >
-                  Grievance
+                  तक्रार
                 </Link>
               </li>
               <li>
@@ -338,7 +338,7 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Maharashtra Govt
+                  महाराष्ट्र शासन
                 </a>
               </li>
               <li>
@@ -348,7 +348,7 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Sangli District
+                  सांगली जिल्हा
                 </a>
               </li>
             </ul>
@@ -357,21 +357,21 @@ function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Contact
+              संपर्क
             </h3>
             <ul className="mt-4 space-y-3.5 text-gray-300 text-xs">
-              <li>GramPanchayat Dholewadi</li>
-              <li>Ta. Shirala, Dist. Sangli</li>
-              <li>Maharashtra 415 408</li>
-              <li>Phone: +91 9373356931</li>
-              <li>gpdholewadi415408gmail.com</li>
+              <li>ग्रामपंचायत ढोलेवाडी</li>
+              <li>ता. शिराळा, जि. सांगली</li>
+              <li>महाराष्ट्र ४१५ ४०८</li>
+              <li>फोन: +९१ ९३७३३५६९३१</li>
+              <li>gpdholewadi415408@gmail.com</li>
             </ul>
           </div>
 
           {/* Emergency Contacts */}
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Emergency Contacts
+              आपत्कालीन संपर्क
             </h3>
             <div className="hidden md:block mt-4 space-y-3">
               {emergencyContacts.map((contact, index) => (
@@ -408,29 +408,29 @@ function Footer() {
           {/* Subscribe column */}
           <div className="md:col-span-2">
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Subscribe to our Newsletter
+              आमच्या वृत्तपत्राची सदस्यता घ्या
             </h3>
             <p className="mt-4 text-gray-300 text-sm">
-              To know the latest developments in your village organization,
-              subscribe by entering your email ID.
+              तुमच्या गावातील ताज्या घडामोडी जाणून घेण्यासाठी, तुमचा ईमेल आयडी
+              टाकून सबस्क्राइब करा.
             </p>
             <form onSubmit={handleSubscribe} className="mt-4 flex gap-2">
               <label htmlFor="newsletter-email" className="sr-only">
-                Email ID
+                ईमेल आयडी
               </label>
               <input
                 id="newsletter-email"
                 name="email"
                 type="email"
                 required
-                placeholder="Email ID"
+                placeholder="ईमेल आयडी"
                 className="w-full rounded-md bg-gray-700 text-white placeholder-gray-400 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <button
                 type="submit"
                 className="px-4 py-2 rounded-md bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition"
               >
-                Send
+                पाठवा
               </button>
             </form>
             <div className="mt-6 grid grid-cols-3 gap-6 items-center justify-items-center">
@@ -471,7 +471,7 @@ function Footer() {
 
         {/* Copyright */}
         <div className="mt-12 border-t border-gray-700 pt-6 text-sm text-gray-300 text-center">
-          © {currentYear} GramPanchayat Dholewadi. All rights reserved.
+          © {currentYear} ग्रामपंचायत ढोलेवाडी. सर्व हक्क राखीव.
         </div>
       </div>
     </footer>
