@@ -72,8 +72,8 @@ function TopBar() {
   // ************************************************
 
 const changeLanguage = (langCode) => {
-  document.cookie = `googtrans=/${langCode};path=/;domain=${window.location.hostname}`;
-  //window.location.reload();
+  document.cookie = `googtrans=/auto/${langCode};path=/;domain=${window.location.hostname}`;
+  window.location.reload();
 };
 
 
