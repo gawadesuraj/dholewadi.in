@@ -15,6 +15,7 @@ function Officers() {
     "HONORABLE OFFICER": mockData.honorableOfficers,
     "PANCHAYAT SAMITI OFFICER": mockData.officers,
     "PANCHAYAT SAMITI OFFICER TIMELINE": mockData.timeline,
+    "PANCHAYAT SAMITI SADASYA" : mockData.sadasya
   };
 
   const officersList = categoryMap[selectedCategory] || [];
@@ -44,9 +45,12 @@ function Officers() {
             className="w-full sm:w-auto border px-4 py-3 rounded-md text-sm md:text-base bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary shadow-sm transition-all duration-200"
           >
             <option value="DIGNITARIES">मान्यवर</option>
-            <option value="HONORABLE OFFICER">मान्यवर अधिकारी</option>
+            <option value="HONORABLE OFFICER">गटविकास अधिकारी, पंचायत समिती शिराळा</option>
+            <option value="PANCHAYAT SAMITI SADASYA">
+              ढोलेवाडी ग्रामपंचायत सदस्य
+            </option>
             <option value="PANCHAYAT SAMITI OFFICER">
-              ग्रामपंचायत कर्मचारी
+              ढोलेवाडी ग्रामपंचायत कर्मचारी
             </option>
             <option value="PANCHAYAT SAMITI OFFICER TIMELINE">
               ग्रामपंचायत अधिकारी/सरपंच/उपसरपंच/ग्रा.प. सदस्य
