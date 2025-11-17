@@ -46,7 +46,7 @@ const navItems = [
     ],
   },
   { label: "गॅलरी", path: "/gallery" },
-  { label: "विभाग", path: "/departments" },
+  { label: "समिती", path: "/departments" },
   { label: "सेवा", path: "/services" },
   { label: "बातम्या", path: "/news" },
   {

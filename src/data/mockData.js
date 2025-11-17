@@ -133,34 +133,25 @@ export const mockData = {
   ],
 
   officers: [
-    {
-      id: 1,
-      name: "श्री मोरे रंजीत सरजेऱाव ",
-      designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
-      // department: "Administration",
-      phone: "+91-937-3356931",
-      email: "rsmore@tkietwarana.ac.in",
-      image: "/images/officers/Ranjeet_More.jpg",
-    },
-    {
-      id: 2,
-      name: "श्रीम. वनिता पांडुरंग ढोले",
-      designation: "उपसरपंच, ग्रामपंचायत, ढोलेवाडी",
-      // department: "Administration",
-      phone: "+91-233-2654322",
-      email: "aceo.sangli@maharashtra.gov.in",
-      image: "/images/officers/Vaneeta_Dhole.jpg",
-    },
-    {
-      id: 3,
-      name: "श्रीम. अस्मिता सागर पवार",
-      designation:
-        "मुख्यमंत्री युवा कार्य प्रशिक्षणार्थी, ग्रामपंचायत, ढोलेवाडी",
-      // department: "Administration",
-      phone: "+91-233-2654323",
-      email: "drda.sangli@maharashtra.gov.in",
-      image: "/images/officers/Asmita_Pawar.jpg",
-    },
+    // {
+    //   id: 1,
+    //   name: "श्री. रणजीत सर्जेराव मोरे ",
+    //   designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
+    //   // department: "Administration",
+    //   phone: "+91-937-3356931",
+    //   email: "rsmore@tkietwarana.ac.in",
+    //   image: "/images/officers/Ranjeet_More.jpg",
+    // },
+    // {
+    //   id: 2,
+    //   name: "श्रीम. वनिता पांडुरंग ढोले",
+    //   designation: "उपसरपंच, ग्रामपंचायत, ढोलेवाडी",
+    //   // department: "Administration",
+    //   phone: "+91-233-2654322",
+    //   email: "aceo.sangli@maharashtra.gov.in",
+    //   image: "/images/officers/Vaneeta_Dhole.jpg",
+    // },
+  
     {
       id: 4,
       name: "श्री. राजेश दत्तात्रय सूर्यवंशी",
@@ -179,9 +170,32 @@ export const mockData = {
       email: "abdo.shirala@maharashtra.gov.in",
       image: "/images/officers/AMIT_PAWAR.jpg",
     },
+
+    {
+      id: 12,
+      name: "श्री. रणजीत संजय मोरे  ",
+      designation: "शिपाई, ग्रामपंचायत, ढोलेवाडी",
+      // department: "Administration",
+      phone: "+91-937-3356931",
+      email: "rsmore@tkietwarana.ac.in",
+      image: "/images/officers/Sanjay_More.jpg",
+    },
+  ],
+
+  sadasya : [
+    {
+      id: 3,
+      name: "श्रीम. अस्मिता सागर पवार",
+      designation:
+        "मुख्यमंत्री युवा कार्य प्रशिक्षणार्थी, ग्रामपंचायत, ढोलेवाडी",
+      // department: "Administration",
+      phone: "+91-233-2654323",
+      email: "drda.sangli@maharashtra.gov.in",
+      image: "/images/officers/Asmita_Pawar.jpg",
+    },
     {
       id: 6,
-      name: "श्री. अप्पासो सोपान मोर",
+      name: "श्री. अप्पासो सोपान मोरे",
       designation: "सदस्य, ग्रामपंचायत, ढोलेवाडी",
       // department: "Administration",
       phone: "+91-937-3356931",
@@ -232,15 +246,6 @@ export const mockData = {
       phone: "+91-937-3356931",
       email: "rsmore@tkietwarana.ac.in",
       image: "/images/officers/Sharada_More.jpg",
-    },
-    {
-      id: 12,
-      name: "श्री मोरे रंजीत सरजेऱाव ",
-      designation: "शिपाई, ग्रामपंचायत, ढोलेवाडी",
-      // department: "Administration",
-      phone: "+91-937-3356931",
-      email: "rsmore@tkietwarana.ac.in",
-      image: "/images/officers/Sanjay_More.jpg",
     },
   ],
   dignitaries: [
