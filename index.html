@@ -3,19 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
       content="Panchayat Samiti Dholewadi - Official Government Portal"
     />
 
-    <!-- Theme Colors for All Platforms -->
+    <!-- Cross-browser theme colors -->
     <meta name="theme-color" content="#1c7c54" />
+    <meta name="msapplication-TileColor" content="#1c7c54" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <title>GramPanchayat Dholewadi</title>
 
+    <!-- 🌟 Full Circular Favicon Pack (Cloudinary PNG Round) -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://res.cloudinary.com/dhgwquxar/image/upload/w_32,h_32,r_max,c_fill/dholewadilogo_hsmjah.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://res.cloudinary.com/dhgwquxar/image/upload/w_180,h_180,r_max,c_fill/dholewadilogo_hsmjah.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="https://res.cloudinary.com/dhgwquxar/image/upload/w_192,h_192,r_max,c_fill/dholewadilogo_hsmjah.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="https://res.cloudinary.com/dhgwquxar/image/upload/w_512,h_512,r_max,c_fill/dholewadilogo_hsmjah.png"
+    />
+
+    <!-- Hide Google Translate banner -->
     <style>
-      /* Hide Google Translate banner and fix layout shift */
       .skiptranslate {
         display: none !important;
       }
@@ -24,12 +51,13 @@
       }
     </style>
 
+    <!-- Google Translate Init -->
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
           {
             pageLanguage: "ta",
-            includedLanguages: "mr,en,hi, ka",
+            includedLanguages: "mr,en,hi,ka",
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
@@ -38,7 +66,7 @@
       }
     </script>
 
-    <!-- ✅ Fixed: Use HTTPS explicitly -->
+    <!-- Google Translate Script -->
     <script
       type="text/javascript"
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
