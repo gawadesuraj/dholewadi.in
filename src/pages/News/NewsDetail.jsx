@@ -72,7 +72,7 @@ function NewsDetail() {
                   <h1 className="text-3xl font-bold mb-4 leading-tight">{news.title}</h1>
 
                   {news.summary && (
-                    <p className="text-xl text-gray-600 leading-relaxed">{news.summary}</p>
+                    <p className="text-xl text-gray-600 leading-relaxed notranslate">{news.summary}</p>
                   )}
                 </div>
 
