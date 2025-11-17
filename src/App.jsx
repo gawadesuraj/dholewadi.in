@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import GlobalBackground from "./components/ui/GlobalBackground";
 import Layout from "./components/layout/Layout";
 import Router from "./router";
 import "./i18n/i18n"; // Initialize i18n
@@ -33,10 +34,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Layout>
-          <ScrollToTop />
-          <Router />
-        </Layout>
+        <GlobalBackground>
+          <Layout>
+            <ScrollToTop />
+            <Router />
+          </Layout>
+        </GlobalBackground>
         <ToastContainer
           position="top-center"
           autoClose={4000}

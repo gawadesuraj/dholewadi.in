@@ -4,7 +4,7 @@ import ScrollToTop from "./ScrollToTop";
 
 function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen w-full relative text-gray-800 flex flex-col">
       {/* CSS to hide the scrollbar for the main content area */}
       <style>
         {`
@@ -27,7 +27,7 @@ function Layout({ children }) {
       {/* Main Content Area */}
       <main
         id="main-content"
-        className="flex-1 bg-white overflow-y-auto scroll-smooth hide-scrollbar"
+        className="flex-1 overflow-y-auto scroll-smooth hide-scrollbar relative z-10"
         role="main"
         tabIndex={-1}
       >

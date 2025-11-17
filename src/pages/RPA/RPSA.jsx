@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FileText, Download } from "lucide-react";
+import GlobalBackground from "../../components/ui/GlobalBackground";
+
 
 // --- Helper Component to create the "Home / ..." structure ---
 const PageHeader = ({ title, subtitle, breadcrumbs }) => {
@@ -106,6 +108,7 @@ function RPSA() {
   const breadcrumbs = [{ label: "RPSA", href: null }];
 
   return (
+    <GlobalBackground>
     <div>
       <PageHeader
         title="लोकसेवा हक्क अधिनियम २०१५"
@@ -171,7 +174,9 @@ function RPSA() {
         </div>
       </section>
     </div>
+    </GlobalBackground>
   );
+  
 }
 
 export default RPSA;
