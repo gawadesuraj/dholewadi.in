@@ -53,7 +53,7 @@ function Officers() {
               ढोलेवाडी ग्रामपंचायत कर्मचारी
             </option>
             <option value="PANCHAYAT SAMITI OFFICER TIMELINE">
-              ग्रामपंचायत अधिकारी/सरपंच/उपसरपंच/ग्रा.प. सदस्य
+              ग्रामपंचायत अधिकारी, सरपंच, उपसरपंच, सदस्य कारकीर्द
             </option>
           </select>
         </div>

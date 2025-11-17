@@ -93,7 +93,7 @@ export const mockData = {
     },
     {
       id: 7,
-      name: "Property Tax Payment",
+      name: "घरपट्टी",
       slug: "property-tax",
       applyRoute: "/services/property-tax/apply",
       category: "tax",
@@ -106,7 +106,7 @@ export const mockData = {
     },
     {
       id: 8,
-      name: "Water Tax Panchayat",
+      name: "पाणीपट्टी",
       slug: "water-tax",
       applyRoute: "/services/water-tax/apply",
       category: "utilities",
