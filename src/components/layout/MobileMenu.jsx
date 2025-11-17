@@ -9,17 +9,15 @@ import { motion, AnimatePresence } from "framer-motion";
 // ---------- MENU DATA (Translated to Marathi) ----------
 const navItems = [
   { label: "मुख्यपृष्ठ", path: "/" },
-
   {
     label: "माहिती",
     children: [
-      { label: "गावाबद्दल माहिती", path: "/about" },
+      { label: "माहिती", path: "/about" },
       { label: "कार्यक्रम", path: "/events" },
       { label: "अधिकारी", path: "/officers" },
       { label: "नागरिक सनद", path: "/citizensCharter" },
     ],
   },
-
   {
     label: "शासकीय योजना",
     children: [
@@ -27,13 +25,15 @@ const navItems = [
       { label: "आयुष्मान भारत योजना", path: "/ayushman-bharat" },
       { label: "१५ वे वित्त आयोग", path: "/15thCommission" },
       { label: "लाडकी बहिण योजना", path: "/ladli-bahin" },
-      { label: "भाग्यश्री, लेक माझी लाडकी योजना", path: "/bhagyashree" },
+      { label: "भाग्यश्री - लेक माझी लाडकी", path: "/bhagyashree" },
       { label: "स्वच्छ भारत मिशन", path: "/swachh-bharat" },
-      { label: "महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी योजना", path: "/mgnrega" },
+      {
+        label: "महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी योजना",
+        path: "/mgnrega",
+      },
       { label: "प्रधानमंत्री मातृ वंदना योजना", path: "/PMMVY" },
     ],
   },
-
   {
     label: "लाभार्थी योजना",
     children: [
@@ -41,7 +41,6 @@ const navItems = [
       { label: "प्रधानमंत्री आवास योजना (लाभार्थी)", path: "/pmay" },
     ],
   },
-
   {
     label: "सोयी",
     children: [
@@ -51,22 +50,23 @@ const navItems = [
       { label: "महत्वाचे दुवे", path: "/imp-links" },
     ],
   },
-
   { label: "गॅलरी", path: "/gallery" },
   { label: "विभाग", path: "/departments" },
   { label: "सेवा", path: "/services" },
   { label: "बातम्या", path: "/news" },
-
   {
     label: "शासन",
     children: [
-      { label: "माहितीचा अधिकार (RTI)", path: "/rti" },
+      { label: "माहितीचा अधिकार", path: "/rti" },
       { label: "आर.पी.एस.ए.", path: "/rpa" },
     ],
   },
-
   { label: "ई-गव्हर्नन्स धोरण", path: "/e-governance" },
   { label: "संपर्क", path: "/contact" },
+  {
+    label: "वापरकर्ता सेवा",
+    children: [{ label: "अर्ज ट्रॅक करा", path: "/services/track" }],
+  },
 ];
 
 // ---------- COMPONENT ----------
@@ -165,7 +165,8 @@ function MobileMenu({ isOpen, onClose }) {
                                 className="pl-6 mt-1 border-l border-gray-200"
                               >
                                 {item.children.map((sub) => {
-                                  const isSubActive = location.pathname === sub.path;
+                                  const isSubActive =
+                                    location.pathname === sub.path;
                                   return (
                                     <li key={sub.path}>
                                       <Link

@@ -61,12 +61,8 @@ const navItems = [
   {
     label: "वापरकर्ता सेवा",
     children: [
-      { label: "नवीन नोंदणी", path: "/services/register" },
-      { label: "मालमत्ता कर", path: "/services/property-tax" },
-      { label: "युजर तपासा", path: "/services/check-user" },
+      
       { label: "अर्ज ट्रॅक करा", path: "/services/track" },
-      { label: "प्रमाणपत्र अर्ज", path: "/services/certificate-application" },
-      { label: "प्रमाणपत्र स्थिती", path: "/services/certificate-status" },
     ],
   },
 ];
