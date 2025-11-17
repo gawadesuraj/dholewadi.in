@@ -1,4 +1,3 @@
-// frontend/src/pages/Home/NewsHighlights.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/ui/Card";
@@ -52,14 +51,10 @@ function NewsHighlights() {
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div
-          className="text-center mb-8"
-          data-aos="fade-up"
-        >
-          <h2 className="text-3xl font-bold mb-4">Latest News & Updates</h2>
+        <div className="text-center mb-8" data-aos="fade-up">
+          <h2 className="text-3xl font-bold mb-4">बातम्या आणि अद्यतने</h2>
           <p className="text-gray-600">
-            Stay informed with the latest news and announcements from Panchayat
-            Samiti Shirala
+            ग्रामपंचायत ढोलेवाडी कडील ताज्या बातम्या आणि घोषणांसह अद्ययावत रहा
           </p>
         </div>
 
@@ -83,13 +78,13 @@ function NewsHighlights() {
                       {item.title}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                      {item.summary || "No description available."}
+                      {item.summary || "वर्णन उपलब्ध नाही."}
                     </p>
                     <Link
                       to={`/news/${item.id}`}
                       className="text-primary hover:text-primary-dark font-medium text-sm"
                     >
-                      Read More →
+                      अधिक वाचा →
                     </Link>
                   </div>
                 </Card>
@@ -98,7 +93,7 @@ function NewsHighlights() {
           </div>
         ) : (
           <div className="text-center py-8 text-gray-500" data-aos="fade-up">
-            📰 No news available yet.
+            📰 अद्याप कोणत्याही बातम्या उपलब्ध नाहीत.
           </div>
         )}
 
@@ -112,7 +107,7 @@ function NewsHighlights() {
             to="/news"
             className="inline-flex items-center text-primary hover:text-primary-dark font-medium"
           >
-            View All News
+            सर्व बातम्या पहा
             <svg
               className="ml-2 w-5 h-5"
               fill="currentColor"

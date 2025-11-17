@@ -134,14 +134,14 @@ function TopBar() {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-white border hover:bg-gray-50"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-white border hover:bg-gray-50 z-50"
                 >
                   <FaGlobe />
                   <span className="text-xs uppercase">भाषा</span>
                 </button>
 
                 {isTranslateOpen && (
-                  <div className="absolute right-0 mt-2 py-2 w-32 bg-white rounded-md shadow-lg border">
+                  <div className="absolute right-0 mt-2 py-2 w-32 bg-white rounded-md shadow-lg border z-50">
                     <button
                       onClick={() => changeLanguage("mr")}
                       className="block w-full px-4 py-2 text-sm hover:bg-gray-100"

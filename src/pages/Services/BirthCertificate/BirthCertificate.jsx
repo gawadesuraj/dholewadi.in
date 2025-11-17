@@ -6,8 +6,8 @@ import Modal from "../../../components/ui/Modal";
 import { supabase } from "../../../services/supabaseClient";
 import { toast } from "react-toastify";
 
-import ApplicantInfo from "./applicant_form/ApplicantInfo";
-import FileUploads from "./applicant_form/FileUploads";
+import ApplicantInfo from "../forms/applicant_form/ApplicantInfo";
+import FileUploads from "../forms/applicant_form/FileUploads";
 
 function InputBlock({ label, name, type = "text", value, onChange }) {
   return (

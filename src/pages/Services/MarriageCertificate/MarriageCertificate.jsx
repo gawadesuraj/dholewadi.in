@@ -327,7 +327,7 @@ export default function MarriageCertificateForm() {
               </label>
               <input
                 type="file"
-                accept="image/*"
+                accept="image/*,application/pdf"
                 name="payment_file"
                 onChange={handleChange}
               />

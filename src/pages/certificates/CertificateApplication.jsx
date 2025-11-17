@@ -268,7 +268,7 @@ function CertificateApplication() {
                       <input
                         id="payment-screenshot"
                         type="file"
-                        accept="image/*"
+                        accept="image/*,application/pdf"
                         ref={screenshotInputRef} // Added ref
                         onChange={(e) =>
                           setPaymentScreenshot(e.target.files[0])
@@ -386,7 +386,7 @@ function CertificateApplication() {
                     <input
                       id="doc-upload"
                       type="file"
-                      accept="image/*,.pdf"
+                      accept="image/*,application/pdf"
                       ref={docInputRef} // Added ref
                       onChange={(e) => setDocument(e.target.files[0])}
                       className="block w-full text-sm text-gray-700 border border-gray-300 rounded-md cursor-pointer focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-l-md file:border-0 file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
