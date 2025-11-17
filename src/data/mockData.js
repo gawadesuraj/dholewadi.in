@@ -342,7 +342,7 @@ export const mockData = {
     },
     {
       id: 1,
-      name: "श्री मोरे रंजीत सरजेऱाव ",
+      name: "श्री. रणजीत संजय मोरे",
       designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
       department: "Administration",
       phone: "+91-937-3356931",
