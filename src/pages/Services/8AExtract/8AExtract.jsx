@@ -1,4 +1,4 @@
-import Application from "./applicant_form/common_application_form";
+import Application from "../forms/applicant_form/Application";
 
 export default function Extract8AForm() {
   return (

@@ -1,7 +1,7 @@
 // src/pages/TrackStatus.jsx
 
 import React, { useState } from "react";
-import { supabase } from "../../services/supabaseClient";
+import { supabase } from "../../../services/supabaseClient";
 import {
   Search,
   Loader2,
