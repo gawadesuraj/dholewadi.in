@@ -1,15 +1,18 @@
 import React from "react";
 
 const stats = [
-  { value: "782", label: "Population" },
-  { value: "398", label: "Men" },
-  { value: "384", label: "Women" },
-  { value: "877", label: "Families" },
+  { value: "782", label: "लोकसंख्या" },
+  { value: "398", label: "पुरुष" },
+  { value: "384", label: "महिला" },
+  { value: "८७७", label: "कुटुंबे" },
 ];
 
-export default function StatsStrip({ items = stats, footnote = "*As per 2011 census" }) {
+export default function StatsStrip({
+  items = stats,
+  footnote = "*२०११ च्या जनगणनेनुसार",
+}) {
   return (
-    <section aria-label="Village statistics" className="py-8 md:py-10">
+    <section aria-label="गावाची आकडेवारी" className="py-8 md:py-10">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {items.map((s, i) => (
@@ -57,7 +60,9 @@ export default function StatsStrip({ items = stats, footnote = "*As per 2011 cen
           ))}
 
           <div className="sm:col-span-2 lg:col-span-4">
-            <p className="mt-1 text-right text-xs italic text-slate-500">{footnote}</p>
+            <p className="mt-1 text-right text-xs italic text-slate-500">
+              {footnote}
+            </p>
           </div>
         </div>
       </div>
