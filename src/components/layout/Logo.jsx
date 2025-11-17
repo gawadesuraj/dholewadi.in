@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 // Import your image here
 // import yourLogoImage from "/Dholewadi-GramPanchayat/src/assets/grampanchayat.png";
-import yourLogoImage from "../../assets/grampanchayat.png";
+import yourLogoImage from "../../assets/logo.png";
 
 function Logo() {
   const { t } = useTranslation(); // Removed i18n as it's not directly used in the current context

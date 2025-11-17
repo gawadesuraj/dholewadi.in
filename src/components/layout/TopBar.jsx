@@ -72,9 +72,11 @@ function TopBar() {
   // ************************************************
 
   const changeLanguage = (langCode) => {
-    document.cookie = `googtrans=/mr/${langCode};path=/`;
-    window.location.reload();
-  };
+  document.cookie = `googtrans=/auto/${langCode};path=/;domain=${window.location.hostname}`;
+  window.location.reload();
+};
+
+
 
   const handleMouseEnter = () => {
     clearTimeout(timeoutId);
