@@ -13,7 +13,7 @@ const navItems = [
       { label: "नागरिक सनद", path: "/citizensCharter" },
     ],
   },
-{
+  {
     label: "शासकीय योजना",
     children: [
       { label: "जलजीवन मिशन योजना", path: "https://water.maharashtra.gov.in" },
@@ -29,7 +29,7 @@ const navItems = [
       { label: "प्रधानमंत्री मातृ वंदना योजना", path: "/PMMVY" },
     ],
   },
-   {
+  {
     label: "लाभार्थी योजना",
     children: [
       { label: "मनरेगा", path: "/mnrega" },
@@ -60,10 +60,7 @@ const navItems = [
   { label: "संपर्क", path: "/contact" },
   {
     label: "वापरकर्ता सेवा",
-    children: [
-      
-      { label: "अर्ज ट्रॅक करा", path: "/services/track" },
-    ],
+    children: [{ label: "अर्ज ट्रॅक करा", path: "/services/track" }],
   },
 ];
 
@@ -112,14 +109,20 @@ function Navigation() {
     setOpenDropdown(label);
   };
 
+  const closeAllDropdowns = () => {
+    setOpenDropdown(null);
+  };
+
   return (
     <nav
       ref={navRef}
-      className="hidden lg:flex items-center justify-center w-full"
+      className="hidden lg:flex items-center flex-1" // <-- MODIFIED
       aria-label="Main Navigation"
       role="menubar"
     >
-      <ul className="flex items-center justify-center flex-wrap gap-2">
+      <ul className="flex items-center justify-center flex-wrap gap-2 w-full">
+        {" "}
+        {/* <-- MODIFIED */}
         {navItems.map((item) => {
           const active = isItemActive(item, location.pathname);
           const hasChildren = Array.isArray(item.children);
@@ -204,7 +207,7 @@ function Navigation() {
                     <ul
                       onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
                       onMouseLeave={() => handleMouseLeave(item.label)}
-                      className="absolute left-0 mt-2 min-w-[14rem] bg-white border border-gray-100 rounded-md shadow-lg transition-all duration-200 z-50 animate-fade-in"
+                      className="absolute left-0 mt-2 min-w-[18rem] max-w-sm bg-white border border-gray-100 rounded-md shadow-lg transition-all duration-200 z-50 animate-fade-in"
                       role="menu"
                       aria-label={`${item.label} submenu`}
                     >
@@ -218,9 +221,9 @@ function Navigation() {
                                 href={sub.path}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                onClick={() => setOpenDropdown(null)}
+                                onClick={closeAllDropdowns}
                                 role="menuitem"
-                                className={`block px-4 py-2 text-sm transition-colors ${
+                                className={`block px-4 py-2 text-sm transition-colors whitespace-normal break-words ${
                                   subActive
                                     ? "text-primary font-semibold bg-primary/5"
                                     : "text-gray-700 hover:bg-gray-50 hover:text-primary"
@@ -231,9 +234,9 @@ function Navigation() {
                             ) : (
                               <Link
                                 to={sub.path}
-                                onClick={() => setOpenDropdown(null)}
+                                onClick={closeAllDropdowns}
                                 role="menuitem"
-                                className={`block px-4 py-2 text-sm transition-colors ${
+                                className={`block px-4 py-2 text-sm transition-colors whitespace-normal break-words ${
                                   subActive
                                     ? "text-primary font-semibold bg-primary/5"
                                     : "text-gray-700 hover:bg-gray-50 hover:text-primary"
