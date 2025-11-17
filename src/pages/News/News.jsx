@@ -100,7 +100,7 @@ function News() {
                         <Link to={`/news/${n.id}`}>{n.title}</Link>
                       </h2>
 
-                      <p className="text-gray-600 mb-4 line-clamp-3">{n.summary}</p>
+                      <p className="text-gray-600 mb-4 line-clamp-3 notranslate">{n.summary}</p>
 
                       <Link
                         to={`/news/${n.id}`}
