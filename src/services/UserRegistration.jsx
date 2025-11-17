@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import PageHeader from "../components/common/PageHeader"
 import Card from "../components/ui/Card";
 import { supabase } from "../services/supabaseClient";
+import { z } from "zod";
+import DOMPurify from "dompurify";
+import { toast } from "react-toastify";
 
 function UserRegistration() {
   const [name, setName] = useState("");
@@ -10,6 +13,13 @@ function UserRegistration() {
   const [submitting, setSubmitting] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  // Zod schema for user registration validation
+  const userRegistrationSchema = z.object({
+    name: z.string().min(1, "Name is required").max(100, "Name too long"),
+    mobile: z.string().regex(/^[6-9]\d{9}$/, "Invalid mobile number (10 digits starting with 6-9)"),
+    address: z.string().max(500, "Address too long").optional(),
+  });
 
   const breadcrumbs = [
     { label: "Services", href: "/services" },
@@ -27,8 +37,17 @@ function UserRegistration() {
     setErrorMsg("");
     setSuccessMsg("");
 
-    if (!name.trim() || !mobile.trim()) {
-      setErrorMsg("Please fill all required fields.");
+    // Validate form using Zod
+    try {
+      userRegistrationSchema.parse({
+        name: name.trim(),
+        mobile: mobile.trim(),
+        address: address.trim(),
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      }
       setSubmitting(false);
       return;
     }
@@ -49,13 +68,13 @@ function UserRegistration() {
         newId = generateUserId(parseInt(lastId) + 1);
       }
 
-      // Step 2️⃣ — Insert user into database
+      // Step 2️⃣ — Insert user into database with sanitized data
       const { error: insertError } = await supabase.from("users").insert([
         {
           id: newId,
-          name,
-          mobile,
-          address,
+          name: DOMPurify.sanitize(name.trim()),
+          mobile: mobile.trim(), // Already validated as number
+          address: DOMPurify.sanitize(address.trim()),
         },
       ]);
 

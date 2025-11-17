@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import { supabase } from "./supabaseClient";
 import PageHeader from "../components/common/PageHeader";
 import Card from "../components/ui/Card";
+import { z } from "zod";
+import { toast } from "react-toastify";
 
 function CheckUserId() {
   const [mobile, setMobile] = useState("");
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState("");
 
+  // Zod schema for mobile validation
+  const mobileSchema = z.string().regex(/^[6-9]\d{9}$/, "Invalid mobile number (10 digits starting with 6-9)");
+
   const handleSearch = async () => {
     setError("");
     setUserData(null);
+
+    // Validate mobile number
+    try {
+      mobileSchema.parse(mobile.trim());
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      }
+      return;
+    }
 
     const { data, error } = await supabase
       .from("users")

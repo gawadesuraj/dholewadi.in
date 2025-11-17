@@ -7,6 +7,8 @@ import Card from "../../components/ui/Card";
 import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import { toast } from "react-toastify";
+import { z } from "zod";
+import DOMPurify from "dompurify";
 
 export default function Grievance() {
   const [grievances, setGrievances] = useState([]);
@@ -17,6 +19,16 @@ export default function Grievance() {
     subject: "",
     description: "",
     grievance_type: "",
+  });
+
+  // Zod schema for grievance validation
+  const grievanceSchema = z.object({
+    name: z.string().min(1, "Name is required").max(100, "Name too long"),
+    phone: z.string().regex(/^[6-9]\d{9}$/, "Invalid mobile number (10 digits starting with 6-9)"),
+    address: z.string().min(1, "Address is required").max(500, "Address too long"),
+    subject: z.string().min(1, "Subject is required").max(200, "Subject too long"),
+    description: z.string().min(1, "Description is required").max(1000, "Description too long"),
+    grievance_type: z.string().min(1, "Grievance type is required"),
   });
   const [loading, setLoading] = useState(false);
 
@@ -62,25 +74,25 @@ export default function Grievance() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.phone || !form.address || !form.grievance_type || !form.subject || !form.description) {
-      toast.error("Please fill in all required fields.");
-      return;
-    }
-
-    if (form.phone.trim().length !== 10) {
-      toast.error("Please enter a valid 10-digit mobile number.");
+    // Validate form using Zod
+    try {
+      grievanceSchema.parse(form);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        error.errors.forEach((err) => toast.error(err.message));
+      }
       return;
     }
 
     const payload = {
       user_id: null,
-      name: form.name,
-      phone: form.phone.trim(),
+      name: DOMPurify.sanitize(form.name),
+      phone: form.phone.trim(), // Already validated as number
       email: null,
-      address: form.address,
+      address: DOMPurify.sanitize(form.address),
       grievance_type: form.grievance_type,
-      subject: form.subject,
-      description: form.description,
+      subject: DOMPurify.sanitize(form.subject),
+      description: DOMPurify.sanitize(form.description),
       status: "new",
       created_at: new Date().toISOString(),
     };
@@ -136,7 +148,7 @@ export default function Grievance() {
     <div>
       <PageHeader
         title="Citizen Grievance Portal"
-        subtitle="All citizens can submit grievances"
+        subtitle="Submit your grievances directly without registration"
       />
 
       <div className="container py-12 grid lg:grid-cols-3 gap-8">
@@ -208,6 +220,22 @@ export default function Grievance() {
                   }
                   required
                 />
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Address *
+                  </label>
+                  <textarea
+                    value={form.address}
+                    onChange={(e) =>
+                      setForm({ ...form, address: e.target.value })
+                    }
+                    rows="3"
+                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
+                    placeholder="Enter your address..."
+                    required
+                  />
+                </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">

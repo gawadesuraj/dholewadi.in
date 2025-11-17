@@ -367,7 +367,7 @@ export default function DeathCertificateForm() {
               <input
                 type="file"
                 name="payment_file"
-                accept="image/*"
+                accept="image/*,application/pdf"
                 onChange={handleChange}
               />
               {paymentPreview && (
