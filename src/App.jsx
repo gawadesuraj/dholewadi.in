@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+// FILE: src/App.jsx
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -7,10 +9,11 @@ import Router from "./router";
 import "./i18n/i18n"; // Initialize i18n
 // import "./styles/responsive.css";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useEffect } from "react";
-import ScrollToTop from "./components/layout/ScrollToTop";
+
+// REMOVED: AOS imports
+// import AOS from "aos";
+// import "aos/dist/aos.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,21 +25,14 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // 2. Initialize AOS
-  useEffect(() => {
-    AOS.init({
-      // Global settings:
-      duration: 900, // values from 0 to 3000, with step 50ms
-      once: true, // whether animation should happen only once - while scrolling down
-    });
-  }, []);
+  // REMOVED: AOS Initialization useEffect
+  // AOS often causes z-index issues with Modals because it adds 'transform' styles.
 
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <GlobalBackground>
           <Layout>
-            <ScrollToTop />
             <Router />
           </Layout>
         </GlobalBackground>

@@ -112,7 +112,8 @@ function Header() {
 
       {/* Header */}
       <header
-        className={`sticky top-0 z-40 bg-white transition-all duration-300 ${
+        // CHANGED: Removed 'sticky top-0' so it doesn't stick. Added 'relative'.
+        className={`relative bg-white transition-all duration-300 ${
           isScrolled
             ? "shadow-lg border-b-2 border-gray-200"
             : "shadow-md border-b border-gray-100"
