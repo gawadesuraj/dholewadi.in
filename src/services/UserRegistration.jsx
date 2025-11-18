@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../components/common/PageHeader"
 import Card from "../components/ui/Card";
-import { supabase } from "../services/supabaseClient";
+import { supabase } from "./supabaseClient";
 import { z } from "zod";
 import DOMPurify from "dompurify";
 import { toast } from "react-toastify";

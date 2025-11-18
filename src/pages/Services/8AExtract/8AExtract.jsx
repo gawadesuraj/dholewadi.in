@@ -9,7 +9,6 @@ export default function Extract8AForm() {
       bucket="extract_8a_uploads"
       extraFields={[
         { label: "Property Number", name: "property_no", required: true },
-        { label: "Survey Number", name: "survey_no", required: true },
       ]}
     />
   );
