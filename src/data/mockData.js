@@ -119,7 +119,7 @@ export const mockData = {
     },
     {
       id: 9,
-      name: "Water Connection",
+      name: "नळ कनेक्शन",
       slug: "water-connection",
       applyRoute: "/services/water-connection/apply",
       category: "utilities",
