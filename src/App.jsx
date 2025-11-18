@@ -6,14 +6,10 @@ import { ToastContainer } from "react-toastify";
 import GlobalBackground from "./components/ui/GlobalBackground";
 import Layout from "./components/layout/Layout";
 import Router from "./router";
-import "./i18n/i18n"; // Initialize i18n
-// import "./styles/responsive.css";
+import "./i18n/i18n";
 
 import { useEffect } from "react";
 
-// REMOVED: AOS imports
-// import AOS from "aos";
-// import "aos/dist/aos.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,8 +21,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // REMOVED: AOS Initialization useEffect
-  // AOS often causes z-index issues with Modals because it adds 'transform' styles.
+
 
   return (
     <QueryClientProvider client={queryClient}>
