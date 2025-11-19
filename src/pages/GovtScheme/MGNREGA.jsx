@@ -10,9 +10,7 @@ import {
 
 function MGNREGA() {
   return (
-    <div
-      className="min-h-screen relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
-    >
+    <div className="min-h-screen relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       {/* Uniform width across all scheme pages */}
       <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
         {/* Header Section */}
@@ -25,11 +23,11 @@ function MGNREGA() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-              Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGA)
+              महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी योजना (MGNREGA)
             </h1>
             <p className="max-w-3xl mx-auto text-emerald-100 text-lg">
-              A flagship rural employment program ensuring 100 days of guaranteed work 
-              and infrastructure development across India.
+              भारतातील ग्रामीण भागातील रोजगार आणि पायाभूत सुविधांच्या विकासासाठी
+              १०० दिवसांच्या हमी कामाची खात्री देणारा एक प्रमुख कार्यक्रम.
             </p>
           </div>
         </div>
@@ -40,42 +38,49 @@ function MGNREGA() {
           <section>
             <h2 className="flex items-center gap-2 text-2xl font-semibold text-green-700 mb-3">
               <FileText className="w-6 h-6 text-emerald-500" />
-              Introduction
+              परिचय
             </h2>
             <p className="leading-relaxed text-gray-700">
-              The <strong>Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)</strong> 
-              was launched by the Government of India in 2005. It ensures at least{" "}
-              <strong>100 days of wage employment</strong> annually to every rural household 
-              whose adult members volunteer for unskilled manual work.
+              <strong>
+                महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी कायदा
+              </strong>{" "}
+              भारत सरकारने २००५ मध्ये सुरू केला. हे अकुशल मजुरीचे काम करण्यास
+              इच्छुक असलेल्या प्रत्येक ग्रामीण कुटुंबातील प्रौढ सदस्यांना
+              वर्षाला किमान <strong>१०० दिवसांच्या रोजगाराची हमी</strong> देते.
             </p>
           </section>
 
           {/* Objectives */}
           <section className="bg-green-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-green-700 mb-3">
-              Objectives of the Scheme
+              योजनेची उद्दिष्टे
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Reduce unemployment in rural areas.</li>
-              <li>Provide sustainable income sources for rural families.</li>
-              <li>Promote labor-intensive works for infrastructure development.</li>
-              <li>Encourage women’s participation and empowerment.</li>
-              <li>Support environmental sustainability and resource conservation.</li>
+              <li>ग्रामीण भागातील बेरोजगारी कमी करणे.</li>
+              <li>
+                ग्रामीण कुटुंबांसाठी शाश्वत उत्पन्नाचे स्रोत उपलब्ध करून देणे.
+              </li>
+              <li>
+                पायाभूत सुविधांच्या विकासासाठी श्रम-केंद्रित कामांना प्रोत्साहन
+                देणे.
+              </li>
+              <li>महिलांच्या सहभागास आणि सक्षमीकरणास प्रोत्साहन देणे.</li>
+              <li>पर्यावरणीय शाश्वतता आणि संसाधन संवर्धनास समर्थन देणे.</li>
             </ul>
           </section>
 
           {/* Key Features */}
           <section>
             <h2 className="text-xl font-semibold text-green-700 mb-3">
-              Key Features
+              प्रमुख वैशिष्ट्ये
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                "100 days of guaranteed employment per household.",
-                "Equal pay for men and women.",
-                "Direct wage payments to bank or post office accounts.",
-                "Time-bound implementation through Gram Panchayats.",
-                "Focus on water conservation, rural connectivity, and afforestation.",
+                "प्रत्येक कुटुंबाला १०० दिवसांच्या रोजगाराची हमी.",
+                "पुरुष आणि महिलांना समान वेतन.",
+                "मजुरी थेट बँक किंवा पोस्ट ऑफिस खात्यात जमा.",
+                "ग्रामपंचायतींमार्फत कालबद्ध अंमलबजावणी.",
+                "जलसंधारण, ग्रामीण रस्ते आणि वनीकरणावर भर.",
               ].map((feature, i) => (
                 <div
                   key={i}
@@ -92,24 +97,44 @@ function MGNREGA() {
           <section className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl shadow-sm">
             <h2 className="flex items-center gap-2 text-xl font-semibold text-green-700 mb-3">
               <ClipboardList className="w-5 h-5 text-green-500" />
-              Implementation Process
+              अंमलबजावणी प्रक्रिया
             </h2>
             <div className="space-y-5">
               <div>
-                <h3 className="font-semibold text-green-800 mb-1">1. Application Process</h3>
-                <p>Applicants can submit forms to the Gram Panchayat. Any adult family member (18+) may apply.</p>
+                <h3 className="font-semibold text-green-800 mb-1">
+                  १. अर्ज प्रक्रिया
+                </h3>
+                <p>
+                  अर्जदार ग्रामपंचायतीकडे अर्ज सादर करू शकतात. कुटुंबातील
+                  कोणताही प्रौढ सदस्य (१८+) अर्ज करू शकतो.
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold text-green-800 mb-1">2. Job Card Issuance</h3>
-                <p>Eligible families receive job cards within 15 days, listing household members and entitlements.</p>
+                <h3 className="font-semibold text-green-800 mb-1">
+                  २. जॉब कार्ड वाटप
+                </h3>
+                <p>
+                  पात्र कुटुंबांना १५ दिवसांच्या आत जॉब कार्ड दिले जाते,
+                  ज्यामध्ये सदस्यांची नावे आणि अधिकारांची माहिती असते.
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold text-green-800 mb-1">3. Getting Employment</h3>
-                <p>Job card holders request work and are provided employment within 15 days.</p>
+                <h3 className="font-semibold text-green-800 mb-1">
+                  ३. रोजगार मिळवणे
+                </h3>
+                <p>
+                  जॉब कार्ड धारकांनी कामाची मागणी केल्यावर त्यांना १५ दिवसांच्या
+                  आत रोजगार उपलब्ध करून दिला जातो.
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold text-green-800 mb-1">4. Wage Payment</h3>
-                <p>Wages are credited directly into bank accounts within 15 days post completion of work.</p>
+                <h3 className="font-semibold text-green-800 mb-1">
+                  ४. मजुरी वाटप
+                </h3>
+                <p>
+                  काम पूर्ण झाल्यानंतर १५ दिवसांच्या आत मजुरी थेट बँक खात्यात
+                  जमा केली जाते.
+                </p>
               </div>
             </div>
           </section>
@@ -118,25 +143,28 @@ function MGNREGA() {
           <section>
             <h2 className="flex items-center gap-2 text-xl font-semibold text-green-700 mb-3">
               <BarChart3 className="w-5 h-5 text-green-500" />
-              Performance in Maharashtra
+              महाराष्ट्रातील कामगिरी
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li><strong>1 crore+</strong> laborers registered under MGNREGA in 2023–24.</li>
-              <li><strong>40 lakh+</strong> families benefited from employment.</li>
-              <li>Over 1.5 million rural infrastructure projects completed.</li>
+              <li>
+                २०२३-२४ मध्ये MGNREGA अंतर्गत <strong>१ कोटीहून अधिक</strong>{" "}
+                मजुरांची नोंदणी.
+              </li>
+              <li>
+                <strong>४० लाखांहून अधिक</strong> कुटुंबांना रोजगाराचा लाभ.
+              </li>
+              <li>१५ लाखांहून अधिक ग्रामीण पायाभूत सुविधा प्रकल्प पूर्ण.</li>
             </ul>
           </section>
 
           {/* Importance */}
           <section className="bg-green-50 rounded-2xl p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-green-700 mb-3">
-              Significance
-            </h2>
+            <h2 className="text-xl font-semibold text-green-700 mb-3">महत्व</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Promotes rural employment and prevents migration.</li>
-              <li>Ensures gender equality — 45% women participation.</li>
-              <li>Improves natural resource management and sustainability.</li>
-              <li>Strengthens local governance through Panchayati Raj Institutions.</li>
+              <li>ग्रामीण रोजगाराला चालना देते आणि स्थलांतर रोखते.</li>
+              <li>लिंग समानतेची खात्री - ४५% महिलांचा सहभाग.</li>
+              <li>नैसर्गिक साधनसंपत्ती व्यवस्थापन आणि शाश्वतता सुधारते.</li>
+              <li>पंचायत राज संस्थांद्वारे स्थानिक प्रशासन मजबूत करते.</li>
             </ul>
           </section>
 
@@ -144,40 +172,52 @@ function MGNREGA() {
           <section>
             <h2 className="flex items-center gap-2 text-xl font-semibold text-green-700 mb-3">
               <FileCheck className="w-5 h-5 text-green-500" />
-              Required Documents
+              आवश्यक कागदपत्रे
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Aadhaar Card</li>
-              <li>Voter ID Card</li>
-              <li>Bank Account Details</li>
-              <li>Job Card (if already issued)</li>
+              <li>आधार कार्ड</li>
+              <li>मतदार ओळखपत्र</li>
+              <li>बँक पासबुक / खात्याचा तपशील</li>
+              <li>जॉब कार्ड (जर आधीच जारी केले असेल तर)</li>
             </ul>
           </section>
 
           {/* Infographic Summary */}
           <section className="bg-gradient-to-r from-emerald-50 to-green-50 p-6 rounded-2xl shadow-sm">
             <h2 className="text-xl font-semibold text-green-700 mb-4">
-              Summary at a Glance
+              थोडक्यात सारांश
             </h2>
             <div className="grid sm:grid-cols-3 gap-4">
               <div className="p-4 border border-green-100 rounded-xl bg-white text-center shadow-sm">
-                <h4 className="text-green-700 font-semibold mb-1">Employment Guarantee</h4>
-                <p className="text-gray-600 text-sm">100 days of work for every rural family</p>
+                <h4 className="text-green-700 font-semibold mb-1">
+                  रोजगार हमी
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  प्रत्येक ग्रामीण कुटुंबाला १०० दिवसांचे काम
+                </p>
               </div>
               <div className="p-4 border border-green-100 rounded-xl bg-white text-center shadow-sm">
-                <h4 className="text-green-700 font-semibold mb-1">Women Participation</h4>
-                <p className="text-gray-600 text-sm">Over 45% of workers are women</p>
+                <h4 className="text-green-700 font-semibold mb-1">
+                  महिला सहभाग
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  ४५% पेक्षा जास्त कामगार महिला आहेत
+                </p>
               </div>
               <div className="p-4 border border-green-100 rounded-xl bg-white text-center shadow-sm">
-                <h4 className="text-green-700 font-semibold mb-1">Rural Development</h4>
-                <p className="text-gray-600 text-sm">1.5M+ projects for roads, water, and forestry</p>
+                <h4 className="text-green-700 font-semibold mb-1">
+                  ग्रामीण विकास
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  रस्ते, पाणी आणि वनीकरणासाठी १५ लाखांहून अधिक प्रकल्प
+                </p>
               </div>
             </div>
           </section>
 
           {/* Footer */}
           <div className="pt-6 text-center text-sm text-gray-500 border-t border-gray-200">
-            © Government of India | Ministry of Rural Development | MGNREGA
+            © भारत सरकार | ग्रामीण विकास मंत्रालय | MGNREGA
           </div>
         </div>
       </div>

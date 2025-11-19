@@ -10,10 +10,10 @@ function EGovernancePolicy() {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: `
-  repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.12) 2px, rgba(75, 85, 99, 0.12) 3px, transparent 3px, transparent 8px),
-  repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.10) 2px, rgba(107, 114, 128, 0.10) 3px, transparent 3px, transparent 8px),
-  repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.09) 2px, rgba(55, 65, 81, 0.09) 3px, transparent 3px, transparent 8px),
-  repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.07) 2px, rgba(31, 41, 55, 0.07) 3px, transparent 3px, transparent 8px)
+ repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.12) 2px, rgba(75, 85, 99, 0.12) 3px, transparent 3px, transparent 8px),
+ repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.10) 2px, rgba(107, 114, 128, 0.10) 3px, transparent 3px, transparent 8px),
+ repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.09) 2px, rgba(55, 65, 81, 0.09) 3px, transparent 3px, transparent 8px),
+ repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.07) 2px, rgba(31, 41, 55, 0.07) 3px, transparent 3px, transparent 8px)
 `,
 
         }}
@@ -33,10 +33,10 @@ function EGovernancePolicy() {
                 </div>
               </div>
               <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-                Dholewadi Gram Panchayat E-Governance Policy, 2024
+                ढोलेवाडी ग्रामपंचायत ई-शासन धोरण, २०२४
               </h1>
               <p className="max-w-3xl mx-auto text-sky-100 text-lg">
-                A roadmap for transparent, participatory, and digitally empowered village administration.
+                पारदर्शक, सहभागी आणि डिजिटल-सक्षम गाव प्रशासनासाठी एक रोडमॅप.
               </p>
             </div>
           </div>
@@ -48,95 +48,94 @@ function EGovernancePolicy() {
             <section>
               <h2 className="flex items-center gap-2 text-2xl font-semibold text-sky-700 mb-3">
                 <Globe2 className="w-6 h-6 text-sky-600" />
-                1. Introduction
+                १. परिचय
               </h2>
               <p>
-                Recognizing the transformative potential of Information and Communication Technology (ICT)
-                to empower rural institutions, this policy outlines a roadmap for digital governance of
-                <strong> Dholewadi Gram Panchayat</strong>. Rooted in the ethos of the PES Act and aligned
-                with <strong>Digital India</strong>, the policy ensures transparent, participatory, and
-                efficient service delivery, especially for tribal and marginalized citizens.
+                ग्रामीण संस्थांना सक्षम करण्यासाठी माहिती आणि दळणवळण तंत्रज्ञानाच्या (ICT) परिवर्तनशील 
+                क्षमतेची दखल घेऊन, हे धोरण <strong>ढोलेवाडी ग्रामपंचायतीच्या</strong> डिजिटल प्रशासनासाठी 
+                एक रूपरेषा सादर करते. PES कायद्याच्या मूल्यांवर आधारित आणि <strong>डिजिटल इंडियाशी</strong> 
+                सुसंगत असलेले हे धोरण विशेषतः आदिवासी आणि वंचित नागरिकांसाठी पारदर्शक, सहभागी आणि 
+                कार्यक्षम सेवा वितरण सुनिश्चित करते.
               </p>
             </section>
 
             {/* 2. Vision */}
             <section>
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">2. Vision</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">२. ध्येय</h2>
               <p>
-                To establish <strong>Dholewadi Gram Panchayat</strong> as a model digital village
-                administration institution by providing inclusive, integrated, real-time, and
-                citizen-centric services using modern digital technology.
+                आधुनिक डिजिटल तंत्रज्ञानाचा वापर करून सर्वसमावेशक, एकात्मिक, वास्तविक वेळेत आणि 
+                नागरिक-केंद्रित सेवा प्रदान करून <strong>ढोलेवाडी ग्रामपंचायतीला</strong> एक मॉडेल डिजिटल 
+                ग्राम प्रशासन संस्था म्हणून स्थापित करणे.
               </p>
             </section>
 
             {/* 3. Objectives */}
             <section className="bg-blue-50 rounded-2xl p-6 shadow-sm border-l-4 border-blue-400">
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">3. Main Objectives</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">३. मुख्य उद्दिष्ट्ये</h2>
               <ul className="list-decimal list-inside space-y-1 text-gray-700">
-                <li>Ensuring universal digital access to Panchayat services.</li>
-                <li>Enabling real-time governance via data analytics.</li>
-                <li>Promoting paperless & cashless service delivery.</li>
-                <li>Citizen participation through mobile apps and IVRS.</li>
-                <li>Enhancing transparency through digital reporting.</li>
-                <li>Training Panchayat staff in modern ICT tools.</li>
-                <li>Integration with state & national digital platforms.</li>
-                <li>Strengthening cybersecurity & data privacy.</li>
+                <li>पंचायत सेवांमध्ये सार्वत्रिक डिजिटल प्रवेश सुनिश्चित करणे.</li>
+                <li>डेटा ॲनालिटिक्सद्वारे वास्तविक वेळेत शासन (Real-time Governance) सक्षम करणे.</li>
+                <li>पेपरलेस आणि कॅशलेस सेवा वितरणास प्रोत्साहन देणे.</li>
+                <li>मोबाईल ॲप्स आणि IVRS द्वारे नागरिकांचा सहभाग वाढवणे.</li>
+                <li>डिजिटल अहवालाद्वारे पारदर्शकता वाढवणे.</li>
+                <li>पंचायत कर्मचाऱ्यांना आधुनिक ICT साधनांमध्ये प्रशिक्षित करणे.</li>
+                <li>राज्य आणि राष्ट्रीय डिजिटल प्लॅटफॉर्मसह एकत्रीकरण.</li>
+                <li>सायबर सुरक्षा आणि डेटा गोपनीयता मजबूत करणे.</li>
               </ul>
             </section>
 
             {/* 4. Scope */}
             <section>
-              <h2 className="text-xl font-semibold text-sky-700 mb-3">4. Policy Scope and Coverage</h2>
+              <h2 className="text-xl font-semibold text-sky-700 mb-3">४. धोरणाची व्याप्ती</h2>
               <p>
-                Applicable to all Panchayat functions including Health, Sanitation, Agriculture, Water,
-                Education, and Livelihood—covering ICT infrastructure, digital literacy, grievance redressal
-                and data governance.
+                आरोग्य, स्वच्छता, कृषी, पाणी, शिक्षण आणि उपजीविका यासह सर्व पंचायत कार्यांना लागू—ICT पायाभूत 
+                सुविधा, डिजिटल साक्षरता, तक्रार निवारण आणि डेटा प्रशासन समाविष्ट आहे.
               </p>
             </section>
 
             {/* 5. Infrastructure */}
             <section className="bg-sky-50 rounded-2xl p-6 shadow-sm border-l-4 border-sky-400">
-              <h2 className="text-xl font-semibold text-sky-700 mb-3">5. Digital Infrastructure Development</h2>
+              <h2 className="text-xl font-semibold text-sky-700 mb-3">५. डिजिटल पायाभूत सुविधांचा विकास</h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Digital control room with biometric devices.</li>
-                <li>High-speed broadband via BharatNet / 4G / 5G.</li>
-                <li>Use of GIS, drones, and mobile apps.</li>
-                <li>Cloud-based document storage.</li>
-                <li>Solar-powered service kiosks.</li>
+                <li>बायोमेट्रिक उपकरणांसह डिजिटल नियंत्रण कक्ष.</li>
+                <li>भारतनेट / 4G / 5G द्वारे हाय-स्पीड ब्रॉडबँड.</li>
+                <li>GIS, ड्रोन आणि मोबाईल ॲप्सचा वापर.</li>
+                <li>क्लाउड-आधारित दस्तऐवज स्टोरेज.</li>
+                <li>सौर-ऊर्जेवर चालणारे सेवा किऑस्क.</li>
               </ul>
             </section>
 
             {/* 6. Service Delivery */}
             <section>
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">6. E-Governance Service Delivery Mechanism</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">६. ई-शासन सेवा वितरण यंत्रणा</h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Online certificates (Birth/Death/Marriage).</li>
-                <li>Property Tax & NOC services.</li>
-                <li>Pension, Employment & Scholarship services.</li>
-                <li>AI-driven predictive alerts & grievance tracking.</li>
+                <li>ऑनलाइन प्रमाणपत्रे (जन्म/मृत्यू/विवाह).</li>
+                <li>मालमत्ता कर आणि NOC सेवा.</li>
+                <li>पेन्शन, रोजगार आणि शिष्यवृत्ती सेवा.</li>
+                <li>AI-आधारित अंदाज अलर्ट आणि तक्रार ट्रॅकिंग.</li>
               </ul>
             </section>
 
             {/* 7. Participation */}
             <section className="bg-sky-50 rounded-2xl p-6 shadow-sm border-l-4 border-sky-400">
               <h2 className="text-xl font-semibold text-blue-700 mb-3">
-                7. Citizen Participation and Governance
+                ७. नागरिक सहभाग आणि प्रशासन
               </h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Online public meeting platform “Janmanch”.</li>
-                <li>SMS, WhatsApp & IVRS notifications.</li>
-                <li>Mobile-based reporting for issues.</li>
-                <li>Quarterly digital audits.</li>
+                <li>ऑनलाइन सार्वजनिक सभेचे व्यासपीठ “जनमंच”.</li>
+                <li>SMS, WhatsApp आणि IVRS सूचना.</li>
+                <li>समस्यांसाठी मोबाईल-आधारित अहवाल.</li>
+                <li>त्रैमासिक डिजिटल ऑडिट.</li>
               </ul>
             </section>
 
             {/* 8. Literacy */}
             <section>
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">8. Capacity Building</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">८. क्षमता निर्माण</h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Training programs for Panchayat staff.</li>
-                <li>Digital literacy workshops for villagers.</li>
-                <li>Awareness via radio & tablets.</li>
+                <li>पंचायत कर्मचाऱ्यांसाठी प्रशिक्षण कार्यक्रम.</li>
+                <li>गावकऱ्यांसाठी डिजिटल साक्षरता कार्यशाळा.</li>
+                <li>रेडिओ आणि टॅब्लेटद्वारे जागरूकता.</li>
               </ul>
             </section>
 
@@ -144,23 +143,23 @@ function EGovernancePolicy() {
             <section className="bg-blue-50 rounded-2xl p-6 shadow-sm border-l-4 border-blue-400">
               <h2 className="flex items-center gap-2 text-xl font-semibold text-blue-700 mb-3">
                 <ShieldCheck className="w-5 h-5 text-blue-500" />
-                9. Data Governance and Cybersecurity
+                ९. डेटा प्रशासन आणि सायबर सुरक्षा
               </h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Panchayat-level Data Security Policy.</li>
-                <li>Encryption & secure credential storage.</li>
-                <li>Monthly vulnerability checks.</li>
+                <li>पंचायत-स्तरीय डेटा सुरक्षा धोरण.</li>
+                <li>एनक्रिप्शन आणि सुरक्षित क्रेडेन्शियल स्टोरेज.</li>
+                <li>मासिक भेद्यता तपासणी.</li>
               </ul>
             </section>
 
             {/* 10. Monitoring */}
             <section>
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">10. Monitoring and Evaluation</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">१०. देखरेख आणि मूल्यमापन</h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Real-time performance dashboards.</li>
-                <li>Integration with PFMS.</li>
-                <li>Monthly automated reports.</li>
-                <li>SDG-based performance metrics.</li>
+                <li>वास्तविक वेळेतील कामगिरी डॅशबोर्ड.</li>
+                <li>PFMS सह एकत्रीकरण.</li>
+                <li>मासिक स्वयंचलित अहवाल.</li>
+                <li>SDG-आधारित कामगिरी मेट्रिक्स.</li>
               </ul>
             </section>
 
@@ -168,38 +167,38 @@ function EGovernancePolicy() {
             <section className="bg-blue-50 rounded-2xl p-6 shadow-sm border-l-4 border-blue-400">
               <h2 className="flex items-center gap-2 text-xl font-semibold text-blue-700 mb-3">
                 <Users className="w-5 h-5 text-blue-500" />
-                11. Institutional Framework
+                ११. संस्थात्मक रचना
               </h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>E-Governance Task Force formation.</li>
-                <li>Village Digital Officer appointment.</li>
-                <li>Collaboration with NIC & ZP IT Cell.</li>
+                <li>ई-शासन कार्य दलाची (Task Force) स्थापना.</li>
+                <li>ग्राम डिजिटल अधिकारी (VDO) नियुक्ती.</li>
+                <li>NIC आणि ZP IT सेल सह सहकार्य.</li>
               </ul>
             </section>
 
             {/* 12. Funding */}
             <section>
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">12. Funding and Sustainability</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">१२. निधी आणि टिकाऊपणा</h2>
               <ul className="list-disc list-inside space-y-1 text-gray-700">
-                <li>Use of 15th/16th FC and RGSA funds.</li>
-                <li>CSR partnerships.</li>
-                <li>Solar-powered green infrastructure.</li>
+                <li>१५ वा/१६ वा वित्त आयोग आणि RGSA निधीचा वापर.</li>
+                <li>CSR भागीदारी.</li>
+                <li>सौर-ऊर्जेवर चालणाऱ्या ग्रीन इन्फ्रास्ट्रक्चरचा वापर.</li>
               </ul>
             </section>
 
             {/* 14. Review */}
             <section className="bg-blue-50 rounded-2xl p-6 shadow-sm border-l-4 border-blue-400">
-              <h2 className="text-xl font-semibold text-blue-700 mb-3">14. Review and Update</h2>
+              <h2 className="text-xl font-semibold text-blue-700 mb-3">१४. पुनरावलोकन आणि अद्यतन</h2>
               <p>
-                This policy will be periodically reviewed by Dholewadi Gram Panchayat in consultation with
-                citizens and experts, incorporating feedback via digital platforms.
+                या धोरणाचे वेळोवेळी ढोलेवाडी ग्रामपंचायतीकडून नागरिक आणि तज्ञांशी सल्लामसलत करून 
+                डिजिटल प्लॅटफॉर्मद्वारे मिळालेला अभिप्राय समाविष्ट करून पुनरावलोकन केले जाईल.
               </p>
             </section>
           </div>
 
           {/* Footer */}
           <div className="text-center text-sm text-gray-500 border-t border-gray-200 py-4">
-            © Dholewadi Gram Panchayat | E-Governance Cell 2024
+            © ढोलेवाडी ग्रामपंचायत | ई-शासन कक्ष २०२४
           </div>
         </div>
       </div>

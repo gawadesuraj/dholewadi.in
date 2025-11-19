@@ -1,53 +1,55 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import {
-  FileText,
-  Download,
-  Hand,
-  X,
-  ExternalLink,
-} from "lucide-react";
+import { FileText, Download, Hand, X, ExternalLink } from "lucide-react";
 
 function SelfDeclarations() {
-  // Example list – replace `file` links later
+  // उदाहरण यादी (Example List) – फाइल लिंक्स जशास तशा ठेवल्या आहेत.
   const forms = [
     {
-      title: "Self-declaration form of not availing any scheme",
+      // कोणत्याही योजनेचा लाभ न घेतल्याचे स्व-घोषणापत्र
+      title: <strong>कोणत्याही योजनेचा लाभ न घेतल्याचे स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/%E0%A4%95%E0%A5%8B%E0%A4%A3%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%B9%E0%A5%80-%E0%A4%AF%E0%A5%8B%E0%A4%9C%E0%A4%A8%E0%A5%87%E0%A4%9A%E0%A4%BE-%E0%A4%B2%E0%A4%BE%E0%A4%AD-%E0%A4%A8-%E0%A4%98%E0%A5%87%E0%A4%A4%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%9A%E0%A5%87-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_oe70ae.pdf",
     },
     {
-      title: "Self-declaration regarding the same",
+      // त्याच बाबत स्व-घोषणापत्र
+      title: <strong>त्याच बाबत स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580351/%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%A4%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE-%E0%A4%85%E0%A4%B8%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AC%E0%A4%BE%E0%A4%AC%E0%A4%A4-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_htivsf.pdf",
     },
     {
-      title: "Resident filed self-declaration",
+      // रहिवासी दाखला स्व-घोषणापत्र
+      title: <strong>रहिवासी दाखला स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580351/%E0%A4%B0%E0%A4%B9%E0%A4%BF%E0%A4%B5%E0%A4%BE%E0%A4%B6%E0%A5%80_%E0%A4%A6%E0%A4%BE%E0%A4%96%E0%A4%B2%E0%A4%BE_%E0%A4%B8%E0%A5%8D%E0%A4%B5_%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_hv70da.pdf",
     },
     {
-      title: "Self-declaration form regarding being a widow",
+      // विधवा असल्याबद्दल स्व-घोषणापत्र
+      title: <strong>विधवा असल्याबद्दल स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580351/%E0%A4%B5%E0%A4%BF%E0%A4%A7%E0%A4%B5%E0%A4%BE-%E0%A4%85%E0%A4%B8%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AC%E0%A4%BE%E0%A4%AC%E0%A4%A4-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-1-compressed_znsag0.pdf",
     },
     {
-      title: "Self-declaration form if separated family",
+      // विभक्त कुटुंब असल्याबद्दल स्व-घोषणापत्र
+      title: <strong>विभक्त कुटुंब असल्याबद्दल स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580352/%E0%A4%B5%E0%A4%BF%E0%A4%AD%E0%A4%95%E0%A5%8D%E0%A4%A4-%E0%A4%95%E0%A5%81%E0%A4%9F%E0%A5%81%E0%A4%82%E0%A4%AC-%E0%A4%85%E0%A4%B8%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%B8-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_rsxsiu.pdf",
     },
     {
-      title: "Electricity connection self-declaration form",
+      // वीज जोडणी स्व-घोषणापत्र
+      title: <strong>वीज जोडणी स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580352/%E0%A4%B5%E0%A5%80%E0%A4%9C-%E0%A4%9C%E0%A5%8B%E0%A4%A1%E0%A4%A3%E0%A5%80-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_ll2ikf.pdf",
     },
     {
-      title: "Self-declaration regarding toilet availability",
+      // शौचालय उपलब्धतेबद्दल स्व-घोषणापत्र
+      title: <strong>शौचालय उपलब्धतेबद्दल स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580351/%E0%A4%B6%E0%A5%8C%E0%A4%9A%E0%A4%BE%E0%A4%B2%E0%A4%AF-%E0%A4%85%E0%A4%B8%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AC%E0%A4%BE%E0%A4%AC%E0%A4%A4-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_lhiuis.pdf",
     },
     {
-      title: "Self-declaration of being alive",
+      // हयात (जिवंत) असल्याबद्दल स्व-घोषणापत्र
+      title: <strong>हयात (जिवंत) असल्याबद्दल स्व-घोषणापत्र</strong>,
       file: "https://res.cloudinary.com/dhgwquxar/image/upload/v1762580351/%E0%A4%B9%E0%A4%AF%E0%A4%BE%E0%A4%A4-%E0%A4%85%E0%A4%B8%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AC%E0%A4%BE%E0%A4%AC%E0%A4%A4-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%AF%E0%A4%82%E0%A4%98%E0%A5%8B%E0%A4%B7%E0%A4%A3%E0%A4%BE%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0-compressed_ygm5yw.pdf",
     },
   ];
 
   const [openPdf, setOpenPdf] = useState(null);
 
-  // Handle PDF download (no redirect)
+  // PDF डाउनलोड हाताळणी
   const handleDownload = async (url, name) => {
     try {
       const response = await fetch(url);
@@ -58,7 +60,7 @@ function SelfDeclarations() {
       link.click();
       URL.revokeObjectURL(link.href);
     } catch (error) {
-      alert("Download failed. Please try again later.");
+      alert("डाउनलोड अयशस्वी झाले. कृपया नंतर पुन्हा प्रयत्न करा.");
     }
   };
 
@@ -75,11 +77,11 @@ function SelfDeclarations() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-              Self-Declaration Forms
+              स्व-घोषणापत्र फॉर्म
             </h1>
             <p className="text-indigo-100 text-lg">
-              Download and submit the necessary self-declaration forms as required by
-              Panchayat Samiti Shirala.
+              पंचायत समिती शिराळा यांच्या आवश्यकतेनुसार आवश्यक स्व-घोषणापत्र
+              फॉर्म डाउनलोड करा आणि सादर करा.
             </p>
           </div>
         </div>
@@ -105,16 +107,21 @@ function SelfDeclarations() {
                   className="inline-flex items-center gap-2 bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-sky-700 transition-colors duration-200"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  View
+                  पहा
                 </button>
 
                 {/* Download PDF (direct) */}
                 <button
-                  onClick={() => handleDownload(form.file, form.title + ".pdf")}
+                  onClick={() =>
+                    handleDownload(
+                      form.file,
+                      form.title.props.children + ".pdf"
+                    )
+                  }
                   className="inline-flex items-center gap-2 bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors duration-200"
                 >
                   <Download className="w-4 h-4" />
-                  Download
+                  डाउनलोड
                 </button>
               </div>
             </div>
@@ -123,7 +130,7 @@ function SelfDeclarations() {
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-500 border-t border-gray-200 py-4">
-          © Government of Maharashtra | Panchayat Samiti Shirala
+          © महाराष्ट्र शासन | ग्रामपंचायत ढोलेवाडी
         </div>
       </div>
 
@@ -139,12 +146,15 @@ function SelfDeclarations() {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() =>
-                    handleDownload(openPdf.file, openPdf.title + ".pdf")
+                    handleDownload(
+                      openPdf.file,
+                      openPdf.title.props.children + ".pdf"
+                    )
                   }
                   className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-md text-sm font-medium transition"
                 >
                   <Download className="w-4 h-4" />
-                  Download
+                  डाउनलोड
                 </button>
                 <button
                   onClick={() => setOpenPdf(null)}
@@ -159,7 +169,7 @@ function SelfDeclarations() {
             <div className="h-[80vh] bg-gray-100">
               <iframe
                 src={`${openPdf.file}#toolbar=0`}
-                title={openPdf.title}
+                title={openPdf.title.props.children}
                 className="w-full h-full"
               ></iframe>
             </div>

@@ -73,7 +73,7 @@ const CitizensCharter = () => {
   return (
     <div>
       <PageHeader
-        title="नागरिकांची सनद (Charter of Citizens)"
+        title="नागरिकांची सनद"
         subtitle="A commitment to provide services in a timely and transparent manner."
         breadcrumbs={breadcrumbs}
       />

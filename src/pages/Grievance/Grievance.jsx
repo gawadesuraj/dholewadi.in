@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "../../services/supabaseClient";
 import PageHeader from "../../components/common/PageHeader";
 import Card from "../../components/ui/Card";
-import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import DOMPurify from "dompurify";
+import { Send, FileText, Loader2, RefreshCw } from "lucide-react";
 
 export default function Grievance() {
   const [grievances, setGrievances] = useState([]);
@@ -23,32 +23,57 @@ export default function Grievance() {
 
   // Zod schema for grievance validation
   const grievanceSchema = z.object({
-    name: z.string().min(1, "Name is required").max(100, "Name too long"),
-    phone: z.string().regex(/^[6-9]\d{9}$/, "Invalid mobile number (10 digits starting with 6-9)"),
-    address: z.string().min(1, "Address is required").max(500, "Address too long"),
-    subject: z.string().min(1, "Subject is required").max(200, "Subject too long"),
-    description: z.string().min(1, "Description is required").max(1000, "Description too long"),
-    grievance_type: z.string().min(1, "Grievance type is required"),
+    name: z.string().min(1, "नाव आवश्यक आहे").max(100, "नाव खूप लांब आहे"),
+    phone: z
+      .string()
+      .regex(/^[6-9]\d{9}$/, "अवैध मोबाईल नंबर (६-९ पासून सुरू होणारे १० अंक)"),
+    address: z
+      .string()
+      .min(1, "पत्ता आवश्यक आहे")
+      .max(500, "पत्ता खूप लांब आहे"),
+    subject: z.string().min(1, "विषय आवश्यक आहे").max(200, "विषय खूप लांब आहे"),
+    description: z
+      .string()
+      .min(1, "वर्णन आवश्यक आहे")
+      .max(1000, "वर्णन खूप लांब आहे"),
+    grievance_type: z.string().min(1, "तक्रारीचा प्रकार आवश्यक आहे"),
   });
   const [loading, setLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const grievanceTypes = [
-    "Water Supply Issues",
-    "Road and Infrastructure",
-    "Electricity Problems",
-    "Healthcare Services",
-    "Education Related",
-    "Sanitation Issues",
-    "Land Records",
-    "Certificate Issues",
-    "Tax and Revenue",
-    "Others",
+    "पाणी पुरवठा समस्या",
+    "रस्ते आणि पायाभूत सुविधा",
+    "वीज समस्या",
+    "आरोग्य सेवा",
+    "शिक्षण संबंधित",
+    "स्वच्छता समस्या",
+    "जमीन नोंदी",
+    "प्रमाणपत्रे संबंधित समस्या",
+    "कर आणि महसूल",
+    "इतर",
   ];
+
+  // Utility to get status color
+  const getStatusClasses = (status) => {
+    switch (status) {
+      case "resolved":
+        return "bg-green-50 text-green-700 border-green-300";
+      case "in_progress":
+        return "bg-yellow-50 text-yellow-700 border-yellow-300";
+      case "rejected":
+        return "bg-red-50 text-red-700 border-red-300";
+      default:
+        return "bg-blue-50 text-blue-700 border-blue-300";
+    }
+  };
 
   // 🧾 Fetch user’s past grievances
   const fetchUserGrievances = async (phone) => {
     if (!phone || phone.trim().length !== 10) {
-      toast.error("Please enter a valid 10-digit mobile number to load past grievances");
+      toast.error(
+        "मागील तक्रारी पाहण्यासाठी कृपया वैध १०-अंकी मोबाईल नंबर प्रविष्ट करा."
+      );
       return;
     }
 
@@ -61,11 +86,11 @@ export default function Grievance() {
 
     if (error) {
       console.error(error);
-      toast.error("Error loading your previous grievances.");
+      toast.error("तुमच्या मागील तक्रारी लोड करताना त्रुटी आली.");
       setGrievances([]);
     } else {
       setGrievances(data || []);
-      toast.success("Past grievances loaded.");
+      toast.success("मागील तक्रारी लोड झाल्या.");
     }
     setLoading(false);
   };
@@ -73,11 +98,13 @@ export default function Grievance() {
   // 🧭 Submit new grievance
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     // Validate form using Zod
     try {
       grievanceSchema.parse(form);
     } catch (error) {
+      setIsSubmitting(false);
       if (error instanceof z.ZodError) {
         error.errors.forEach((err) => toast.error(err.message));
       }
@@ -87,7 +114,7 @@ export default function Grievance() {
     const payload = {
       user_id: null,
       name: DOMPurify.sanitize(form.name),
-      phone: form.phone.trim(), // Already validated as number
+      phone: form.phone.trim(),
       email: null,
       address: DOMPurify.sanitize(form.address),
       grievance_type: form.grievance_type,
@@ -104,13 +131,33 @@ export default function Grievance() {
       .single();
 
     if (error) {
-      toast.error("Failed to submit grievance.");
+      toast.error("तक्रार सादर करण्यात अयशस्वी.");
       console.error(error);
     } else {
-      toast.success(`Grievance submitted successfully! ID: ${data.id}`);
-      setForm({ name: "", phone: "", address: "", subject: "", description: "", grievance_type: "" });
-      setGrievances((prev) => [data, ...prev]);
+      toast.success(`तक्रार यशस्वीरित्या सादर झाली! ID: ${data.id}`);
+      setForm({
+        name: "",
+        phone: form.phone,
+        address: "",
+        subject: "",
+        description: "",
+        grievance_type: "",
+      });
+      // Fetch and update the list to show the new grievance
+      fetchUserGrievances(form.phone);
     }
+    setIsSubmitting(false);
+  };
+
+  // Status translation utility
+  const translateStatus = (status) => {
+    const statusMap = {
+      new: "नवीन",
+      in_progress: "प्रगतीपथावर",
+      resolved: "निवारण झाले",
+      rejected: "नाकारली",
+    };
+    return statusMap[status] || status;
   };
 
   // 🔁 Real-time updates
@@ -145,55 +192,50 @@ export default function Grievance() {
   }, [form.phone]);
 
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen">
       <PageHeader
-        title="Citizen Grievance Portal"
-        subtitle="Submit your grievances directly without registration"
+        title="नागरिक तक्रार निवारण पोर्टल"
+        subtitle={`ग्रामपंचायत ढोलेवाडीसाठी थेट तुमची तक्रार दाखल करा`}
+        className="bg-gradient-to-r from-cyan-600 to-blue-700 text-white shadow-lg"
       />
 
-      <div className="container py-12 grid lg:grid-cols-3 gap-8">
-        {/* Left Section */}
+      <div className="container mx-auto py-12 grid lg:grid-cols-3 gap-8 px-4">
+        {/* Left Section: Grievance Form */}
         <div className="lg:col-span-2 space-y-6">
-          <Card>
+          <Card className="shadow-2xl border-t-4 border-cyan-500">
             <div className="p-6">
-              <h2 className="text-xl font-semibold mb-4">
-                Grievance Registration
+              <h2 className="text-2xl font-bold text-cyan-700 mb-6 flex items-center gap-2">
+                <FileText className="w-6 h-6" /> तक्रार नोंदणी
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <Input
-                  label="Name *"
-                  value={form.name}
-                  onChange={(e) =>
-                    setForm({ ...form, name: e.target.value })
-                  }
-                  required
-                />
+                {/* Grid for Name and Phone */}
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <Input
+                    label="नाव *"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    required
+                    className="border-gray-300 focus:border-cyan-500"
+                  />
+                  <Input
+                    label="फोन *"
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
+                    placeholder="१०-अंकी मोबाईल नंबर"
+                    maxLength="10"
+                    required
+                    className="border-gray-300 focus:border-cyan-500"
+                  />
+                </div>
 
-                <Input
-                  label="Phone *"
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) =>
-                    setForm({ ...form, phone: e.target.value })
-                  }
-                  placeholder="10-digit mobile number"
-                  maxLength="10"
-                  required
-                />
-
-                <Input
-                  label="Address *"
-                  value={form.address}
-                  onChange={(e) =>
-                    setForm({ ...form, address: e.target.value })
-                  }
-                  required
-                />
-
+                {/* Grievance Type Select */}
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Grievance Type *
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    तक्रारीचा प्रकार *
                   </label>
                   <select
                     value={form.grievance_type}
@@ -201,9 +243,11 @@ export default function Grievance() {
                       setForm({ ...form, grievance_type: e.target.value })
                     }
                     required
-                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition duration-150 text-gray-700 bg-white"
                   >
-                    <option value="">Select Type</option>
+                    <option value="" disabled>
+                      प्रकार निवडा
+                    </option>
                     {grievanceTypes.map((type) => (
                       <option key={type} value={type}>
                         {type}
@@ -212,34 +256,38 @@ export default function Grievance() {
                   </select>
                 </div>
 
+                {/* Subject Input */}
                 <Input
-                  label="Subject *"
+                  label="विषय *"
                   value={form.subject}
                   onChange={(e) =>
                     setForm({ ...form, subject: e.target.value })
                   }
                   required
+                  className="border-gray-300 focus:border-cyan-500"
                 />
 
+                {/* Address Textarea */}
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Address *
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    पत्ता *
                   </label>
                   <textarea
                     value={form.address}
                     onChange={(e) =>
                       setForm({ ...form, address: e.target.value })
                     }
-                    rows="3"
-                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
-                    placeholder="Enter your address..."
+                    rows="2"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition duration-150 resize-none"
+                    placeholder="तुमचा पत्ता प्रविष्ट करा..."
                     required
                   />
                 </div>
 
+                {/* Description Textarea */}
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Description *
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    तक्रारीचे सविस्तर वर्णन *
                   </label>
                   <textarea
                     value={form.description}
@@ -247,15 +295,29 @@ export default function Grievance() {
                       setForm({ ...form, description: e.target.value })
                     }
                     rows="5"
-                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
-                    placeholder="Describe your grievance..."
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition duration-150 resize-none"
+                    placeholder="तुमच्या तक्रारीचे सविस्तर वर्णन करा..."
                     required
                   />
                 </div>
 
-                <Button type="submit" className="w-full">
-                  Submit Grievance
-                </Button>
+                {/* Primary Submit Button: Now Violet for maximum contrast against green/blue */}
+                <button
+                  type="submit"
+                  className="w-full bg-cyan-800 hover:bg-cyan-700 text-white font-semibold flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition duration-150"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" /> सादर करत
+                      आहोत...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" /> तक्रार सादर करा
+                    </>
+                  )}
+                </button>
               </form>
             </div>
           </Card>
@@ -263,63 +325,82 @@ export default function Grievance() {
 
         {/* Right Section: Past Grievances */}
         <div>
-          <Card>
+          <Card className="shadow-lg border-t-4 border-cyan-500">
             <div className="p-6">
-              <h3 className="text-lg font-semibold mb-4">
-                Your Past Grievances
+              <h3 className="text-xl font-bold text-cyan-700 mb-4">
+                तुमच्या मागील तक्रारींचा मागोवा घ्या
               </h3>
-              <div className="mb-4">
+              <p className="text-sm text-gray-600 mb-4">
+                तुमचा मोबाईल नंबर वापरून तुमच्या तक्रारींची स्थिती तपासा.
+              </p>
+
+              <div className="mb-6 border-b border-gray-200 pb-4">
                 <Input
-                  label="Enter Phone Number to Load Past Grievances"
+                  label="नोंदणीकृत फोन नंबर प्रविष्ट करा"
                   type="tel"
                   value={form.phone}
-                  onChange={(e) =>
-                    setForm({ ...form, phone: e.target.value })
-                  }
-                  placeholder="10-digit mobile number"
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  placeholder="१०-अंकी मोबाईल नंबर"
                   maxLength="10"
+                  className="border-gray-300 focus:border-cyan-500"
                 />
-                <Button
+
+                {/* Secondary Load Button: Now Orange for maximum contrast against green/blue */}
+                <button
                   onClick={() => fetchUserGrievances(form.phone)}
-                  className="w-full mt-2"
+                  className="w-full mt-3 bg-cyan-800 hover:bg-cyan-700 text-white font-semibold flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition duration-150"
                   disabled={loading}
                 >
-                  {loading ? "Loading..." : "Load Past Grievances"}
-                </Button>
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" /> लोड होत
+                      आहे...
+                    </>
+                  ) : (
+                    <>
+                      <RefreshCw className="w-4 h-4" /> मागील तक्रारी लोड करा
+                    </>
+                  )}
+                </button>
               </div>
+
               {grievances.length === 0 ? (
-                <p className="text-gray-500 text-sm">
-                  No previous grievances found. Enter your phone number and click "Load Past Grievances".
-                </p>
+                <div className="text-center py-6 bg-blue-50 rounded-lg border border-blue-200">
+                  <p className="text-blue-700 text-sm font-medium">
+                    नोंदणीकृत तक्रार आढळली नाही.
+                  </p>
+                  <p className="text-xs text-blue-400 mt-1">
+                    तुमचा फोन नंबर प्रविष्ट करून 'मागील तक्रारी लोड करा' वर
+                    क्लिक करा.
+                  </p>
+                </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
                   {grievances.map((g) => (
                     <div
                       key={g.id}
-                      className="border rounded-lg p-4 bg-gray-50 hover:bg-gray-100 transition"
+                      className="border rounded-xl p-4 shadow-sm bg-white hover:bg-cyan-50 transition border-l-4 border-cyan-400"
                     >
-                      <div className="flex justify-between items-center mb-1">
-                        <p className="font-semibold text-sm">
-                          #{g.id} — {g.subject}
+                      <div className="flex justify-between items-start mb-1">
+                        <p className="font-bold text-sm text-gray-800 flex-grow pr-2">
+                          {g.subject}
                         </p>
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            g.status === "resolved"
-                              ? "bg-green-100 text-green-700"
-                              : g.status === "in_progress"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : g.status === "rejected"
-                              ? "bg-red-100 text-red-700"
-                              : "bg-blue-100 text-blue-700"
-                          }`}
+                          className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap border ${getStatusClasses(
+                            g.status || "new"
+                          )}`}
                         >
-                          {g.status ? g.status.replace("_", " ") : "new"}
+                          {translateStatus(g.status || "new")}
                         </span>
                       </div>
                       <p className="text-xs text-gray-500">
-                        {new Date(g.created_at).toLocaleString()}
+                        तक्रार क्र.: #{g.id} | दिनांक:{" "}
+                        {new Date(g.created_at).toLocaleString("mr-IN", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })}
                       </p>
-                      <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                      <p className="text-sm text-gray-600 mt-2 line-clamp-2">
                         {g.description}
                       </p>
                     </div>

@@ -264,7 +264,7 @@ function Departments() {
   return (
     <div>
       <PageHeader
-        title="ग्रामपंचायत समित्या (Gram Panchayat Committees)"
+        title="ग्रामपंचायत समित्या"
         subtitle="गावाच्या विकासासाठी कार्यरत असलेल्या विविध समित्या."
         breadcrumbs={breadcrumbs}
       />

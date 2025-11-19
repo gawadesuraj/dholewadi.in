@@ -19,11 +19,10 @@ function LadkiBahinYojana() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-              Ladki Bahin Yojana — Government of Maharashtra
+              लाडकी बहीण योजना — महाराष्ट्र शासन
             </h1>
             <p className="max-w-3xl mx-auto text-cyan-100 text-lg">
-              A welfare scheme to empower women across Maharashtra by providing
-              monthly financial assistance and promoting economic independence.
+              महाराष्ट्रातील महिलांना सक्षम करण्यासाठी, त्यांना दरमहा आर्थिक मदत देऊन आर्थिक स्वातंत्र्य देण्यासाठीची एक कल्याणकारी योजना.
             </p>
           </div>
         </div>
@@ -35,37 +34,33 @@ function LadkiBahinYojana() {
           <section>
             <h2 className="flex items-center gap-2 text-2xl font-semibold text-cyan-700 mb-3">
               <FileText className="w-6 h-6 text-cyan-500" />
-              Objective of the Scheme
+              योजनेचा उद्देश
             </h2>
             <p className="leading-relaxed text-gray-600">
-              The <strong>Ladki Bahin Yojana</strong> is a social welfare initiative
-              launched by the Government of Maharashtra to promote financial
-              independence and self-reliance among women. It provides monthly
-              financial assistance to eligible women to enhance their standard of
-              living and reduce household economic stress.
+              <strong>लाडकी बहीण योजना</strong> ही महाराष्ट्र सरकारने महिलांच्या आर्थिक स्वातंत्र्यासाठी 
+              आणि स्वावलंबनासाठी सुरू केलेली एक सामाजिक कल्याणकारी योजना आहे. 
+              याद्वारे पात्र महिलांना त्यांचे जीवनमान उंचावण्यासाठी आणि कुटुंबावरील आर्थिक ताण 
+              कमी करण्यासाठी दरमहा आर्थिक मदत दिली जाते.
             </p>
           </section>
 
           {/* Important Features */}
           <section className="bg-cyan-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-cyan-700 mb-3">
-              Key Features
+              प्रमुख वैशिष्ट्ये
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>
-                <strong>₹1,500 per month</strong> is directly credited to the
-                beneficiary’s bank account.
+                लाभार्थ्याच्या बँक खात्यात दरमहा <strong>₹१,५००</strong> थेट जमा केले जातात.
               </li>
               <li>
-                Funds are transferred securely through the{" "}
-                <strong>Direct Benefit Transfer (DBT)</strong> system.
+                निधी <strong>थेट लाभ हस्तांतरण (DBT)</strong> प्रणालीद्वारे सुरक्षितपणे हस्तांतरित केला जातो.
               </li>
               <li>
-                A major initiative aimed at the{" "}
-                <strong>economic empowerment of women</strong> in Maharashtra.
+                महाराष्ट्रातील <strong>महिलांच्या आर्थिक सक्षमीकरणासाठी</strong> राबवलेला एक प्रमुख उपक्रम.
               </li>
               <li>
-                Available to eligible women from all districts of the state.
+                राज्यातील सर्व जिल्ह्यांमधील पात्र महिलांसाठी उपलब्ध.
               </li>
             </ul>
           </section>
@@ -73,18 +68,17 @@ function LadkiBahinYojana() {
           {/* Eligibility */}
           <section>
             <h2 className="text-xl font-semibold text-slate-700 mb-3">
-              Eligibility Criteria
+              पात्रता निकष
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Applicant must be a <strong>resident of Maharashtra</strong>.</li>
-              <li>Age must be <strong>21 years or above</strong>.</li>
-              <li>Family’s annual income should be <strong>below ₹2.5 lakh</strong>.</li>
+              <li>अर्जदार <strong>महाराष्ट्राचा रहिवासी</strong> असावा.</li>
+              <li>वय <strong>२१ ते ६५ वर्षे</strong> असावे.</li>
+              <li>कुटुंबाचे वार्षिक उत्पन्न <strong>₹२.५ लाखांपेक्षा कमी</strong> असावे.</li>
               <li>
-                Women can be <strong>single, widowed, divorced, or married</strong>.
+                महिला <strong>अविवाहित, विधवा, घटस्फोटित किंवा विवाहित</strong> असू शकतात.
               </li>
               <li>
-                Applicable to <strong>workers, domestic workers, agricultural workers</strong>, and
-                women in the unorganized sector.
+                हे <strong>कामगार, घरकाम करणाऱ्या महिला, शेतमजूर</strong> आणि असंघटित क्षेत्रातील महिलांसाठी लागू आहे.
               </li>
             </ul>
           </section>
@@ -93,33 +87,30 @@ function LadkiBahinYojana() {
           <section className="bg-gradient-to-r from-cyan-50 to-slate-50 p-6 rounded-2xl shadow-sm">
             <h2 className="flex items-center gap-2 text-xl font-semibold text-cyan-700 mb-3">
               <FileCheck className="w-5 h-5 text-cyan-500" />
-              Required Documents
+              आवश्यक कागदपत्रे
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Aadhaar card</li>
-              <li>Residential proof (certificate of residence)</li>
-              <li>Income certificate</li>
-              <li>Bank account details (for DBT transfer)</li>
-              <li>Marital status certificate (if required)</li>
-              <li>Passport-size photograph</li>
+              <li>आधार कार्ड</li>
+              <li>रहिवासी पुरावा (अधिवास प्रमाणपत्र / रेशन कार्ड)</li>
+              <li>उत्पन्न प्रमाणपत्र</li>
+              <li>बँक खाते तपशील (DBT साठी)</li>
+              <li>हमीपत्र (विहित नमुन्यात)</li>
+              <li>पासपोर्ट आकाराचा फोटो</li>
             </ul>
           </section>
 
           {/* Application Process */}
           <section>
             <h2 className="text-xl font-semibold text-cyan-700 mb-3">
-              Application Process
+              अर्ज प्रक्रिया
             </h2>
             <ol className="list-decimal list-inside space-y-2 text-gray-700">
               <li>
-                Submit applications <strong>online</strong> or at the{" "}
-                <strong>nearest local government office</strong> after the official
-                scheme rollout.
+                योजना अधिकृतपणे सुरू झाल्यानंतर <strong>नारी शक्ती दूत ॲप (Nari Shakti Doot App)</strong> द्वारे, <strong>ऑनलाइन पोर्टल</strong> किंवा <strong>अंगणवाडी केंद्रात</strong> अर्ज सादर करावेत.
               </li>
-              <li>Upload all required documents during submission.</li>
+              <li>अर्ज सादर करताना सर्व आवश्यक कागदपत्रे अपलोड करावीत.</li>
               <li>
-                Once verified, funds will be credited directly to the
-                beneficiary’s bank account.
+                पडताळणीनंतर, रक्कम थेट लाभार्थ्याच्या बँक खात्यात जमा केली जाईल.
               </li>
             </ol>
           </section>
@@ -127,11 +118,10 @@ function LadkiBahinYojana() {
           {/* Scheme Start Date */}
           <section className="bg-slate-50 p-6 rounded-2xl border-l-4 border-cyan-500 shadow-sm">
             <h2 className="text-xl font-semibold text-cyan-700 mb-3">
-              Scheme Launch Date
+              योजना सुरू होण्याची तारीख
             </h2>
             <p className="text-gray-700">
-              The <strong>Ladki Bahin Yojana</strong> was officially implemented in the{" "}
-              <strong>financial year 2024–25</strong>.
+              <strong>लाडकी बहीण योजना</strong> अधिकृतपणे <strong>आर्थिक वर्ष २०२४-२५</strong> मध्ये लागू करण्यात आली.
             </p>
           </section>
 
@@ -139,29 +129,28 @@ function LadkiBahinYojana() {
           <section className="bg-gradient-to-r from-cyan-50 to-slate-50 p-6 rounded-2xl shadow-sm">
             <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-700 mb-3">
               <PhoneCall className="w-5 h-5 text-cyan-500" />
-              Contact & Assistance
+              संपर्क आणि मदत
             </h2>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
               <li>
-                Visit your <strong>local Gram Panchayat</strong> or{" "}
-                <strong>Municipality Office</strong>.
+                तुमच्या <strong>स्थानिक अंगणवाडी सेविका</strong>, <strong>ग्रामपंचायत</strong> किंवा <strong>नगरपालिका कार्यालयाला</strong> भेट द्या.
               </li>
               <li>
-                Contact the{" "}
+                संपर्क:{" "}
                 <strong>
-                  Women and Child Development Department, Government of Maharashtra
+                  महिला आणि बाल विकास विभाग, महाराष्ट्र शासन
                 </strong>
                 .
               </li>
               <li>
-                Official Website:{" "}
+                अधिकृत वेबसाइट:{" "}
                 <a
-                  href="https://wcd.maharashtra.gov.in"
+                  href="https://ladakibahin.maharashtra.gov.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-cyan-600 underline hover:text-cyan-800"
                 >
-                  https://wcd.maharashtra.gov.in
+                  https://ladakibahin.maharashtra.gov.in
                 </a>
               </li>
             </ul>
@@ -169,18 +158,16 @@ function LadkiBahinYojana() {
 
           {/* Note */}
           <section className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-2xl">
-            <h2 className="text-lg font-semibold text-yellow-700 mb-2">Note</h2>
+            <h2 className="text-lg font-semibold text-yellow-700 mb-2">टीप</h2>
             <p className="text-gray-700 leading-relaxed">
-              The scheme is currently under phased implementation. Certain eligibility
-              conditions or application processes may evolve. Applicants are advised to
-              verify details at their local offices or the official government website
-              before applying.
+              ही योजना सध्या अंमलबजावणीच्या टप्प्यात आहे. काही पात्रता निकष किंवा अर्ज प्रक्रियेत बदल होऊ शकतात. 
+              अर्ज करण्यापूर्वी अर्जदारांनी स्थानिक कार्यालयात किंवा अधिकृत सरकारी वेबसाइटवर तपशील तपासावेत.
             </p>
           </section>
 
           {/* Footer */}
           <div className="pt-6 text-center text-sm text-gray-500 border-t border-gray-200">
-            © Government of Maharashtra | Women and Child Development Department
+            © महाराष्ट्र शासन | महिला आणि बाल विकास विभाग
           </div>
         </div>
       </div>

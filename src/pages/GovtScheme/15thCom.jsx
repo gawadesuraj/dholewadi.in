@@ -17,11 +17,10 @@ function FifteenthFinanceCommission() {
                 </div>
               </div>
               <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-                15th Finance Commission of India
+                १५ वा वित्त आयोग, भारत
               </h1>
               <p className="max-w-3xl mx-auto text-blue-100 text-lg">
-                Detailed insights into the recommendations, objectives, and
-                importance of the Fifteenth Finance Commission (2020–2026).
+                पंधराव्या वित्त आयोगाच्या (२०२०-२०२६) शिफारसी, उद्दिष्टे आणि महत्त्व याविषयी सविस्तर माहिती.
               </p>
             </div>
           </div>
@@ -32,21 +31,14 @@ function FifteenthFinanceCommission() {
             <section>
               <h2 className="flex items-center gap-2 text-2xl font-semibold text-indigo-700 mb-3">
                 <FileText className="w-6 h-6 text-indigo-500" />
-                Introduction
+                परिचय
               </h2>
               <p className="leading-relaxed text-gray-600">
-                The <strong>Finance Commission of India</strong> is a
-                constitutional body established under Article 280 of the Indian
-                Constitution. Its primary role is to recommend the distribution
-                of financial resources between the Central and State
-                Governments.
+                <strong>भारतीय वित्त आयोग</strong> ही भारतीय राज्यघटनेच्या कलम २८० अंतर्गत स्थापन झालेली एक घटनात्मक संस्था आहे. केंद्र आणि राज्य सरकारांमध्ये आर्थिक संसाधनांचे (कर महसूल) वितरण करण्याची शिफारस करणे हे तिचे प्राथमिक काम आहे.
               </p>
+
               <p className="mt-3 text-gray-600">
-                The <strong>15th Finance Commission</strong> was constituted on{" "}
-                <strong>3 January 2018</strong> under the chairmanship of{" "}
-                <strong>Shri N. K. Singh</strong>, and it laid out its
-                recommendations for the period{" "}
-                <strong>April 1, 2020 to March 31, 2026</strong>.
+                <strong>१५ व्या वित्त आयोगाची</strong> स्थापना <strong>३ जानेवारी २०१८</strong> रोजी <strong>श्री. एन. के. सिंग</strong> यांच्या अध्यक्षतेखाली करण्यात आली. या आयोगाने <strong>१ एप्रिल २०२० ते ३१ मार्च २०२६</strong> या कालावधीसाठी आपल्या शिफारसी मांडल्या आहेत.
               </p>
             </section>
 
@@ -54,22 +46,20 @@ function FifteenthFinanceCommission() {
             <section className="bg-blue-50 rounded-2xl p-6 shadow-sm">
               <h2 className="flex items-center gap-2 text-xl font-semibold text-blue-700 mb-3">
                 <Calendar className="w-5 h-5 text-blue-500" />
-                Establishment of the Commission
+                आयोगाची स्थापना
               </h2>
               <ul className="list-disc list-inside space-y-2">
                 <li>
-                  <strong>Establishment Date:</strong> January 3, 2018
+                  <strong>स्थापना तारीख:</strong> ३ जानेवारी २०१८
                 </li>
                 <li>
-                  <strong>Chairman:</strong> Shri N. K. Singh (Former IAS
-                  Officer)
+                  <strong>अध्यक्ष:</strong> श्री. एन. के. सिंग (माजी सनदी अधिकारी)
                 </li>
                 <li>
-                  <strong>Other Members:</strong> Ashok Lahiri, Anju Sarup,
-                  Ramesh Chand, Amitabh Kant (added later)
+                  <strong>इतर सदस्य:</strong> अशोक लाहिरी, अंजू स्वरूप, रमेश चंद, अमिताभ कांत (नंतर समावेश)
                 </li>
                 <li>
-                  <strong>Tenure:</strong> 6 years (2020–2026)
+                  <strong>कार्यकाळ:</strong> ६ वर्षे (२०२०–२०२६)
                 </li>
               </ul>
             </section>
@@ -78,27 +68,20 @@ function FifteenthFinanceCommission() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-green-700 mb-3">
                 <Award className="w-5 h-5 text-green-500" />
-                Key Recommendations
+                प्रमुख शिफारसी
               </h2>
               <ol className="list-decimal list-inside space-y-3 text-gray-700">
                 <li>
-                  <strong>Grant Distribution to States:</strong> Recommended
-                  allocation of <strong>41% of total tax revenue</strong> to
-                  states (reduced from 42% in the 14th Commission due to J&K
-                  reorganization).
+                  <strong>राज्यांना अनुदान वितरण:</strong> एकूण कर महसुलाच्या <strong>४१%</strong> हिस्सा राज्यांना देण्याची शिफारस केली (जम्मू आणि काश्मीर पुनर्रचनेमुळे १४ व्या आयोगाच्या ४२% वरून कमी केले).
                 </li>
                 <li>
-                  <strong>Funds for Local Government Bodies:</strong> Proposed{" "}
-                  <strong>₹4.36 lakh crore</strong> for Gram Panchayats,
-                  Municipalities, and Zilla Parishads.
+                  <strong>स्थानिक स्वराज्य संस्थांसाठी निधी:</strong> ग्रामपंचायती, नगरपालिका आणि जिल्हा परिषदांसाठी <strong>₹४.३६ लाख कोटी</strong> प्रस्तावित केले.
                 </li>
                 <li>
-                  <strong>Special Protection Funds:</strong> Suggested creation
-                  of a <strong>Defense Modernization Fund</strong>.
+                  <strong>विशेष संरक्षण निधी:</strong> संरक्षणासाठी <strong>संरक्षण आधुनिकीकरण निधी (Defense Modernization Fund)</strong> तयार करण्याची सूचना केली.
                 </li>
                 <li>
-                  <strong>Guidance for SDGs:</strong> Encouraged investment in
-                  sustainable development programs.
+                  <strong>शाश्वत विकासासाठी मार्गदर्शन (SDGs):</strong> शाश्वत विकास कार्यक्रमांमध्ये गुंतवणूक करण्यास प्रोत्साहन दिले.
                 </li>
               </ol>
             </section>
@@ -106,17 +89,10 @@ function FifteenthFinanceCommission() {
             {/* Maharashtra’s Share */}
             <section className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl shadow-sm">
               <h2 className="text-xl font-semibold text-green-700 mb-3">
-                💰 Maharashtra’s Share
+                💰 महाराष्ट्राचा वाटा
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                The 15th Finance Commission recommended that{" "}
-                <strong>Maharashtra</strong> receive a total grant of{" "}
-                <strong>₹40,375 crore</strong> from the Central Government.
-                These funds support{" "}
-                <strong>
-                  Gram Panchayats, Municipalities, and Zilla Parishads
-                </strong>
-                , ensuring equitable rural and urban development.
+                १५ व्या वित्त आयोगाने शिफारस केली आहे की <strong>महाराष्ट्राला</strong> केंद्र सरकारकडून एकूण <strong>₹४०,३७५ कोटी</strong> अनुदान मिळावे. हा निधी <strong>ग्रामपंचायती, नगरपालिका आणि जिल्हा परिषदांना</strong> दिला जातो, ज्यामुळे ग्रामीण आणि शहरी भागाचा समान विकास सुनिश्चित होतो.
               </p>
             </section>
 
@@ -124,22 +100,17 @@ function FifteenthFinanceCommission() {
             <section>
               <h2 className="flex items-center gap-2 text-xl font-semibold text-indigo-700 mb-3">
                 <TrendingUp className="w-5 h-5 text-indigo-500" />
-                Importance of the 15th Finance Commission
+                १५ व्या वित्त आयोगाचे महत्त्व
               </h2>
               <ul className="list-disc list-inside space-y-2">
                 <li>
-                  First Commission post-COVID-19, focusing on{" "}
-                  <strong>public health</strong> and{" "}
-                  <strong>rural resilience</strong>.
+                  कोविड-१९ नंतरचा पहिला आयोग, ज्याने <strong>सार्वजनिक आरोग्य</strong> आणि <strong>ग्रामीण सक्षमीकरणावर</strong> लक्ष केंद्रित केले.
                 </li>
                 <li>
-                  Strengthened{" "}
-                  <strong>local self-governance institutions</strong> for
-                  decentralized administration.
+                  विकेंद्रित प्रशासनासाठी <strong>स्थानिक स्वराज्य संस्थांना</strong> बळकट केले.
                 </li>
                 <li>
-                  Reduced <strong>regional disparities</strong> through fair
-                  fiscal allocation.
+                  योग्य आर्थिक वाटपाद्वारे <strong>प्रादेशिक विषमता</strong> कमी करण्याचा प्रयत्न केला.
                 </li>
               </ul>
             </section>
@@ -147,24 +118,20 @@ function FifteenthFinanceCommission() {
             {/* Conclusion */}
             <section className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-2xl">
               <h2 className="text-xl font-semibold text-yellow-700 mb-3">
-                🏁 Conclusion
+                🏁 निष्कर्ष
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                The Fifteenth Finance Commission has played a pivotal role in
-                strengthening cooperative federalism and equitable financial
-                distribution across India.
+                पंधराव्या वित्त आयोगाने भारतात सहकारी संघराज्यवादाला बळकट करण्यासाठी आणि आर्थिक वितरणात समता आणण्यासाठी महत्त्वपूर्ण भूमिका बजावली आहे.
               </p>
+
               <p className="mt-3 text-gray-700">
-                Its data-driven and transparent fiscal recommendations ensure
-                balanced growth and empower{" "}
-                <strong>local governance institutions</strong>.
+                आयोगाच्या डेटा-आधारित आणि पारदर्शक शिफारसी संतुलित विकास सुनिश्चित करतात आणि <strong>स्थानिक प्रशासन संस्थांना</strong> सक्षम करतात.
               </p>
             </section>
 
             {/* Footer Accent */}
             <div className="pt-6 text-center text-sm text-gray-500 border-t border-gray-200">
-              © Ministry of Finance, Government of India | Designed for Gram
-              Panchayat Portal
+              © वित्त मंत्रालय, भारत सरकार | ग्रामपंचायत पोर्टलसाठी डिझाइन केलेले
             </div>
           </div>
         </div>

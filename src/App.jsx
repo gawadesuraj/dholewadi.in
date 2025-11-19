@@ -6,9 +6,8 @@ import { ToastContainer } from "react-toastify";
 import GlobalBackground from "./components/ui/GlobalBackground";
 import Layout from "./components/layout/Layout";
 import Router from "./router";
-import "./i18n/i18n";
 
-import { useEffect } from "react";
+
 
 
 const queryClient = new QueryClient({

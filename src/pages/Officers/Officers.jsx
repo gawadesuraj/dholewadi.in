@@ -23,7 +23,7 @@ function Officers() {
   return (
     <div>
       <PageHeader
-        title="Officers Directory"
+        title="अधिकारी निर्देशिका"
         subtitle="मान्यवर अधिकारी"
         breadcrumbs={breadcrumbs}
       />

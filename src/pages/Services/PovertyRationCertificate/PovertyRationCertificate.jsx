@@ -1,4 +1,4 @@
-import Application from "../forms/applicant_form/Application";
+import Application from "../forms/applicant_form/Application"
 
 export default function PovertyRationCertificate() {
   return (

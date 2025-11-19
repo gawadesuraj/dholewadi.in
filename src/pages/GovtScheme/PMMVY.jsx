@@ -5,8 +5,6 @@ import {
   CheckCircle2,
   ClipboardList,
   FileCheck,
-  Info,
-  Users,
   Link2,
 } from "lucide-react";
 
@@ -28,10 +26,10 @@ function PradhanMantriMatruVandanaYojana() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-              Pradhan Mantri Matru Vandana Yojana (PMMVY)
+              प्रधानमंत्री मातृ वंदना योजना
             </h1>
             <p className="max-w-3xl mx-auto text-rose-100 text-lg">
-              A maternity benefit program for pregnant and lactating mothers to promote safe motherhood and healthy child development.
+              गर्भवती आणि स्तनदा मातांसाठी सुरक्षित मातृत्व आणि बालकाचा सुदृढ विकास सुनिश्चित करणारी मातृत्व लाभ योजना.
             </p>
           </div>
         </div>
@@ -43,82 +41,83 @@ function PradhanMantriMatruVandanaYojana() {
           <section>
             <h2 className="flex items-center gap-2 text-2xl font-semibold text-rose-700 mb-3">
               <FileText className="w-6 h-6 text-rose-500" />
-              Objective of the Scheme
+              योजनेचा उद्देश
             </h2>
             <p className="leading-relaxed text-gray-700">
-              The <strong>Pradhan Mantri Matru Vandana Yojana (PMMVY)</strong> is a maternity benefit scheme implemented by the 
-              <strong> Ministry of Women and Child Development</strong>, Government of India. It provides financial assistance 
-              to pregnant and lactating women to help meet nutritional needs and ensure safe childbirth and maternal health.
+              <strong>प्रधानमंत्री मातृ वंदना योजना (PMMVY)</strong> ही भारत सरकारच्या 
+              <strong> महिला आणि बाल विकास मंत्रालयाने</strong> राबवलेली मातृत्व लाभ योजना आहे. 
+              ही योजना गर्भवती आणि स्तनदा मातांना त्यांच्या पोषणाच्या गरजा पूर्ण करण्यासाठी 
+              आणि सुरक्षित प्रसूती व माता आरोग्याची खात्री करण्यासाठी आर्थिक मदत प्रदान करते.
             </p>
           </section>
 
           {/* Plan Features */}
           <section className="bg-rose-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-rose-700 mb-3">
-              Plan Features
+              योजनेची वैशिष्ट्ये
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>
-                Financial assistance of <strong>₹5,000</strong> is provided in three installments to pregnant women.
+                गर्भवती महिलांना तीन हप्त्यांमध्ये <strong>₹५,०००</strong> ची आर्थिक मदत दिली जाते.
               </li>
               <li>
-                The benefit applies only for the <strong>birth of the first child</strong>.
+                हा लाभ फक्त <strong>पहिल्या जिवंत अपत्यासाठी</strong> लागू आहे.
               </li>
               <li>
-                Encourages regular health checkups, vaccinations, and nutritious diets for mother and child.
+                माता आणि बालकासाठी नियमित आरोग्य तपासणी, लसीकरण आणि पौष्टिक आहारास प्रोत्साहन देते.
               </li>
             </ul>
           </section>
 
           {/* Qualifications */}
           <section>
-            <h2 className="text-xl font-semibold text-rose-700 mb-3">Eligibility Criteria</h2>
+            <h2 className="text-xl font-semibold text-rose-700 mb-3">पात्रता निकष</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Pregnant women and breastfeeding mothers are eligible.</li>
-              <li>Applicable only for the birth of the first living child.</li>
-              <li>Women must be <strong>19 years of age or above</strong>.</li>
-              <li>Government employees are <strong>not eligible</strong>.</li>
-              <li>The beneficiary must be an Indian citizen.</li>
+              <li>गर्भवती महिला आणि स्तनदा माता पात्र आहेत.</li>
+              <li>फक्त पहिल्या जिवंत अपत्याच्या जन्मासाठी लागू.</li>
+              <li>महिलांचे वय <strong>१९ वर्षे किंवा त्यापेक्षा जास्त</strong> असावे.</li>
+              <li>सरकारी कर्मचारी या योजनेसाठी <strong>पात्र नाहीत</strong>.</li>
+              <li>लाभार्थी भारतीय नागरिक असावा.</li>
             </ul>
           </section>
 
           {/* Financial Benefits Table */}
           <section className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-rose-700 mb-3">
-              Financial Benefits (in Three Installments)
+              आर्थिक फायदे (तीन हप्त्यांमध्ये)
             </h2>
             <div className="overflow-x-auto">
               <table className="min-w-full border border-gray-200 rounded-lg">
                 <thead className="bg-rose-100 text-gray-700">
                   <tr>
-                    <th className="px-4 py-2 text-left">Installment</th>
-                    <th className="px-4 py-2 text-left">Terms</th>
-                    <th className="px-4 py-2 text-left">Amount</th>
+                    <th className="px-4 py-2 text-left">हप्ता</th>
+                    <th className="px-4 py-2 text-left">अटी</th>
+                    <th className="px-4 py-2 text-left">रक्कम</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700">
                   <tr className="border-t">
-                    <td className="px-4 py-2">First</td>
-                    <td className="px-4 py-2">After registering the pregnancy</td>
-                    <td className="px-4 py-2">₹1,000</td>
+                    <td className="px-4 py-2">पहिला</td>
+                    <td className="px-4 py-2">गर्भधारणा नोंदणी केल्यानंतर</td>
+                    <td className="px-4 py-2">₹१,०००</td>
                   </tr>
                   <tr className="border-t">
-                    <td className="px-4 py-2">Second</td>
-                    <td className="px-4 py-2">After at least one antenatal check-up (ANC)</td>
-                    <td className="px-4 py-2">₹2,000</td>
+                    <td className="px-4 py-2">दुसरा</td>
+                    <td className="px-4 py-2">किमान एक प्रसूतीपूर्व तपासणी (ANC) केल्यानंतर</td>
+                    <td className="px-4 py-2">₹२,०००</td>
                   </tr>
                   <tr className="border-t">
-                    <td className="px-4 py-2">Third</td>
+                    <td className="px-4 py-2">तिसरा</td>
                     <td className="px-4 py-2">
-                      After completing child vaccinations (BCG, OPV, DPT, HepB)
+                      बाळाचे लसीकरण (BCG, OPV, DPT, HepB) पूर्ण झाल्यानंतर
                     </td>
-                    <td className="px-4 py-2">₹2,000</td>
+                    <td className="px-4 py-2">₹२,०००</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="mt-3 text-sm text-gray-600">
-              <strong>Total ₹5,000</strong> — directly deposited into the beneficiary’s bank account.
+              <strong>एकूण ₹५,०००</strong> — रक्कम थेट लाभार्थ्याच्या आधार लिंक असलेल्या बँक खात्यात जमा होते.
             </p>
           </section>
 
@@ -126,26 +125,26 @@ function PradhanMantriMatruVandanaYojana() {
           <section>
             <h2 className="flex items-center gap-2 text-xl font-semibold text-rose-700 mb-3">
               <FileCheck className="w-5 h-5 text-rose-500" />
-              Required Documents
+              आवश्यक कागदपत्रे
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Aadhaar card of the pregnant woman</li>
-              <li>Bank account details in the woman’s name</li>
-              <li>Pregnancy registration certificate (ANM/Health Worker)</li>
-              <li>Child’s birth certificate</li>
-              <li>Vaccination certificate</li>
+              <li>गर्भवती महिलेचे आधार कार्ड</li>
+              <li>महिलेच्या नावावर असलेल्या बँक खात्याचा तपशील (पासबुक)</li>
+              <li>गर्भधारणा नोंदणी प्रमाणपत्र (MCP कार्ड)</li>
+              <li>बाळाचा जन्म दाखला (तिसऱ्या हप्त्यासाठी)</li>
+              <li>लसीकरण प्रमाणपत्र</li>
             </ul>
           </section>
 
           {/* Application Process */}
           <section className="bg-pink-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-rose-700 mb-3">
-              Application Process
+              अर्ज प्रक्रिया
             </h2>
             <ol className="list-decimal list-inside space-y-2 text-gray-700">
-              <li>Visit the nearest Anganwadi Center or Health Center.</li>
-              <li>Fill out the PMMVY form and attach the required documents.</li>
-              <li>Funds are transferred directly to the beneficiary’s bank account upon verification.</li>
+              <li>तुमच्या जवळच्या अंगणवाडी केंद्र किंवा सरकारी आरोग्य केंद्राला भेट द्या.</li>
+              <li>PMMVY फॉर्म (1-A, 1-B, 1-C) भरा आणि आवश्यक कागदपत्रे जोडा.</li>
+              <li>कागदपत्रांची पडताळणी झाल्यानंतर रक्कम थेट लाभार्थ्याच्या बँक खात्यात जमा केली जाते.</li>
             </ol>
           </section>
 
@@ -153,13 +152,13 @@ function PradhanMantriMatruVandanaYojana() {
           <section>
             <h2 className="flex items-center gap-2 text-xl font-semibold text-rose-700 mb-3">
               <Link2 className="w-5 h-5 text-rose-500" />
-              Contact & Information
+              संपर्क आणि माहिती
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Women and Child Development Department, Maharashtra</li>
-              <li>Anganwadi Worker / ASHA Worker</li>
+              <li>महिला आणि बाल विकास विभाग, महाराष्ट्र</li>
+              <li>अंगणवाडी सेविका / आशा सेविका</li>
               <li>
-                Official Websites:{" "}
+                अधिकृत वेबसाइट्स:{" "}
                 <a
                   href="https://wcd.nic.in"
                   target="_blank"
@@ -184,19 +183,19 @@ function PradhanMantriMatruVandanaYojana() {
           {/* Usefulness */}
           <section className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-rose-700 mb-3">
-              Why is this Plan Important?
+              योजनेचे महत्व
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Provides financial support for maternal and child nutrition.</li>
-              <li>Promotes safe motherhood and healthy childbirth.</li>
-              <li>Encourages regular health checkups and vaccinations.</li>
-              <li>Improves awareness about government maternal health schemes.</li>
+              <li>माता आणि बाल पोषणासाठी आर्थिक आधार मिळतो.</li>
+              <li>सुरक्षित मातृत्व आणि आरोग्यदायी प्रसूतीस प्रोत्साहन मिळते.</li>
+              <li>नियमित आरोग्य तपासणी आणि लसीकरणास उत्तेजन मिळते.</li>
+              <li>सरकारी आरोग्य योजनांबद्दल जागरूकता वाढते.</li>
             </ul>
           </section>
 
           {/* Footer */}
           <div className="pt-6 text-center text-sm text-gray-500 border-t border-gray-200">
-            © Ministry of Women and Child Development, Government of India | PMMVY
+            © महिला आणि बाल विकास मंत्रालय, भारत सरकार | PMMVY
           </div>
         </div>
       </div>

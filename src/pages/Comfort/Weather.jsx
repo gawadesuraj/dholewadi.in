@@ -16,6 +16,7 @@ function WeatherForecast() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Dholewadi coordinates (LAT = 16.931010, LNG = 74.051771)
   const LAT = 16.931010;
   const LNG = 74.051771;
 
@@ -57,7 +58,7 @@ function WeatherForecast() {
     return (
       <div className="flex items-center justify-center min-h-screen text-gray-600">
         <p className="text-lg font-medium animate-pulse">
-          Fetching Dholewadi weather data...
+          ढोलेवाडी हवामान डेटा आणला जात आहे...
         </p>
       </div>
     );
@@ -66,13 +67,14 @@ function WeatherForecast() {
   if (!weather) {
     return (
       <div className="flex items-center justify-center min-h-screen text-gray-600">
-        <p>Weather data not available.</p>
+        <p>हवामान डेटा उपलब्ध नाही.</p>
       </div>
     );
   }
 
+  // Get today's date in Marathi format
   const today = new Date(weather.current_weather.time).toLocaleDateString(
-    "en-IN",
+    "mr-IN", // Marathi locale
     { weekday: "long", month: "long", day: "numeric", year: "numeric" }
   );
 
@@ -89,10 +91,10 @@ function WeatherForecast() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-              Weather in Dholewadi
+              ढोलेवाडी येथील हवामान
             </h1>
             <p className="text-sky-100 text-lg">
-              Real-time updates and 10-day forecast for your village
+              तुमच्या गावासाठी वास्तविक वेळेतील आणि १० दिवसांचा हवामान अंदाज
             </p>
           </div>
         </div>
@@ -101,7 +103,7 @@ function WeatherForecast() {
         <div className="text-center py-10 px-6 sm:px-12 bg-gradient-to-br from-white to-gray-50">
           <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">
             <MapPin className="inline w-5 h-5 text-sky-600 mr-1" />
-            Dholewadi, Maharashtra
+            ढोलेवाडी, महाराष्ट्र
           </h2>
           <p className="text-gray-500 mb-4">{today}</p>
 
@@ -111,7 +113,7 @@ function WeatherForecast() {
               {Math.round(weather.current_weather.temperature)}°C
             </p>
             <p className="text-gray-600 capitalize">
-              Wind: {weather.current_weather.windspeed} km/h
+              वारा: {weather.current_weather.windspeed} किमी/तास
             </p>
           </div>
 
@@ -120,7 +122,7 @@ function WeatherForecast() {
             <div className="flex items-center gap-2">
               <Droplets className="w-5 h-5 text-sky-500" />
               <span>
-                Rain:{" "}
+                पाऊस:{" "}
                 <strong>
                   {weather.daily.precipitation_probability_max[0] || 0}%
                 </strong>
@@ -129,10 +131,10 @@ function WeatherForecast() {
             <div className="flex items-center gap-2">
               <Sunrise className="w-5 h-5 text-amber-500" />
               <span>
-                Sunrise:{" "}
+                सूर्य उदय:{" "}
                 <strong>
                   {new Date(weather.daily.sunrise[0]).toLocaleTimeString(
-                    "en-IN",
+                    "mr-IN",
                     { hour: "2-digit", minute: "2-digit" }
                   )}
                 </strong>
@@ -141,10 +143,10 @@ function WeatherForecast() {
             <div className="flex items-center gap-2">
               <Sunset className="w-5 h-5 text-orange-600" />
               <span>
-                Sunset:{" "}
+                सूर्य अस्त:{" "}
                 <strong>
                   {new Date(weather.daily.sunset[0]).toLocaleTimeString(
-                    "en-IN",
+                    "mr-IN",
                     { hour: "2-digit", minute: "2-digit" }
                   )}
                 </strong>
@@ -156,7 +158,7 @@ function WeatherForecast() {
         {/* 10-Day Forecast */}
         <div className="p-8 bg-blue-50 border-t border-gray-200">
           <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700 mb-6">
-            10-Day Forecast
+            १० दिवसांचा हवामान अंदाज
           </h3>
           <div className="flex flex-wrap justify-center gap-4 px-2 sm:px-4">
             {weather.daily.time.map((date, i) => (
@@ -165,7 +167,7 @@ function WeatherForecast() {
                 className="w-[8.5rem] sm:w-[9rem] bg-white rounded-2xl shadow-md border border-gray-100 py-4 px-2 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-200"
               >
                 <p className="text-sm font-semibold text-gray-700 mb-1">
-                  {new Date(date).toLocaleDateString("en-IN", {
+                  {new Date(date).toLocaleDateString("mr-IN", {
                     weekday: "short",
                     day: "numeric",
                     month: "short",
@@ -188,7 +190,7 @@ function WeatherForecast() {
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-500 border-t border-gray-200 py-4">
-          © Government of Maharashtra | Panchayat Samiti Shirala
+          © महाराष्ट्र शासन | ग्रामपंचायत ढोलेवाडी
         </div>
       </div>
     </div>

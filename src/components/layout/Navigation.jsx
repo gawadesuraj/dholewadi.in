@@ -45,7 +45,7 @@ const navItems = [
       { label: "महत्वाचे दुवे", path: "/imp-links" },
     ],
   },
-  { label: "गॅलरी", path: "/gallery" },
+  { label: "छायाचित्र दालन", path: "/gallery" },
   { label: "समिती", path: "/departments" },
   { label: "सेवा", path: "/services" },
   { label: "बातम्या", path: "/news" },

@@ -1,11 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Loading from "./components/ui/Loading";
-import TaxPayment from "./pages/TaxPayment/TaxPayment";
-import UserRegistration from "./services/UserRegistration";
-import CheckUserId from "./services/CheckUserId";
-import CertificateApplication from "./pages/certificates/CertificateApplication";
-
 import BirthCertificateForm from "./pages/Services//BirthCertificate/BirthCertificate";
 import DeathCertificateForm from "./pages/Services/DeathCertificate/DeathCertificate";
 import MarriageCertificateForm from "./pages/Services/MarriageCertificate/MarriageCertificate";
@@ -94,14 +89,7 @@ function Router() {
         <Route path="/e-governance" element={<EGovernance />} />
         <Route path="/e-learning" element={<Elearning />} />
         <Route path="/pmay" element={<PMAY />} />
-        <Route path="/services/register" element={<UserRegistration />} />
-        <Route path="/services/property-tax/apply" element={<TaxPayment />} />
-        <Route path="/services/check-user" element={<CheckUserId />} />
         <Route path="/services/track" element={<TrackStatus />} />
-        <Route
-          path="/services/certificate-application"
-          element={<CertificateApplication />}
-        />
         <Route path="/mnrega" element={<MNREGA />} />
         <Route
           path="/services/birth-certificate"
@@ -140,10 +128,6 @@ function Router() {
           element={<WaterConnectionForm />}
         />
         <Route path="/services/water-tax" element={<WaterTaxPayment />} />
-        <Route
-          path="/services/certificate-application"
-          element={<CertificateApplication />}
-        />
         <Route path="/mnrega" element={<MNREGA />} />
       </Routes>
     </Suspense>

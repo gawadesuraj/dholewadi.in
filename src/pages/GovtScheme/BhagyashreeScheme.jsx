@@ -11,9 +11,7 @@ import {
 
 function BhagyashreeScheme() {
   return (
-    <div
-      className="min-h-screen relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
-    >
+    <div className="min-h-screen relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       {/* Page Container */}
       <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
         {/* Header Section */}
@@ -26,51 +24,49 @@ function BhagyashreeScheme() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-              BhagyaShree Lek Majhi Laadki Scheme
+              भाग्यश्री लेक माझी लाडकी योजना
             </h1>
             <p className="max-w-3xl mx-auto text-violet-100 text-lg">
-              A flagship initiative by the Government of Maharashtra aimed at
-              promoting the birth, education, and empowerment of the girl child.
+              मुलींचा जन्म, शिक्षण आणि सक्षमीकरणाला प्रोत्साहन देण्यासाठी
+              महाराष्ट्र सरकारचा एक प्रमुख उपक्रम.
             </p>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="p-8 sm:p-12 space-y-10 text-gray-700">
-
           {/* Purpose Section */}
           <section>
             <h2 className="flex items-center gap-2 text-2xl font-semibold text-violet-700 mb-3">
               <HeartHandshake className="w-6 h-6 text-fuchsia-500" />
-              Purpose of the Scheme
+              योजनेचा उद्देश
             </h2>
             <p className="leading-relaxed text-gray-700">
-              The <strong>Bhagyashree (Lek Majhi Laadki)</strong> scheme was
-              introduced by the Government of Maharashtra to encourage the birth
-              of girl children, prevent gender-based discrimination, and ensure
-              access to education for every girl. It provides financial
-              assistance from birth until higher education, ensuring long-term
-              social and educational support.
+              मुलींच्या जन्माला प्रोत्साहन देणे, लिंगभेद रोखणे आणि प्रत्येक
+              मुलीला शिक्षणाची संधी उपलब्ध करून देण्यासाठी महाराष्ट्र सरकारने{" "}
+              <strong>भाग्यश्री (लेक माझी लाडकी)</strong> योजना सुरू केली आहे.
+              ही योजना जन्मापासून उच्च शिक्षणापर्यंत आर्थिक मदत पुरवते, ज्यामुळे
+              दीर्घकालीन सामाजिक आणि शैक्षणिक आधार मिळतो.
             </p>
           </section>
 
           {/* Features */}
           <section className="bg-fuchsia-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-fuchsia-700 mb-3">
-              Plan Features
+              योजनेची वैशिष्ट्ये
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>
-                <strong>Financial assistance from birth</strong> – incentives
-                provided to parents after the birth of a girl child.
+                <strong>जन्मापासून आर्थिक मदत</strong> – मुलीच्या जन्मानंतर
+                पालकांना प्रोत्साहनपर रक्कम दिली जाते.
               </li>
               <li>
-                <strong>Educational support</strong> – scholarships and
-                incentives offered at every stage of the child’s education.
+                <strong>शैक्षणिक आधार</strong> – शिक्षणाच्या प्रत्येक टप्प्यावर
+                शिष्यवृत्ती आणि प्रोत्साहन दिले जाते.
               </li>
               <li>
-                Focused on <strong>education, empowerment, and well-being</strong>{" "}
-                of the girl child until adulthood.
+                मुलीचे <strong>शिक्षण, सक्षमीकरण आणि कल्याणावर</strong> (प्रौढ
+                होईपर्यंत) भर.
               </li>
             </ul>
           </section>
@@ -78,14 +74,24 @@ function BhagyashreeScheme() {
           {/* Beneficiaries */}
           <section>
             <h2 className="text-xl font-semibold text-violet-700 mb-3">
-              Eligible Beneficiaries
+              पात्र लाभार्थी
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Parents belonging to <strong>BPL families</strong> in Maharashtra.</li>
-              <li>Benefits applicable for the <strong>first two daughters</strong> only.</li>
-              <li>Annual family income must be below <strong>₹1 lakh</strong>.</li>
-              <li>Both parents must be <strong>residents of Maharashtra</strong>.</li>
-              <li>Parents must adopt family planning measures.</li>
+              <li>
+                महाराष्ट्रातील <strong>दारिद्र्य रेषेखालील (BPL)</strong>{" "}
+                कुटुंबे.
+              </li>
+              <li>
+                हा लाभ फक्त <strong>पहिल्या दोन मुलींसाठी</strong> लागू आहे.
+              </li>
+              <li>
+                कुटुंबाचे वार्षिक उत्पन्न <strong>₹१ लाखांपेक्षा कमी</strong>{" "}
+                असावे.
+              </li>
+              <li>
+                दोन्ही पालक <strong>महाराष्ट्राचे रहिवासी</strong> असावेत.
+              </li>
+              <li>पालकांनी कुटुंब नियोजन शस्त्रक्रिया करणे आवश्यक आहे.</li>
             </ul>
           </section>
 
@@ -93,44 +99,46 @@ function BhagyashreeScheme() {
           <section className="bg-gradient-to-r from-fuchsia-50 to-violet-50 p-6 rounded-2xl shadow-sm">
             <h2 className="flex items-center gap-2 text-xl font-semibold text-fuchsia-700 mb-3">
               <BookOpen className="w-5 h-5 text-fuchsia-500" />
-              Benefits under the Scheme
+              योजनेअंतर्गत मिळणारे लाभ
             </h2>
             <div className="overflow-x-auto">
               <table className="min-w-full border border-gray-200 text-sm rounded-lg overflow-hidden">
                 <thead className="bg-fuchsia-100 text-gray-700">
                   <tr>
-                    <th className="text-left px-4 py-2 border-b">Stage</th>
+                    <th className="text-left px-4 py-2 border-b">टप्पा</th>
                     <th className="text-left px-4 py-2 border-b">
-                      Incentive Amount (₹)
+                      प्रोत्साहन रक्कम (₹)
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-b">
-                    <td className="px-4 py-2">Birth of a Girl Child</td>
-                    <td className="px-4 py-2">₹5,000 – ₹25,000 (District-wise)</td>
+                    <td className="px-4 py-2">मुलीचा जन्म</td>
+                    <td className="px-4 py-2">
+                      ₹५,००० – ₹२५,००० (जिल्ह्यानुसार)
+                    </td>
                   </tr>
                   <tr className="border-b bg-gray-50">
-                    <td className="px-4 py-2">1st to 7th Standard</td>
-                    <td className="px-4 py-2">₹2,000 – ₹3,000 per year</td>
+                    <td className="px-4 py-2">इयत्ता १ ली ते ७ वी</td>
+                    <td className="px-4 py-2">₹२,००० – ₹३,००० प्रति वर्ष</td>
                   </tr>
                   <tr className="border-b">
-                    <td className="px-4 py-2">8th to 10th Standard</td>
-                    <td className="px-4 py-2">₹4,000 – ₹5,000 per year</td>
+                    <td className="px-4 py-2">इयत्ता ८ वी ते १० वी</td>
+                    <td className="px-4 py-2">₹४,००० – ₹५,००० प्रति वर्ष</td>
                   </tr>
                   <tr className="border-b bg-gray-50">
-                    <td className="px-4 py-2">11th & 12th Standard</td>
-                    <td className="px-4 py-2">₹6,000 – ₹7,000 per year</td>
+                    <td className="px-4 py-2">इयत्ता ११ वी आणि १२ वी</td>
+                    <td className="px-4 py-2">₹६,००० – ₹७,००० प्रति वर्ष</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">Higher / Vocational Education</td>
-                    <td className="px-4 py-2">Assistance under special schemes</td>
+                    <td className="px-4 py-2">उच्च / व्यावसायिक शिक्षण</td>
+                    <td className="px-4 py-2">विशेष योजनांतर्गत मदत</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              (Note: Amounts may vary by district or category.)
+              (टीप: रक्कम जिल्हा किंवा वर्गवारीनुसार बदलू शकते.)
             </p>
           </section>
 
@@ -138,35 +146,35 @@ function BhagyashreeScheme() {
           <section>
             <h2 className="flex items-center gap-2 text-xl font-semibold text-violet-700 mb-3">
               <FileCheck className="w-5 h-5 text-violet-500" />
-              Required Documents
+              आवश्यक कागदपत्रे
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Parents’ Aadhaar cards</li>
-              <li>Girl child’s birth certificate</li>
-              <li>Income certificate</li>
-              <li>Caste certificate (if applicable)</li>
-              <li>Family planning certificate</li>
-              <li>Bank account details (in girl’s or guardian’s name)</li>
-              <li>Residence certificate</li>
+              <li>पालकांचे आधार कार्ड</li>
+              <li>मुलीचा जन्म दाखला</li>
+              <li>उत्पन्न प्रमाणपत्र</li>
+              <li>जातीचा दाखला (लागू असल्यास)</li>
+              <li>कुटुंब नियोजन प्रमाणपत्र</li>
+              <li>बँक खाते तपशील (मुलीच्या किंवा पालकांच्या नावावर)</li>
+              <li>रहिवासी प्रमाणपत्र (डोमिसाईल)</li>
             </ul>
           </section>
 
           {/* Application Process */}
           <section className="bg-violet-50 p-6 rounded-2xl border-l-4 border-violet-400 shadow-sm">
             <h2 className="text-xl font-semibold text-violet-700 mb-3">
-              Application Process
+              अर्ज प्रक्रिया
             </h2>
             <ol className="list-decimal list-inside space-y-2 text-gray-700">
               <li>
-                Applications can be submitted at the{" "}
-                <strong>local Anganwadi Centre</strong>,{" "}
-                <strong>Gram Panchayat</strong>, or{" "}
-                <strong>Women and Child Development Department Office</strong>.
+                अर्ज <strong>स्थानिक अंगणवाडी केंद्र</strong>,{" "}
+                <strong>ग्रामपंचायत</strong> किंवा{" "}
+                <strong>महिला आणि बाल विकास विभाग कार्यालयात</strong> सादर करता
+                येतील.
               </li>
-              <li>Fill out the prescribed form and attach all necessary documents.</li>
+              <li>विहित नमुन्यातील अर्ज भरा आणि सर्व आवश्यक कागदपत्रे जोडा.</li>
               <li>
-                Upon verification, the incentive amount will be directly credited
-                to the beneficiary’s account.
+                पडताळणीनंतर, प्रोत्साहन रक्कम थेट लाभार्थ्याच्या खात्यात जमा
+                केली जाईल.
               </li>
             </ol>
           </section>
@@ -175,15 +183,17 @@ function BhagyashreeScheme() {
           <section className="bg-fuchsia-50 p-6 rounded-2xl shadow-sm">
             <h2 className="flex items-center gap-2 text-xl font-semibold text-fuchsia-700 mb-3">
               <PhoneCall className="w-5 h-5 text-fuchsia-500" />
-              Contact & Information
+              संपर्क आणि माहिती
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>
-                <strong>Women and Child Development Department, Government of Maharashtra</strong>
+                <strong>महिला आणि बाल विकास विभाग, महाराष्ट्र शासन</strong>
               </li>
-              <li>Nearest Anganwadi Centre / Gram Panchayat / Panchayat Samiti Office</li>
               <li>
-                Official Website:{" "}
+                जवळचे अंगणवाडी केंद्र / ग्रामपंचायत / पंचायत समिती कार्यालय
+              </li>
+              <li>
+                अधिकृत वेबसाइट:{" "}
                 <a
                   href="https://wcd.maharashtra.gov.in"
                   target="_blank"
@@ -198,19 +208,18 @@ function BhagyashreeScheme() {
 
           {/* Notes */}
           <section className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-2xl">
-            <h2 className="text-lg font-semibold text-yellow-700 mb-2">
-              Note:
-            </h2>
+            <h2 className="text-lg font-semibold text-yellow-700 mb-2">टीप:</h2>
             <p className="text-gray-700 leading-relaxed">
-              Terms, eligibility, and benefits may be revised periodically under
-              government policy updates. Applicants should confirm details from
-              the nearest local authorities or the official website before applying.
+              सरकारी धोरणातील अद्यतनांनुसार अटी, पात्रता आणि लाभ वेळोवेळी
+              सुधारित केले जाऊ शकतात. अर्ज करण्यापूर्वी अर्जदारांनी जवळच्या
+              स्थानिक प्राधिकरणाकडून किंवा अधिकृत वेबसाइटवरून तपशीलाची खात्री
+              करावी.
             </p>
           </section>
 
           {/* Footer */}
           <div className="pt-6 text-center text-sm text-gray-500 border-t border-gray-200">
-            © Government of Maharashtra | Women and Child Development Department
+            © महाराष्ट्र शासन | महिला आणि बाल विकास विभाग
           </div>
         </div>
       </div>

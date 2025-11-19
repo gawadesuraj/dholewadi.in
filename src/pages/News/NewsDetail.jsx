@@ -37,13 +37,13 @@ function NewsDetail() {
       <div className="container py-12 text-center">
         <h1 className="text-2xl font-bold mb-4">News article not found</h1>
         <Link to="/news" className="text-primary hover:underline">
-          ← Back to News
+          ← मागे या 
         </Link>
       </div>
     )
 
   const breadcrumbs = [
-    { label: 'News', href: '/news' },
+    { label: 'बातम्या', href: '/news' },
     { label: news.title.substring(0, 50) + '...', href: null }
   ]
 
@@ -93,10 +93,10 @@ function NewsDetail() {
                 <div className="mt-8 pt-6 border-t">
                   <div className="flex justify-between items-center text-sm text-gray-500">
                     <span>
-                      Published on {new Date(news.published_at).toLocaleString()}
+                      सादरीकरण {new Date(news.published_at).toLocaleString()}
                     </span>
                     <Link to="/news" className="text-primary hover:underline">
-                      ← Back to News
+                      ← मागे या 
                     </Link>
                   </div>
                 </div>

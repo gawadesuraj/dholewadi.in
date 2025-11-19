@@ -133,25 +133,6 @@ export const mockData = {
   ],
 
   officers: [
-    // {
-    //   id: 1,
-    //   name: "श्री. रणजीत सर्जेराव मोरे ",
-    //   designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
-    //   // department: "Administration",
-    //   phone: "+91-937-3356931",
-    //   email: "rsmore@tkietwarana.ac.in",
-    //   image: "/images/officers/Ranjeet_More.jpg",
-    // },
-    // {
-    //   id: 2,
-    //   name: "श्रीम. वनिता पांडुरंग ढोले",
-    //   designation: "उपसरपंच, ग्रामपंचायत, ढोलेवाडी",
-    //   // department: "Administration",
-    //   phone: "+91-233-2654322",
-    //   email: "aceo.sangli@maharashtra.gov.in",
-    //   image: "/images/officers/Vaneeta_Dhole.jpg",
-    // },
-  
     {
       id: 4,
       name: "श्री. राजेश दत्तात्रय सूर्यवंशी",
@@ -182,7 +163,7 @@ export const mockData = {
     },
   ],
 
-  sadasya : [
+  sadasya: [
     {
       id: 3,
       name: "श्रीम. अस्मिता सागर पवार",
@@ -342,7 +323,7 @@ export const mockData = {
     },
     {
       id: 1,
-      name: "श्री मोरे रणजीत सरजेऱाव ",
+      name: "श्री. रणजीत सर्जेराव मोरे  ",
       designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
       department: "Administration",
       phone: "+91-937-3356931",

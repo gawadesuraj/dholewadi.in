@@ -54,7 +54,7 @@ function News() {
     n.summary?.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const breadcrumbs = [{ label: 'News', href: null }]
+  const breadcrumbs = [{ label: 'बातम्या', href: null }]
 
   if (loading) {
     return (
@@ -65,7 +65,7 @@ function News() {
   return (
     <div>
       <PageHeader
-        title="News & Updates"
+        title="बातम्या"
         subtitle="Latest news, announcements and updates from Panchayat Samiti Shirala"
         breadcrumbs={breadcrumbs}
       />
@@ -106,7 +106,7 @@ function News() {
                         to={`/news/${n.id}`}
                         className="inline-flex items-center text-primary hover:text-primary-dark font-medium"
                       >
-                        Read Full Story
+                        संपूर्ण बातमी वाचा...
                         <svg
                           className="ml-2 w-4 h-4"
                           fill="currentColor"

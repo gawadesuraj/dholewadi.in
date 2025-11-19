@@ -1,6 +1,13 @@
 // frontend/src/pages/Gallery/Gallery.jsx
 
-import React, { useState, useEffect, useCallback, useMemo, memo, Suspense } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  memo,
+  Suspense,
+} from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../services/supabaseClient";
 
@@ -46,23 +53,27 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const breadcrumbs = useMemo(() => [{ label: "Gallery", href: null }], []);
+  // Updated breadcrumb label to Marathi
+  const breadcrumbs = useMemo(
+    () => [{ label: "छायाचित्र दालन", href: null }],
+    []
+  );
 
   // Fetch photos from Supabase
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
         const { data, error } = await supabase
-          .from('photos')
-          .select('*')
-          .order('created_at', { ascending: false });
+          .from("photos")
+          .select("*")
+          .order("created_at", { ascending: false });
 
         if (error) throw error;
 
         setVillageImages(data || []);
       } catch (err) {
-        console.error('Error fetching photos:', err);
-        setError('Failed to load gallery images');
+        console.error("Error fetching photos:", err);
+        setError("फोटो लोड करण्यात अक्षम");
       } finally {
         setLoading(false);
       }
@@ -96,7 +107,9 @@ const Gallery = () => {
 
   const showPrevImage = useCallback(() => {
     setSelectedImageIndex((prev) =>
-      prev === null ? 0 : (prev - 1 + villageImages.length) % villageImages.length
+      prev === null
+        ? 0
+        : (prev - 1 + villageImages.length) % villageImages.length
     );
   }, [villageImages.length]);
 
@@ -135,10 +148,10 @@ const Gallery = () => {
         }
       `}</style>
 
-      {/* Header */}
+      {/* Header Updated to Marathi */}
       <PageHeader
-        title="छायाचित्र दालन (Photo Gallery)"
-        subtitle="Our village's moments captured in time."
+        title="छायाचित्र दालन"
+        subtitle="आमच्या गावातील काही खास क्षण आणि आठवणी."
         breadcrumbs={breadcrumbs}
       />
 
@@ -146,11 +159,15 @@ const Gallery = () => {
       <section className="bg-white py-12 px-4">
         <div className="container mx-auto">
           {loading ? (
-            <div className="text-center py-10 text-gray-600">Loading gallery...</div>
+            <div className="text-center py-10 text-gray-600">
+              लोड होत आहे...
+            </div>
           ) : error ? (
             <div className="text-center py-10 text-red-600">{error}</div>
           ) : villageImages.length === 0 ? (
-            <div className="text-center py-10 text-gray-600">No photos available</div>
+            <div className="text-center py-10 text-gray-600">
+              कोणतेही फोटो उपलब्ध नाहीत
+            </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {villageImages.map((image, index) => {
@@ -172,7 +189,7 @@ const Gallery = () => {
                       className="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-
+                      {/* Optional: Add Icon or Text here */}
                     </div>
                   </div>
                 );
@@ -197,10 +214,19 @@ const Gallery = () => {
                 className="absolute -top-4 -right-4 z-50 bg-white rounded-full p-2 text-gray-800 hover:bg-gray-200 transition"
                 aria-label="Close"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
 
@@ -208,12 +234,14 @@ const Gallery = () => {
               <div className="flex flex-col items-center">
                 <img
                   src={villageImages[selectedImageIndex].image_url}
-                  alt={villageImages[selectedImageIndex].alt_text || "Gallery image"}
+                  alt={
+                    villageImages[selectedImageIndex].alt_text ||
+                    "Gallery image"
+                  }
                   loading="lazy"
                   decoding="async"
                   className="max-h-[75vh] w-auto object-contain rounded-md"
                 />
-
               </div>
 
               {/* Prev/Next Buttons */}
@@ -222,10 +250,19 @@ const Gallery = () => {
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 p-2 rounded-full transition"
                 aria-label="Previous image"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="M15 19l-7-7 7-7" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
               <button
@@ -233,10 +270,19 @@ const Gallery = () => {
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 p-2 rounded-full transition"
                 aria-label="Next image"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="M9 5l7 7-7 7" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
             </div>
@@ -250,7 +296,11 @@ const Gallery = () => {
 // Wrap in Suspense (future-proof for lazy imports)
 export default function GalleryWrapper() {
   return (
-    <Suspense fallback={<div className="text-center py-10 text-gray-600">Loading gallery...</div>}>
+    <Suspense
+      fallback={
+        <div className="text-center py-10 text-gray-600">लोड होत आहे...</div>
+      }
+    >
       <Gallery />
     </Suspense>
   );

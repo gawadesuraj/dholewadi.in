@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
 
+// NOTE: We update 'primary' and 'outline' colors to 'teal' for consistency with the application's theme.
 const variants = {
-  // NOTE: Removed direct hover effects like `hover:from-primary-dark` to let the new overlay handle the hover state.
-  primary:
-    "bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg hover:shadow-xl",
+  // Teal gradient for Primary button
+  primary: "bg-gradient-to-r from-teal-600 to-teal-800 text-white shadow-lg",
   secondary:
     "bg-gradient-to-r from-secondary to-blue-600 text-white shadow-lg hover:shadow-xl",
   success:
@@ -12,9 +12,11 @@ const variants = {
     "bg-gradient-to-r from-yellow-500 to-yellow-600 text-white shadow-lg hover:shadow-xl",
   danger:
     "bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg hover:shadow-xl",
+  // Teal outline for consistency
   outline:
-    "border-2 border-primary text-primary hover:bg-primary hover:text-white hover:shadow-lg",
-  ghost: "text-primary hover:bg-primary/10 hover:shadow-md",
+    "border-2 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white hover:shadow-lg",
+  // Teal ghost for consistency
+  ghost: "text-teal-600 hover:bg-teal-600/10 hover:shadow-md",
   glass:
     "bg-white/20 backdrop-blur-sm border border-white/30 text-gray-800 hover:bg-white/30 shadow-lg hover:shadow-xl",
 };
@@ -42,24 +44,30 @@ const Button = forwardRef(
     },
     ref
   ) => {
+    // Determine the focus ring color based on the primary theme (Teal)
+    const focusRingColor =
+      variant === "primary" || variant === "outline" || variant === "ghost"
+        ? "focus:ring-teal-600/25"
+        : "focus:ring-primary/25";
+
     return (
       <button
         ref={ref}
         className={`
-        relative inline-flex items-center justify-center font-semibold rounded-xl 
-        transition-all duration-200 ease-out transform hover:scale-105 active:scale-95
-        focus:outline-none focus:ring-4 focus:ring-primary/25 
-        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
-        ${variants[variant]}
-        ${sizes[size]}
-        ${className}
-        group overflow-hidden // <-- 1. ADDED group and overflow-hidden
-      `}
+          relative inline-flex items-center justify-center font-semibold rounded-xl 
+          transition-all duration-200 ease-out transform hover:scale-[1.03] active:scale-95
+          focus:outline-none focus:ring-4 ${focusRingColor} 
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+          ${variants[variant]}
+          ${sizes[size]}
+          ${className}
+          group overflow-hidden
+        `}
         disabled={disabled || loading}
         {...props}
       >
-        {/* --- Your existing content (icons, text, etc.) --- */}
-        {/* Making sure content is on top of the overlay */}
+        {/* --- Content (icons, text, loading) --- */}
+        {/* Making sure content is on top of the overlay (z-10) */}
         <span className="relative z-10 flex items-center">
           {loading && (
             <svg
@@ -90,10 +98,10 @@ const Button = forwardRef(
           {rightIcon && <span className="ml-2">{rightIcon}</span>}
         </span>
 
-        {/* Shine effect (optional, kept from your original code) */}
+        {/* Shine effect (z-20) */}
         <div className="absolute inset-0 z-20 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
 
-        {/* 2. ADDED expanding overlay effect */}
+        {/* Expanding overlay effect (below z-10 content) */}
         <span className="absolute inset-0 rounded-xl bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out" />
       </button>
     );

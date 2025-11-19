@@ -3,14 +3,17 @@ import { BookOpen, Newspaper, Cloud, ExternalLink } from "lucide-react";
 
 function ELearning() {
   const eBooks = [
-    { title: "E – Material", link: "https://www.esahity.com/" },
-    { title: "Rekata", link: "https://www.rekhta.org/ebooks/collection/hindi-english-e-books" },
-    { title: "Gutenberg", link: "https://www.gutenberg.org/" },
+    { title: "ई-साहित्य", link: "https://www.esahity.com/" }, // E-Material changed to E-Sahitya
+    {
+      title: "रेखता",
+      link: "https://www.rekhta.org/ebooks/collection/hindi-english-e-books",
+    }, // Rekata
+    { title: "गुटेनबर्ग", link: "https://www.gutenberg.org/" }, // Gutenberg
   ];
 
   const eMagazines = [
     {
-      title: "All in One",
+      title: "ऑल इन वन",
       link: "https://library.magzter.com/home",
       user: "library@cbmindia.in",
       password: "2010",
@@ -18,9 +21,9 @@ function ELearning() {
   ];
 
   const eLetters = [
-    { title: "Public Opinion", link: "https://www.lokmat.com/" },
-    { title: "Morning", link: "https://www.esakal.com/" },
-    { title: "The Hindu", link: "https://www.thehindu.com/" },
+    { title: "लोकमत", link: "https://www.lokmat.com/" }, // Public Opinion changed to Lokmat (Marathi Newspaper)
+    { title: "सकाळ", link: "https://www.esakal.com/" }, // Morning changed to Sakal (Marathi Newspaper)
+    { title: "द हिंदू", link: "https://www.thehindu.com/" }, // The Hindu
   ];
 
   return (
@@ -36,10 +39,11 @@ function ELearning() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-              E-Learning Resources
+              ई-लर्निंग संसाधने
             </h1>
             <p className="text-indigo-100 text-lg">
-              Explore verified online resources for E-books, E-magazines, and E-current letters.
+              ई-बुक्स, ई-मॅगझिन्स आणि ई-वर्तमान पत्रांसाठी सत्यापित ऑनलाइन
+              संसाधने शोधा.
             </p>
           </div>
         </div>
@@ -50,7 +54,7 @@ function ELearning() {
           <div className="bg-gradient-to-b from-violet-50 to-indigo-50 p-6 rounded-2xl border border-indigo-100 shadow-sm hover:shadow-lg transition-all duration-200">
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-7 h-7 text-indigo-600" />
-              <h2 className="text-xl font-semibold text-indigo-700">E-Books</h2>
+              <h2 className="text-xl font-semibold text-indigo-700">ई-बुक्स</h2>
             </div>
             <ul className="space-y-3">
               {eBooks.map((book, index) => (
@@ -73,7 +77,9 @@ function ELearning() {
           <div className="bg-gradient-to-b from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-lg transition-all duration-200">
             <div className="flex items-center gap-3 mb-4">
               <Newspaper className="w-7 h-7 text-blue-600" />
-              <h2 className="text-xl font-semibold text-blue-700">E-Magazines</h2>
+              <h2 className="text-xl font-semibold text-blue-700">
+                ई-मॅगझिन्स
+              </h2>
             </div>
             <ul className="space-y-3">
               {eMagazines.map((mag, index) => (
@@ -88,20 +94,26 @@ function ELearning() {
                     <ExternalLink className="w-4 h-4" />
                   </a>
                   <div className="mt-2 text-sm text-gray-600">
-                    <p>User ID: <span className="font-medium">{mag.user}</span></p>
-                    <p>Password: <span className="font-medium">{mag.password}</span></p>
+                    <p>
+                      वापरकर्ता आयडी (User ID):{" "}
+                      <span className="font-medium">{mag.user}</span>
+                    </p>
+                    <p>
+                      पासवर्ड (Password):{" "}
+                      <span className="font-medium">{mag.password}</span>
+                    </p>
                   </div>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* E-Current Letters */}
+          {/* E-Current Letters (E-Current Letters -> ई-वर्तमानपत्रे) */}
           <div className="bg-gradient-to-b from-sky-50 to-teal-50 p-6 rounded-2xl border border-teal-100 shadow-sm hover:shadow-lg transition-all duration-200">
             <div className="flex items-center gap-3 mb-4">
               <Cloud className="w-7 h-7 text-teal-600" />
               <h2 className="text-xl font-semibold text-teal-700">
-                E-Current Letters
+                ई-वर्तमानपत्रे
               </h2>
             </div>
             <ul className="space-y-3">
@@ -124,7 +136,7 @@ function ELearning() {
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-500 border-t border-gray-200 py-4">
-          © Dholewadi Gram Panchayat | E-Learning Digital Resource Hub
+          © ढोलेवाडी ग्रामपंचायत | ई-लर्निंग डिजिटल संसाधन केंद्र
         </div>
       </div>
     </div>

@@ -28,10 +28,10 @@ function SwachhBharatMission() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-              Swachh Bharat Mission (SBM)
+              स्वच्छ भारत अभियान
             </h1>
             <p className="max-w-3xl mx-auto text-cyan-100 text-lg">
-              A nationwide cleanliness campaign to build a cleaner, healthier, and open-defecation-free India.
+              स्वच्छ, निरोगी आणि हागणदारीमुक्त भारत घडवण्यासाठी राबवली जाणारी देशव्यापी स्वच्छता मोहीम.
             </p>
           </div>
         </div>
@@ -43,53 +43,53 @@ function SwachhBharatMission() {
           <section>
             <h2 className="flex items-center gap-2 text-2xl font-semibold text-sky-700 mb-3">
               <FileText className="w-6 h-6 text-cyan-500" />
-              Objective of the Scheme
+              योजनेचा उद्देश
             </h2>
             <p className="leading-relaxed text-gray-700">
-              The <strong>Swachh Bharat Mission (SBM)</strong> was launched by the Government of India 
-              with the goal of achieving an <strong>open defecation-free</strong> and 
-              <strong> clean India</strong>. The mission aims to promote sanitation awareness, 
-              construct toilets in every household, and encourage citizens to adopt sustainable hygiene practices.
+              भारत सरकारने <strong>हागणदारीमुक्त</strong> आणि <strong>स्वच्छ भारत</strong> साध्य करण्याच्या उद्देशाने 
+              <strong> स्वच्छ भारत अभियान </strong> सुरू केले. या अभियानाचे उद्दिष्ट स्वच्छतेविषयी 
+              जागरूकता निर्माण करणे, प्रत्येक घरात शौचालय बांधणे आणि नागरिकांना शाश्वत स्वच्छतेच्या सवयी 
+              अंगीकारण्यास प्रोत्साहित करणे हे आहे.
             </p>
           </section>
 
           {/* Important Features */}
           <section className="bg-cyan-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-sky-700 mb-3">
-              Key Features
+              प्रमुख वैशिष्ट्ये
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Encouragement for construction and usage of toilets.</li>
-              <li>Promotion of hygiene and cleanliness awareness in both rural and urban areas.</li>
-              <li>Emphasis on waste segregation, recycling, and plastic-free environments.</li>
-              <li>Implementation through active community participation.</li>
+              <li>शौचालय बांधणे आणि त्याचा वापर करण्यास प्रोत्साहन.</li>
+              <li>ग्रामीण आणि शहरी दोन्ही भागात स्वच्छता आणि आरोग्याविषयी जागरूकता.</li>
+              <li>कचरा वर्गीकरण, पुनर्वापर आणि प्लास्टिकमुक्त पर्यावरणावर भर.</li>
+              <li>सक्रिय लोकसहभागातून अंमलबजावणी.</li>
             </ul>
           </section>
 
           {/* Two Phases */}
           <section>
             <h2 className="text-xl font-semibold text-sky-700 mb-3">
-              Two Phases of Swachh Bharat Mission
+              स्वच्छ भारत अभियानाचे दोन टप्पे
             </h2>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="bg-white border border-cyan-100 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-semibold text-sky-700 mb-2">
-                  Swachh Bharat Mission – Rural (SBM-G)
+                  स्वच्छ भारत अभियान – ग्रामीण (SBM-G)
                 </h3>
                 <ul className="list-disc list-inside space-y-1 text-gray-700">
-                  <li>Construction of household toilets in rural areas.</li>
-                  <li>Village-level ODF (Open Defecation Free) certification.</li>
-                  <li>Funds managed via Gram Panchayats for sanitation drives.</li>
+                  <li>ग्रामीण भागात घरगुती शौचालयांचे बांधकाम.</li>
+                  <li>गाव पातळीवर हागणदारीमुक्त (ODF) प्रमाणपत्र.</li>
+                  <li>स्वच्छता मोहिमेसाठी ग्रामपंचायतीमार्फत निधी व्यवस्थापन.</li>
                 </ul>
               </div>
               <div className="bg-white border border-cyan-100 rounded-2xl p-5 shadow-sm">
                 <h3 className="text-lg font-semibold text-sky-700 mb-2">
-                  Swachh Bharat Mission – Urban (SBM-U)
+                  स्वच्छ भारत अभियान – शहरी (SBM-U)
                 </h3>
                 <ul className="list-disc list-inside space-y-1 text-gray-700">
-                  <li>Focus on sanitation improvement in cities.</li>
-                  <li>Development of solid waste management systems.</li>
-                  <li>Use of modern smart technologies for waste collection.</li>
+                  <li>शहरांमधील स्वच्छता सुधारण्यावर भर.</li>
+                  <li>घनकचरा व्यवस्थापन प्रणालीचा विकास.</li>
+                  <li>कचरा संकलनासाठी आधुनिक स्मार्ट तंत्रज्ञानाचा वापर.</li>
                 </ul>
               </div>
             </div>
@@ -97,33 +97,33 @@ function SwachhBharatMission() {
 
           {/* Beneficiaries */}
           <section className="bg-gradient-to-r from-sky-50 to-cyan-50 p-6 rounded-2xl shadow-sm">
-            <h2 className="text-xl font-semibold text-sky-700 mb-3">Beneficiaries</h2>
+            <h2 className="text-xl font-semibold text-sky-700 mb-3">लाभार्थी</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Citizens, Gram Panchayats, Municipalities, and Schools.</li>
-              <li>Financial assistance to poor and disadvantaged families for building toilets.</li>
-              <li>Public sanitation facilities for residents of urban areas.</li>
+              <li>नागरिक, ग्रामपंचायती, नगरपालिका आणि शाळा.</li>
+              <li>शौचालय बांधण्यासाठी गरीब आणि वंचित कुटुंबांना आर्थिक मदत.</li>
+              <li>शहरी भागातील रहिवाशांसाठी सार्वजनिक स्वच्छता सुविधा.</li>
             </ul>
           </section>
 
           {/* Subsidy */}
           <section>
-            <h2 className="text-xl font-semibold text-sky-700 mb-3">Toilet Subsidy Details</h2>
+            <h2 className="text-xl font-semibold text-sky-700 mb-3">शौचालय अनुदान तपशील</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Eligible families receive up to <strong>₹12,000</strong> for toilet construction.</li>
-              <li>Funds are deposited directly to beneficiaries' bank accounts after verification.</li>
-              <li>Municipalities and Panchayats oversee fund disbursement and implementation.</li>
+              <li>पात्र कुटुंबांना शौचालय बांधण्यासाठी <strong>₹१२,०००</strong> पर्यंत अनुदान मिळते.</li>
+              <li>पडताळणीनंतर निधी थेट लाभार्थ्यांच्या बँक खात्यात जमा केला जातो.</li>
+              <li>नगरपालिका आणि ग्रामपंचायती निधी वितरण आणि अंमलबजावणीवर देखरेख करतात.</li>
             </ul>
           </section>
 
           {/* Public Participation */}
           <section className="bg-cyan-50 rounded-2xl p-6 shadow-sm">
             <h2 className="text-xl font-semibold text-sky-700 mb-3">
-              Public Awareness & Participation
+              जनजागृती आणि लोकसहभाग
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Nationwide campaigns like <strong>Swachhata Hi Seva</strong> and <strong>Plastic Free India</strong>.</li>
-              <li>Cleanliness drives, pledges, and rallies organized across schools and communities.</li>
-              <li>Involvement of NGOs, citizen volunteers, and local bodies.</li>
+              <li><strong>स्वच्छता ही सेवा</strong> आणि <strong>प्लास्टिकमुक्त भारत</strong> यांसारख्या देशव्यापी मोहिमा.</li>
+              <li>शाळा आणि समाजामध्ये स्वच्छता मोहीम, प्रतिज्ञा आणि रॅलींचे आयोजन.</li>
+              <li>स्वयंसेवी संस्था, नागरिक स्वयंसेवक आणि स्थानिक स्वराज्य संस्थांचा सहभाग.</li>
             </ul>
           </section>
 
@@ -131,11 +131,11 @@ function SwachhBharatMission() {
           <section>
             <h2 className="flex items-center gap-2 text-xl font-semibold text-sky-700 mb-3">
               <Link2 className="w-5 h-5 text-sky-500" />
-              Contact & Information
+              संपर्क आणि माहिती
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>
-                Official Website:{" "}
+                अधिकृत वेबसाइट:{" "}
                 <a
                   href="https://swachhbharatmission.gov.in"
                   target="_blank"
@@ -145,24 +145,25 @@ function SwachhBharatMission() {
                   https://swachhbharatmission.gov.in
                 </a>
               </li>
-              <li>State Sanitation Cell, Government of Maharashtra</li>
-              <li>Nearest Gram Panchayat or Municipality Office</li>
+              <li>राज्य स्वच्छता कक्ष, महाराष्ट्र शासन</li>
+              <li>जवळची ग्रामपंचायत किंवा नगरपालिका कार्यालय</li>
             </ul>
           </section>
 
           {/* Note */}
           <section className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-2xl">
-            <h2 className="text-lg font-semibold text-yellow-700 mb-2">Important Note</h2>
+            <h2 className="text-lg font-semibold text-yellow-700 mb-2">महत्वाची सूचना</h2>
             <p className="text-gray-700 leading-relaxed">
-              Applicants must submit required documents such as Aadhaar Card, photo of the house, bank details, and 
-              BPL certification (if applicable).  
-              The Swachh Bharat Mission operates nationwide with separate urban and rural strategies for maximum impact.
+              अर्जदारांनी आधार कार्ड, घराचा फोटो, बँक तपशील आणि बीपीएल प्रमाणपत्र (लागू असल्यास) 
+              यासारखी आवश्यक कागदपत्रे सादर करणे आवश्यक आहे. 
+              जास्तीत जास्त प्रभाव पाडण्यासाठी स्वच्छ भारत अभियान शहरी आणि ग्रामीण भागासाठी 
+              स्वतंत्र धोरणांसह देशभर राबवले जाते.
             </p>
           </section>
 
           {/* Footer */}
           <div className="pt-6 text-center text-sm text-gray-500 border-t border-gray-200">
-            © Government of India | Ministry of Housing and Urban Affairs | Swachh Bharat Mission
+            © भारत सरकार | गृहनिर्माण आणि शहरी व्यवहार मंत्रालय | स्वच्छ भारत अभियान
           </div>
         </div>
       </div>
