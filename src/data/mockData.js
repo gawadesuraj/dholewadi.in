@@ -160,14 +160,14 @@ officers: [
 ],
 
 sadasya: [
-  {
-    id: 3,
-    name: "श्रीम. अस्मिता सागर पवार",
-    designation: "मुख्यमंत्री युवा कार्य प्रशिक्षणार्थी",
-    phone: "+91-233-2654323",
-    email: "drda.sangli@maharashtra.gov.in",
-    image: "/images/officers/Asmita_Pawar.jpg",
-  },
+  // {
+  //   id: 3,
+  //   name: "श्रीम. अस्मिता सागर पवार",
+  //   designation: "मुख्यमंत्री युवा कार्य प्रशिक्षणार्थी",
+  //   phone: "+91-233-2654323",
+  //   email: "drda.sangli@maharashtra.gov.in",
+  //   image: "/images/officers/Asmita_Pawar.jpg",
+  // },
   {
     id: 6,
     name: "श्री. अप्पासो सोपान मोरे",
