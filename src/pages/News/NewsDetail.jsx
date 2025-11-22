@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import PageHeader from '../../components/common/PageHeader'
@@ -9,10 +10,25 @@ function NewsDetail() {
   const [news, setNews] = useState(null)
   const [related, setRelated] = useState([])
   const [showImageModal, setShowImageModal] = useState(false)
+=======
+// frontend/src/pages/News/NewsDetail.jsx
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import PageHeader from "../../components/common/PageHeader";
+import Card from "../../components/ui/Card";
+import { supabase } from "../../services/supabaseClient";
+
+function NewsDetail() {
+  const { id } = useParams();
+  const [news, setNews] = useState(null);
+  const [related, setRelated] = useState([]);
+  const [imageModal, setImageModal] = useState(null);
+>>>>>>> 8250f81e779a44d93e736ef3b582dfcf96ddc997
 
   useEffect(() => {
     async function fetchNews() {
       const { data, error } = await supabase
+<<<<<<< HEAD
         .from('news')
         .select('*')
         .eq('id', id)
@@ -29,16 +45,32 @@ function NewsDetail() {
           .limit(3)
 
         setRelated(rel || [])
+=======
+        .from("news")
+        .select("*")
+        .eq("id", id)
+        .single();
+      if (!error) {
+        setNews(data);
+        const { data: rel } = await supabase
+          .from("news")
+          .select("*")
+          .neq("id", id)
+          .eq("category", data.category)
+          .limit(3);
+        setRelated(rel || []);
+>>>>>>> 8250f81e779a44d93e736ef3b582dfcf96ddc997
       }
     }
-    fetchNews()
-  }, [id])
+    fetchNews();
+  }, [id]);
 
   if (!news)
     return (
       <div className="container py-12 text-center">
-        <h1 className="text-2xl font-bold mb-4">News article not found</h1>
+        <h1 className="text-2xl font-bold mb-4">News not found</h1>
         <Link to="/news" className="text-primary hover:underline">
+<<<<<<< HEAD
           ← Back to News
         </Link>
       </div>
@@ -48,16 +80,28 @@ function NewsDetail() {
     { label: 'News', href: '/news' },
     { label: news.title.substring(0, 50) + '...', href: null }
   ]
+=======
+          ← मागे या
+        </Link>
+      </div>
+    );
+>>>>>>> 8250f81e779a44d93e736ef3b582dfcf96ddc997
 
   return (
     <div>
-      <PageHeader breadcrumbs={breadcrumbs} />
+      <PageHeader
+        breadcrumbs={[
+          { label: "बातम्या", href: "/news" },
+          { label: news.title.substring(0, 50) + "...", href: null },
+        ]}
+      />
 
       <div className="container py-12">
         <div className="grid lg:grid-cols-4 gap-8">
           <article className="lg:col-span-3">
             <Card>
               <div className="p-8">
+<<<<<<< HEAD
                 {/* Header */}
                 <div className="mb-6">
                   <div className="flex items-center gap-3 mb-4">
@@ -81,9 +125,14 @@ function NewsDetail() {
                     </p>
                   )}
                 </div>
+=======
+                <h1 className="text-3xl font-bold mb-4">{news.title}</h1>
+                <p className="text-gray-600 mb-6">{news.summary}</p>
+>>>>>>> 8250f81e779a44d93e736ef3b582dfcf96ddc997
 
                 {/* IMAGE WITH MODAL */}
                 {news.image_url && (
+<<<<<<< HEAD
                   <>
                     <img
                       src={news.image_url}
@@ -111,10 +160,23 @@ function NewsDetail() {
                 {/* Content */}
                 <div className="prose prose-lg max-w-none">
                   {news.content?.split('\n').map((p, i) => (
+=======
+                  <img
+                    src={news.image_url}
+                    alt=""
+                    className="w-full h-72 object-cover rounded-lg cursor-pointer mb-8"
+                    onClick={() => setImageModal(news.image_url)}
+                  />
+                )}
+
+                <div className="prose max-w-none">
+                  {news.content?.split("\n").map((p, i) => (
+>>>>>>> 8250f81e779a44d93e736ef3b582dfcf96ddc997
                     <p key={i}>{p}</p>
                   ))}
                 </div>
 
+<<<<<<< HEAD
                 <div className="mt-8 pt-6 border-t">
                   <div className="flex justify-between items-center text-sm text-gray-500">
                     <span>
@@ -124,42 +186,52 @@ function NewsDetail() {
                       ← Back to News
                     </Link>
                   </div>
+=======
+                <div className="mt-8 text-gray-500 text-sm">
+                  प्रकाशित:
+                  {new Date(news.published_at).toLocaleString()}
+>>>>>>> 8250f81e779a44d93e736ef3b582dfcf96ddc997
                 </div>
               </div>
             </Card>
           </article>
 
-          {/* Sidebar */}
           <aside className="space-y-6">
             {related.length > 0 && (
               <Card>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold mb-4">Related News</h3>
-                  <div className="space-y-4">
-                    {related.map((r) => (
-                      <div key={r.id}>
-                        <Link
-                          to={`/news/${r.id}`}
-                          className="block hover:text-primary transition-colors"
-                        >
-                          <h4 className="font-medium text-sm line-clamp-2 mb-1">
-                            {r.title}
-                          </h4>
-                          <p className="text-xs text-gray-500">
-                            {new Date(r.published_at).toLocaleDateString()}
-                          </p>
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="font-semibold mb-4">Related News</h3>
+                  {related.map((r) => (
+                    <Link
+                      key={r.id}
+                      to={`/news/${r.id}`}
+                      className="block mb-3 hover:text-primary"
+                    >
+                      {r.title}
+                    </Link>
+                  ))}
                 </div>
               </Card>
             )}
           </aside>
         </div>
       </div>
+
+      {/* Full Screen Image Preview */}
+      {imageModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setImageModal(null)}
+        >
+          <img
+            src={imageModal}
+            alt="Full View"
+            className="max-w-full max-h-full rounded-xl"
+          />
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default NewsDetail
+export default NewsDetail;
