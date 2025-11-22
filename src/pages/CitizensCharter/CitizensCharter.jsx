@@ -1,46 +1,12 @@
-// CitizensCharter.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 
-// --- Helper Component for Breadcrumb Header ---
-const PageHeader = ({ title, subtitle, breadcrumbs }) => {
-  return (
-    <header className="bg-gray-100 py-4">
-      <div className="container mx-auto px-4">
-        <nav aria-label="breadcrumb" className="mb-4">
-          <ol className="flex items-center text-sm text-gray-500 flex-wrap">
-            <li>
-              <Link to="/" className="hover:text-blue-600">
-                Home
-              </Link>
-            </li>
-            {breadcrumbs.map((crumb, index) => (
-              <li key={index} className="flex items-center">
-                <span className="mx-2">/</span>
-                {crumb.href ? (
-                  <Link to={crumb.href} className="hover:text-blue-600">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="font-medium text-gray-700">
-                    {crumb.label}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
+// Lucide icons
+import { FileText, Download, ChevronRight, Home } from "lucide-react";
+import PageHeader from "../../components/common/PageHeader";
 
-        <div className="text-left">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
-            {title}
-          </h1>
-          <p className="text-base sm:text-lg text-gray-600">{subtitle}</p>
-        </div>
-      </div>
-    </header>
-  );
-};
+
+
 
 // --- Document Configuration ---
 const charterDocuments = [
@@ -68,44 +34,47 @@ const charterDocuments = [
 // --- End of Configuration ---
 
 const CitizensCharter = () => {
-  const breadcrumbs = [{ label: "Citizens Charter", href: null }];
+  // 🎯 Breadcrumb structure aligns with the updated PageHeader logic
+  const breadcrumbs = [{ label: "नागरिकांची सनद", href: null }];
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <PageHeader
         title="नागरिकांची सनद"
-        subtitle="A commitment to provide services in a timely and transparent manner."
+        subtitle="ग्रामपंचायत ढोलेवाडीच्या सेवा वेळेत आणि पारदर्शकपणे प्रदान करण्याची बांधिलकी."
         breadcrumbs={breadcrumbs}
+        // icon={Users} // Use an appropriate icon
       />
 
       <section className="bg-white py-12 px-4">
         <div className="container mx-auto max-w-6xl">
-          {/* Charter Documents Section */}
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md overflow-hidden">
-            <h3 className="text-2xl font-semibold text-gray-700 mb-6 border-b pb-4">
-              ग्राम विकास विभाग सनद
+          {/* Charter Documents Section (Enhanced Card Style) */}
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <h3 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b-2 border-teal-500/50 flex items-center">
+              <FileText className="w-6 h-6 mr-3 text-teal-600" />
+              ग्राम विकास विभाग सनद दस्तऐवज
             </h3>
 
-            {/* Responsive Table Wrapper */}
-            <div className="overflow-x-auto rounded-lg border border-gray-100">
+            {/* Responsive Table Wrapper (Enhanced Table Look) */}
+            <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-md">
               <table className="min-w-full bg-white text-sm sm:text-base">
-                <thead className="bg-gray-100">
+                <thead className="bg-teal-100/70 border-b border-teal-200">
                   <tr>
-                    <th className="px-4 sm:px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wide">
+                    <th className="px-4 sm:px-6 py-4 text-left font-bold text-teal-700 uppercase tracking-wide w-3/5">
                       दस्तऐवज (Document)
                     </th>
-                    <th className="px-4 sm:px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wide">
+                    <th className="px-4 sm:px-6 py-4 text-left font-bold text-teal-700 uppercase tracking-wide w-2/5">
                       डाउनलोड (Download)
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-gray-100">
                   {charterDocuments.map((doc) => (
                     <tr
                       key={doc.id}
-                      className="hover:bg-gray-50 transition-colors duration-150"
+                      className="hover:bg-teal-50/50 transition-colors duration-150"
                     >
-                      <td className="px-4 sm:px-6 py-4 whitespace-normal text-gray-800 break-words">
+                      <td className="px-4 sm:px-6 py-4 text-gray-800 font-medium">
                         {doc.name}
                       </td>
                       <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
@@ -113,22 +82,9 @@ const CitizensCharter = () => {
                           href={doc.docPdf}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-full sm:w-auto px-3 sm:px-4 py-2 bg-blue-600 text-white font-semibold text-xs sm:text-sm rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                          className="inline-flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-teal-600 text-white font-semibold text-sm rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 transition-colors duration-200"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 mr-2 hidden sm:inline"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                            />
-                          </svg>
+                          <Download className="h-4 w-4 mr-2" />
                           View / डाउनलोड करा
                         </a>
                       </td>
@@ -138,6 +94,10 @@ const CitizensCharter = () => {
               </table>
             </div>
 
+            {/* Note on Downloads */}
+            <p className="mt-8 text-sm text-gray-600">
+              **टीप:** दस्तऐवज पाहण्यासाठी PDF व्ह्यूअरची आवश्यकता आहे.
+            </p>
           </div>
         </div>
       </section>

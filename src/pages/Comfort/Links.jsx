@@ -1,5 +1,6 @@
 import React from "react";
 import { Users } from "lucide-react";
+import Breadcrumb from "../../components/common/Breadcrumb";
 
 function ImportantLinks() {
   const links = [
@@ -147,12 +148,16 @@ function ImportantLinks() {
       url: "https://nsdl.co.in",
     },
   ];
+  const breadcrumbs = [{ label: "लिंक्स", href: null }];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm shadow-xl rounded-3xl border border-gray-200 overflow-hidden">
+    <div className="min-h-screen bg-gray-50 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm shadow-xl rounded-b-3xl border border-gray-200 overflow-hidden">
+        <div className="p-4 sm:p-6 flex justify-between items-center bg-white">
+          {breadcrumbs && <Breadcrumb  items={breadcrumbs} />}
+        </div>
         {/* Header */}
-        <div className="relative bg-gradient-to-r from-indigo-700 to-blue-700 p-8 sm:p-12 text-center text-white">
+        <div className="relative bg-gradient-to-r from-indigo-700 to-blue-700 p-8 sm:p-12 text-center text-white rounded-3xl">
           <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png')] opacity-10"></div>
           <div className="relative z-10">
             <div className="flex justify-center mb-4">

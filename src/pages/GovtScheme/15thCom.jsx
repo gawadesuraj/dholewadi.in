@@ -1,14 +1,20 @@
 import React from "react";
 import { FileText, Calendar, Award, TrendingUp, Landmark } from "lucide-react";
+import Breadcrumb from "../../components/common/Breadcrumb";
+          const breadcrumbs = [ { label: "१५ वा वित्त आयोग ", href: null } ];
 
 function FifteenthFinanceCommission() {
   return (
     <div className="min-h-screen w-full relative text-gray-800">
       {/* 📘 Page Content */}
-      <div className="relative z-10 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
+      <div className="relative z-10 min-h-screen pb-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-b-3xl border border-gray-200 overflow-hidden">
+
+        <div className="p-4 sm:p-6 flex justify-between items-center bg-white">
+          {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
+        </div>
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-amber-600 to-orange-700 p-8 sm:p-12 text-center text-white">
+          <div className="relative bg-gradient-to-r from-amber-600 to-orange-700 p-8 sm:p-12 text-center text-white rounded-3xl">
             <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png')] opacity-10"></div>
             <div className="relative">
               <div className="flex justify-center mb-4">

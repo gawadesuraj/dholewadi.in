@@ -4,18 +4,29 @@ import PageHeader from "../../components/common/PageHeader";
 import Card from "../../components/ui/Card";
 import { mockData } from "../../data/mockData";
 
+// Category Constants (Prevents Spelling Errors)
+const CATEGORIES = {
+  DIGNITARIES: "DIGNITARIES",
+  HONORABLE: "HONORABLE OFFICER",
+  SADASYA: "PANCHAYAT SAMITI SADASYA",
+  SAMITI_OFFICER: "PANCHAYAT SAMITI OFFICER",
+  TIMELINE: "PANCHAYAT SAMITI OFFICER TIMELINE",
+};
+
 function Officers() {
-  const [selectedCategory, setSelectedCategory] = useState("DIGNITARIES");
+  const [selectedCategory, setSelectedCategory] = useState(
+    CATEGORIES.DIGNITARIES
+  );
 
   const breadcrumbs = [{ label: "Officers", href: null }];
 
-  // Map category to correct mockData key
+  // Mapping dropdown selection to correct mockData list
   const categoryMap = {
-    DIGNITARIES: mockData.dignitaries,
-    "HONORABLE OFFICER": mockData.honorableOfficers,
-    "PANCHAYAT SAMITI OFFICER": mockData.officers,
-    "PANCHAYAT SAMITI OFFICER TIMELINE": mockData.timeline,
-    "PANCHAYAT SAMITI SADASYA" : mockData.sadasya
+    [CATEGORIES.DIGNITARIES]: mockData.dignitaries,
+    [CATEGORIES.HONORABLE]: mockData.honorableOfficers,
+    [CATEGORIES.SAMITI_OFFICER]: mockData.officers,
+    [CATEGORIES.TIMELINE]: mockData.timeline,
+    [CATEGORIES.SADASYA]: mockData.sadasya,
   };
 
   const officersList = categoryMap[selectedCategory] || [];
@@ -44,22 +55,24 @@ function Officers() {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="w-full sm:w-auto border px-4 py-3 rounded-md text-sm md:text-base bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary shadow-sm transition-all duration-200"
           >
-            <option value="DIGNITARIES">मान्यवर</option>
-            <option value="HONORABLE OFFICER">गटविकास अधिकारी, पंचायत समिती शिराळा</option>
-            <option value="PANCHAYAT SAMITI SADASYA">
+            <option value={CATEGORIES.DIGNITARIES}>मान्यवर</option>
+            <option value={CATEGORIES.HONORABLE}>
+              गटविकास अधिकारी, पंचायत समिती शिराळा
+            </option>
+            <option value={CATEGORIES.SADASYA}>
               ढोलेवाडी ग्रामपंचायत सदस्य
             </option>
-            <option value="PANCHAYAT SAMITI OFFICER">
+            <option value={CATEGORIES.SAMITI_OFFICER}>
               ढोलेवाडी ग्रामपंचायत कर्मचारी
             </option>
-            <option value="PANCHAYAT SAMITI OFFICER TIMELINE">
+            <option value={CATEGORIES.TIMELINE}>
               ग्रामपंचायत अधिकारी, सरपंच, उपसरपंच, सदस्य कारकीर्द
             </option>
           </select>
         </div>
 
-        {/* Panchayat Samiti Timeline Special Case */}
-        {selectedCategory === "PANCHAYAT SAMITI OFFICER TIMELINE" ? (
+        {/* Timeline PDF Button */}
+        {selectedCategory === CATEGORIES.TIMELINE ? (
           <div className="flex justify-center">
             <a
               href="/files/panchayat-timeline.pdf"
@@ -67,11 +80,17 @@ function Officers() {
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-primary text-white text-base md:text-lg font-medium rounded-xl shadow hover:bg-primary-dark transition-colors text-center"
             >
-              📑 ग्रामपंचायत निहाय ग्रामपंचायत सरपंच व उपसरपंच व ग्रामसेवक कारकीर्द
+              📑 ग्रामपंचायत निहाय ग्रामपंचायत सरपंच व उपसरपंच व ग्रामसेवक
+              कारकीर्द
             </a>
           </div>
+        ) : officersList.length === 0 ? (
+          // No Data UI
+          <div className="text-center text-gray-500 text-lg py-10">
+            माहिती उपलब्ध नाही
+          </div>
         ) : (
-          /* Officer Cards */
+          // Officer Cards
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
             {officersList.map((officer) => (
               <Card key={officer.id} className="hover-lift">
@@ -94,8 +113,8 @@ function Officers() {
                       {officer.department}
                     </p>
 
-                    {/* Show Call/Email only if NOT DIGNITARIES */}
-                    {selectedCategory === "PANCHAYAT SAMITI OFFICER" && (
+                    {/* Only show Call/Email for Panchayat Samiti Employees */}
+                    {selectedCategory === CATEGORIES.SAMITI_OFFICER && (
                       <div className="flex flex-col sm:flex-row gap-4 mt-4 md:mt-0">
                         {officer.phone && (
                           <a

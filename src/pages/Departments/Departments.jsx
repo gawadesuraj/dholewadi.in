@@ -1,62 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+// Lucide icons
+import {
+  ChevronDown,
+  Users,
+  Settings,
+  HeartHandshake,
+  Wrench,
+  Brush,
+  Shield,
+  User,
+  Check,
+  Briefcase,
+} from "lucide-react";
 
-// --- Helper Components (Defined within this file to resolve import errors) ---
+// 🚨 Assuming these components are the enhanced, centralized versions
+import PageHeader from "../../components/common/PageHeader";
+import Card from "../../components/ui/Card";
+// Note: Removed local Card and PageHeader definitions
 
-/**
- * A reusable UI card component.
- */
-const Card = ({ children, className = "" }) => {
-  return (
-    <div
-      className={`bg-white rounded-lg shadow-md overflow-hidden ${className}`}
-    >
-      {children}
-    </div>
-  );
-};
-
-/**
- * A component to display a page header with title, subtitle, and breadcrumbs.
- */
-const PageHeader = ({ title, subtitle, breadcrumbs }) => {
-  return (
-    <header className="bg-gray-100 py-8">
-      <div className="container mx-auto px-4">
-        <nav aria-label="breadcrumb" className="mb-4">
-          <ol className="flex items-center text-sm text-gray-500">
-            <li>
-              <Link to="/" className="hover:text-blue-600">
-                Home
-              </Link>
-            </li>
-            {breadcrumbs.map((crumb, index) => (
-              <li key={index} className="flex items-center">
-                <span className="mx-2">/</span>
-                {crumb.href ? (
-                  <Link to={crumb.href} className="hover:text-blue-600">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="font-medium text-gray-700">
-                    {crumb.label}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <div className="text-left">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">{title}</h1>
-          <p className="text-lg text-gray-600">{subtitle}</p>
-        </div>
-      </div>
-    </header>
-  );
-};
-
-// --- Committee Data from Document ---
+// --- Committee Data from Document (No Change) ---
 const committeesData = [
   {
     name: "ग्राम आरोग्य पोषण, पाणीपुरवठा व स्वच्छता समिती",
@@ -128,6 +91,7 @@ const committeesData = [
         role: "सदस्य",
       },
     ],
+    icon: HeartHandshake, // Health & Welfare Icon
   },
   {
     name: "बांधकाम समिती",
@@ -157,6 +121,7 @@ const committeesData = [
         role: "सदस्य",
       },
     ],
+    icon: Wrench, // Construction Icon
   },
   {
     name: "कला/क्रीडा/सांस्कृतिक/पर्यटन समिती",
@@ -224,6 +189,7 @@ const committeesData = [
         role: "सदस्य",
       },
     ],
+    icon: Brush, // Culture/Arts Icon
   },
   {
     name: "तंटामुक्ती समिती",
@@ -240,15 +206,22 @@ const committeesData = [
       { id: 10, name: "श्री. सुनिल तुकाराम ढोले", role: "सदस्य" },
       { id: 11, name: "श्री. आप्पासो दादू ढोले", role: "सदस्य" },
     ],
+    icon: Shield, // Conflict Resolution Icon
   },
 ];
 
+// --- Main Component ---
 function Departments() {
-  const breadcrumbs = [{ label: "Departments", href: null }];
   const [selectedCommittee, setSelectedCommittee] = useState(committeesData[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
+  // 🎯 Breadcrumb Fix: Home > समित्या
+  const breadcrumbs = [
+    { label: "समित्या", href: null }, // Page title will be the final crumb
+  ];
+
+  // --- Dropdown Logic (Mouse Hover) ---
   const handleMouseEnter = () => {
     clearTimeout(timeoutId);
     setIsDropdownOpen(true);
@@ -261,55 +234,72 @@ function Departments() {
     setTimeoutId(newTimeoutId);
   };
 
+  // --- Dropdown Logic (Click/Select) ---
+  const handleCommitteeSelect = (committee) => {
+    setSelectedCommittee(committee);
+    setIsDropdownOpen(false);
+  };
+
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
+      {/* 1. Enhanced Page Header */}
       <PageHeader
         title="ग्रामपंचायत समित्या"
         subtitle="गावाच्या विकासासाठी कार्यरत असलेल्या विविध समित्या."
         breadcrumbs={breadcrumbs}
+        icon={Users} // Use an appropriate icon
       />
 
-      <div className="container mx-auto py-12 px-4 space-y-8">
-        {/* Dropdown Menu */}
+      <div className="container mx-auto py-12 px-4 space-y-10">
+        {/* 2. Dropdown Menu (Committee Selector) */}
         <div
-          className="relative inline-block text-left w-full md:w-auto"
+          className="relative inline-block text-left w-full md:w-96"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
+          {/* Selected Button (Enhanced Styling) */}
           <div>
             <button
               type="button"
-              className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              id="options-menu"
+              className="inline-flex justify-between items-center w-full rounded-xl border border-gray-300 shadow-lg px-6 py-3 bg-white text-base font-semibold text-teal-700 hover:bg-teal-50 focus:outline-none focus:ring-4 focus:ring-teal-200 transition duration-150"
               aria-haspopup="true"
               aria-expanded={isDropdownOpen}
+              onClick={() => setIsDropdownOpen((prev) => !prev)} // Toggle on click for mobile/touch
             >
-              {selectedCommittee.name}
-              <ChevronDown className="-mr-1 ml-2 h-5 w-5" />
+              <span className="truncate">{selectedCommittee.name}</span>
+              <ChevronDown
+                className={`-mr-1 ml-3 h-5 w-5 transition-transform duration-200 ${
+                  isDropdownOpen
+                    ? "transform rotate-180 text-teal-600"
+                    : "text-gray-500"
+                }`}
+              />
             </button>
           </div>
 
+          {/* Dropdown Options (Enhanced Styling) */}
           {isDropdownOpen && (
-            <div className="origin-top-left absolute left-0 mt-2 w-full md:w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
-              <div
-                className="py-1"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="options-menu"
-              >
+            <div
+              className="origin-top-left absolute left-0 mt-2 w-full md:w-96 rounded-xl shadow-2xl bg-white ring-1 ring-black/10 z-20 overflow-hidden"
+              style={{ maxHeight: "400px", overflowY: "auto" }} // Scrollable list for many committees
+            >
+              <div className="py-1" role="menu" aria-orientation="vertical">
                 {committeesData.map((committee, index) => (
                   <a
                     href="#"
                     key={index}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition duration-150 border-b border-gray-100 last:border-b-0 flex items-center"
                     role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
-                      setSelectedCommittee(committee);
-                      setIsDropdownOpen(false);
+                      handleCommitteeSelect(committee);
                     }}
                   >
+                    <committee.icon className="w-5 h-5 mr-3 text-gray-400 flex-shrink-0" />
                     {committee.name}
+                    {selectedCommittee.name === committee.name && (
+                      <Check className="w-5 h-5 ml-auto text-teal-600" />
+                    )}
                   </a>
                 ))}
               </div>
@@ -317,57 +307,83 @@ function Departments() {
           )}
         </div>
 
-        {/* Selected Committee Chart */}
+        {/* 3. Selected Committee Chart (Enhanced Table UI) */}
         {selectedCommittee && (
-          <Card>
+          <Card shadow="lg">
             <div className="p-6 sm:p-8">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-6 border-b pb-4">
-                {selectedCommittee.name}
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-4 flex items-center">
+                <selectedCommittee.icon className="w-6 h-6 mr-3 text-teal-600" />
+                {selectedCommittee.name} - सदस्य यादी
               </h3>
               <div className="overflow-x-auto">
-                <table className="min-w-full bg-white">
-                  <thead className="bg-gray-200">
+                <table className="min-w-full">
+                  <thead className="bg-teal-50 border-b-2 border-teal-200">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">
                         अ.क्र.
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">
                         नाव
                       </th>
-                      {selectedCommittee.members[0].designation && (
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                          पदनाम
+                      {/* Check if the first member has a 'designation' property to decide column visibility */}
+                      {selectedCommittee.members[0].designation !==
+                        undefined && (
+                        <th className="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider hidden sm:table-cell">
+                          मूळ पदनाम
                         </th>
                       )}
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                        समिती पदनाम
+                      <th className="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">
+                        समितीतील भूमिका
                       </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     {selectedCommittee.members.map((member) => (
-                      <tr key={member.id} className="hover:bg-gray-50">
+                      <tr
+                        key={member.id}
+                        className="hover:bg-teal-50/50 transition duration-100"
+                      >
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {member.id}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 font-medium">
                           {member.name}
                         </td>
-                        {member.designation && (
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                        {/* Conditional rendering for Designation column data */}
+                        {member.designation !== undefined && (
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 hidden sm:table-cell">
                             {member.designation}
                           </td>
                         )}
-                        {!selectedCommittee.members[0].designation &&
-                          member.designation === undefined && <td></td>}
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                          {member.role}
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold">
+                          <span
+                            className={`px-3 py-1 rounded-full text-xs font-bold ${
+                              member.role === "अध्यक्ष"
+                                ? "bg-indigo-100 text-indigo-700"
+                                : member.role === "सचिव"
+                                ? "bg-yellow-100 text-yellow-700"
+                                : "bg-gray-100 text-gray-600"
+                            }`}
+                          >
+                            {member.role}
+                          </span>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+            </div>
+          </Card>
+        )}
+
+        {/* Fallback Message */}
+        {!selectedCommittee && (
+          <Card shadow="lg">
+            <div className="p-8 text-center text-gray-500">
+              <p className="text-lg">
+                कृपया वर दिलेल्या ड्रॉपडाउनमधून पाहण्यासाठी एक समिती निवडा.
+              </p>
             </div>
           </Card>
         )}

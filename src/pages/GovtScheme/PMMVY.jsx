@@ -7,17 +7,22 @@ import {
   FileCheck,
   Link2,
 } from "lucide-react";
-
+import Breadcrumb from "../../components/common/Breadcrumb";
 function PradhanMantriMatruVandanaYojana() {
+  const breadcrumbs = [ { label: "PMMVY", href: null } ];
+
   return (
     <div
-      className="min-h-screen relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen relative bg-gray-50 pb-12 px-4 sm:px-6 lg:px-8"
     >
       {/* Page Container */}
-      <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
+      <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-b-3xl border border-gray-200 overflow-hidden">
+        <div className="p-4 sm:p-6 flex justify-between items-center bg-white">
+          {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
+        </div>
 
         {/* Header */}
-        <div className="relative bg-gradient-to-r from-pink-700 to-rose-500 p-8 sm:p-12 text-center text-white">
+        <div className="relative bg-gradient-to-r from-pink-700 to-rose-500 p-8 sm:p-12 text-center text-white rounded-3xl">
           <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png')] opacity-10"></div>
           <div className="relative">
             <div className="flex justify-center mb-4">

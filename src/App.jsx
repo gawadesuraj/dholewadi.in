@@ -6,9 +6,7 @@ import { ToastContainer } from "react-toastify";
 import GlobalBackground from "./components/ui/GlobalBackground";
 import Layout from "./components/layout/Layout";
 import Router from "./router";
-
-
-
+import ScrollTop from "./ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,11 +18,10 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-
-
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollTop />
         <GlobalBackground>
           <Layout>
             <Router />

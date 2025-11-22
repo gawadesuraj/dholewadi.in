@@ -1,5 +1,6 @@
 import React from "react";
 import { BookOpen, Newspaper, Cloud, ExternalLink } from "lucide-react";
+import Breadcrumb from "../../components/common/Breadcrumb";
 
 function ELearning() {
   const eBooks = [
@@ -26,11 +27,17 @@ function ELearning() {
     { title: "द हिंदू", link: "https://www.thehindu.com/" }, // The Hindu
   ];
 
+  const breadcrumbs = [
+  { label: "ई-लर्निंग", href: null }, // Page title will be the final crumb
+];
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
+    <div className="min-h-screen bg-gray-50 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm rounded-b-3xl shadow-xl border border-gray-200 overflow-hidden">
+        <div className="p-4 sm:p-6 flex justify-between items-center bg-white">
+          {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
+        </div>
         {/* Header */}
-        <div className="relative bg-gradient-to-r from-violet-700 to-indigo-700 p-8 sm:p-12 text-center text-white">
+        <div className="relative bg-gradient-to-r from-violet-700 to-indigo-700 p-8 sm:p-12 text-center text-white rounded-3xl">
           <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png')] opacity-10"></div>
           <div className="relative z-10">
             <div className="flex justify-center mb-4">

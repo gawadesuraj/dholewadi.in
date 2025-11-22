@@ -7,14 +7,19 @@ import {
   FileCheck,
   Users,
 } from "lucide-react";
-
+import Breadcrumb from "../../components/common/Breadcrumb";
 function MGNREGA() {
+  const breadcrumbs = [{ label: "MGNREGA", href: null }];
+
   return (
-    <div className="min-h-screen relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen relative bg-gray-50 pb-12 px-4 sm:px-6 lg:px-8">
       {/* Uniform width across all scheme pages */}
-      <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
+      <div className="max-w-5xl mx-auto bg-white/95 shadow-xl backdrop-blur-sm rounded-b-3xl border border-gray-200 overflow-hidden">
+        <div className="p-4 sm:p-6 flex justify-between items-center bg-white">
+          {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
+        </div>
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-green-700 to-emerald-600 p-8 sm:p-12 text-center text-white">
+        <div className="relative bg-gradient-to-r from-green-700 to-emerald-600 p-8 sm:p-12 text-center text-white rounded-3xl">
           <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/symphony.png')] opacity-10"></div>
           <div className="relative">
             <div className="flex justify-center mb-4">
@@ -41,9 +46,7 @@ function MGNREGA() {
               परिचय
             </h2>
             <p className="leading-relaxed text-gray-700">
-              <strong>
-                महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी कायदा
-              </strong>{" "}
+              <strong>महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी कायदा</strong>{" "}
               भारत सरकारने २००५ मध्ये सुरू केला. हे अकुशल मजुरीचे काम करण्यास
               इच्छुक असलेल्या प्रत्येक ग्रामीण कुटुंबातील प्रौढ सदस्यांना
               वर्षाला किमान <strong>१०० दिवसांच्या रोजगाराची हमी</strong> देते.
