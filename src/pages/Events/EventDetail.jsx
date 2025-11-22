@@ -12,6 +12,9 @@ function EventDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // 🔥 Modal state for full image
+  const [showImageModal, setShowImageModal] = useState(false);
+
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -77,15 +80,36 @@ function EventDetail() {
           <div className="lg:col-span-3">
             <Card>
               <div className="p-8">
+
                 {/* Event Header */}
                 <div className="mb-6">
+
+                  {/* 🔥 Clickable Image + Modal */}
                   {event.image_url && (
-                    <img
-                      src={event.image_url}
-                      alt={event.title}
-                      className="w-full h-64 object-cover rounded-md mb-6"
-                    />
+                    <>
+                      <img
+                        src={event.image_url}
+                        alt={event.title}
+                        onClick={() => setShowImageModal(true)}
+                        className="w-full h-64 object-cover rounded-md mb-6 cursor-pointer"
+                      />
+
+                      {showImageModal && (
+                        <div
+                          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+                          onClick={() => setShowImageModal(false)}
+                        >
+                          <img
+                            src={event.image_url}
+                            alt="Full"
+                            className="max-h-[90vh] max-w-[90vw] rounded-lg shadow-lg"
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                      )}
+                    </>
                   )}
+
                   <div className="flex items-center gap-3 mb-4">
                     <span
                       className={`text-sm px-3 py-1 rounded-full capitalize ${
@@ -185,7 +209,7 @@ function EventDetail() {
                   )}
                 </div>
 
-                {/* Event Content */}
+                {/* Content */}
                 <div className="prose max-w-none">
                   {(event.content || event.description)
                     .split("\n")
@@ -196,7 +220,7 @@ function EventDetail() {
                     ))}
                 </div>
 
-                {/* Back Link */}
+                {/* Back */}
                 <div className="mt-8 pt-6 border-t">
                   <Link
                     to="/events"
@@ -211,7 +235,6 @@ function EventDetail() {
 
           {/* Sidebar */}
           <aside className="space-y-6">
-            {/* Contact Information */}
             <Card>
               <div className="p-6">
                 <h3 className="text-lg font-semibold mb-4">
