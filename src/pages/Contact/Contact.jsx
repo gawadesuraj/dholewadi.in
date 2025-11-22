@@ -77,19 +77,20 @@ function Contact() {
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <div className="font-medium">पंचायत समिती शिराळा</div>
+                    <div className="font-medium">ग्रामपंचायत ढोलेवाडी</div>
                     <div className="text-gray-600">ता. शिराळा, जि. सांगली</div>
                     <div className="text-gray-600">महाराष्ट्र ४१५ ४०८</div>
                   </div>
 
                   <div>
                     <div className="font-medium">मुख्य फोन</div>
-                    <div className="text-gray-600">(०२३४५) २७२१२८</div>
+                    <div className="text-gray-600">८८३०४९६४२०</div>
+                    <div className="text-gray-600">९३७३३५६९३१</div>
                   </div>
 
                   <div>
                     <div className="font-medium">ईमेल</div>
-                    <div className="text-gray-600">info@psshirala.gov.in</div>
+                    <div className="text-gray-600">gpdholewadi415408@gmail.com</div>
                   </div>
                 </div>
               </div>
@@ -103,14 +104,7 @@ function Contact() {
                     <span>सोमवार - शुक्रवार</span>
                     <span>सकाळी १०:०० ते सायं ५:००</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>शनिवार</span>
-                    <span>सकाळी १०:०० ते दुपारी २:००</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>रविवार</span>
-                    <span>बंद (सुट्टी)</span>
-                  </div>
+        
                 </div>
               </div>
             </Card>
