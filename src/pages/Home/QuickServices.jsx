@@ -70,7 +70,7 @@ const QuickServices = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-teal-600/10 rounded-full px-6 py-2 mb-4">
             <Zap className="w-4 h-4 mr-2 text-teal-700" />
-            <span className="font-semibold text-teal-700">⚡ डिजिटल सेवा</span>
+            <span className="font-semibold text-teal-700"> डिजिटल सेवा</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             जलद <span className={primaryGradientClip}>सरकारी सेवा</span>
