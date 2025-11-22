@@ -1,38 +1,38 @@
-import { useParams, Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import PageHeader from '../../components/common/PageHeader'
-import Card from '../../components/ui/Card'
-import { supabase } from '../../services/supabaseClient'
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import PageHeader from "../../components/common/PageHeader";
+import Card from "../../components/ui/Card";
+import { supabase } from "../../services/supabaseClient";
 
 function NewsDetail() {
-  const { id } = useParams()
-  const [news, setNews] = useState(null)
-  const [related, setRelated] = useState([])
-  const [showImageModal, setShowImageModal] = useState(false)
+  const { id } = useParams();
+  const [news, setNews] = useState(null);
+  const [related, setRelated] = useState([]);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   useEffect(() => {
     async function fetchNews() {
       const { data, error } = await supabase
-        .from('news')
-        .select('*')
-        .eq('id', id)
-        .single()
+        .from("news")
+        .select("*")
+        .eq("id", id)
+        .single();
 
       if (!error) {
-        setNews(data)
+        setNews(data);
 
         const { data: rel } = await supabase
-          .from('news')
-          .select('*')
-          .neq('id', id)
-          .eq('category', data.category)
-          .limit(3)
+          .from("news")
+          .select("*")
+          .neq("id", id)
+          .eq("category", data.category)
+          .limit(3);
 
-        setRelated(rel || [])
+        setRelated(rel || []);
       }
     }
-    fetchNews()
-  }, [id])
+    fetchNews();
+  }, [id]);
 
   if (!news)
     return (
@@ -42,12 +42,12 @@ function NewsDetail() {
           ← Back to News
         </Link>
       </div>
-    )
+    );
 
   const breadcrumbs = [
-    { label: 'News', href: '/news' },
-    { label: news.title.substring(0, 50) + '...', href: null }
-  ]
+    { label: "News", href: "/news" },
+    { label: news.title.substring(0, 50) + "...", href: null },
+  ];
 
   return (
     <div>
@@ -110,7 +110,7 @@ function NewsDetail() {
 
                 {/* Content */}
                 <div className="prose prose-lg max-w-none">
-                  {news.content?.split('\n').map((p, i) => (
+                  {news.content?.split("\n").map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
                 </div>
@@ -118,10 +118,11 @@ function NewsDetail() {
                 <div className="mt-8 pt-6 border-t">
                   <div className="flex justify-between items-center text-sm text-gray-500">
                     <span>
-                      Published on {new Date(news.published_at).toLocaleString()}
+                      Published on{" "}
+                      {new Date(news.published_at).toLocaleString()}
                     </span>
                     <Link to="/news" className="text-primary hover:underline">
-                      ← Back to News
+                      ← मागे या
                     </Link>
                   </div>
                 </div>
@@ -159,7 +160,7 @@ function NewsDetail() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default NewsDetail
+export default NewsDetail;
