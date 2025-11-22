@@ -1,10 +1,10 @@
 import React from "react";
 
 const stats = [
-  { value: "782", label: "लोकसंख्या" },
-  { value: "398", label: "पुरुष" },
-  { value: "384", label: "महिला" },
-  { value: "८७७", label: "कुटुंबे" },
+  { value: "७८२", label: "लोकसंख्या" },
+  { value: "३९८", label: "पुरुष" },
+  { value: "३८४", label: "महिला" },
+  { value: "२१६", label: "कुटुंबे" },
 ];
 
 export default function StatsStrip({
