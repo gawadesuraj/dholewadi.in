@@ -435,7 +435,7 @@ function Footer() {
 
         {/* Social Icons */}
         <div className="flex justify-center space-x-6 mt-8">
-          <a href="#" className="text-gray-300 hover:text-white transition">
+          <a href="https://www.facebook.com/share/1A8KWipiWR/" className="text-gray-300 hover:text-white transition">
             <FaFacebook size={22} />
           </a>
           <a
