@@ -1,5 +1,3 @@
-// frontend/src/pages/News/NewsDetail.jsx
-
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import PageHeader from '../../components/common/PageHeader'
@@ -10,6 +8,7 @@ function NewsDetail() {
   const { id } = useParams()
   const [news, setNews] = useState(null)
   const [related, setRelated] = useState([])
+  const [showImageModal, setShowImageModal] = useState(false)
 
   useEffect(() => {
     async function fetchNews() {
@@ -18,14 +17,17 @@ function NewsDetail() {
         .select('*')
         .eq('id', id)
         .single()
+
       if (!error) {
         setNews(data)
+
         const { data: rel } = await supabase
           .from('news')
           .select('*')
           .neq('id', id)
           .eq('category', data.category)
           .limit(3)
+
         setRelated(rel || [])
       }
     }
@@ -37,13 +39,13 @@ function NewsDetail() {
       <div className="container py-12 text-center">
         <h1 className="text-2xl font-bold mb-4">News article not found</h1>
         <Link to="/news" className="text-primary hover:underline">
-          ← मागे या 
+          ← Back to News
         </Link>
       </div>
     )
 
   const breadcrumbs = [
-    { label: 'बातम्या', href: '/news' },
+    { label: 'News', href: '/news' },
     { label: news.title.substring(0, 50) + '...', href: null }
   ]
 
@@ -69,21 +71,44 @@ function NewsDetail() {
                     </span>
                   </div>
 
-                  <h1 className="text-3xl font-bold mb-4 leading-tight">{news.title}</h1>
+                  <h1 className="text-3xl font-bold mb-4 leading-tight">
+                    {news.title}
+                  </h1>
 
                   {news.summary && (
-                    <p className="text-xl text-gray-600 leading-relaxed notranslate">{news.summary}</p>
+                    <p className="text-xl text-gray-600 leading-relaxed notranslate">
+                      {news.summary}
+                    </p>
                   )}
                 </div>
 
+                {/* IMAGE WITH MODAL */}
                 {news.image_url && (
-                  <img
-                    src={news.image_url}
-                    alt=""
-                    className="w-full h-64 object-cover rounded-lg mb-8"
-                  />
+                  <>
+                    <img
+                      src={news.image_url}
+                      alt=""
+                      onClick={() => setShowImageModal(true)}
+                      className="w-full h-64 object-cover rounded-lg mb-8 cursor-pointer"
+                    />
+
+                    {showImageModal && (
+                      <div
+                        className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+                        onClick={() => setShowImageModal(false)}
+                      >
+                        <img
+                          src={news.image_url}
+                          alt="Full"
+                          className="max-h-[90vh] max-w-[90vw] rounded-lg shadow-lg"
+                          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+                        />
+                      </div>
+                    )}
+                  </>
                 )}
 
+                {/* Content */}
                 <div className="prose prose-lg max-w-none">
                   {news.content?.split('\n').map((p, i) => (
                     <p key={i}>{p}</p>
@@ -93,10 +118,10 @@ function NewsDetail() {
                 <div className="mt-8 pt-6 border-t">
                   <div className="flex justify-between items-center text-sm text-gray-500">
                     <span>
-                      सादरीकरण {new Date(news.published_at).toLocaleString()}
+                      Published on {new Date(news.published_at).toLocaleString()}
                     </span>
                     <Link to="/news" className="text-primary hover:underline">
-                      ← मागे या 
+                      ← Back to News
                     </Link>
                   </div>
                 </div>
