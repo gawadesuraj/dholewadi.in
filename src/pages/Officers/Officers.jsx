@@ -57,7 +57,7 @@ function Officers() {
           >
             <option value={CATEGORIES.DIGNITARIES}>मान्यवर</option>
             <option value={CATEGORIES.HONORABLE}>
-              गटविकास अधिकारी, पंचायत समिती शिराळा
+              मान्यवर अधिकारी
             </option>
             <option value={CATEGORIES.SADASYA}>
               ढोलेवाडी ग्रामपंचायत सदस्य
