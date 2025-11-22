@@ -156,23 +156,7 @@ officers: [
     phone: "+91-937-3356931",
     email: "rsmore@tkietwarana.ac.in",
     image: "/images/officers/Sanjay_More.jpg",
-  },
-  {
-    id: 13,
-    name: "श्री. रणजीत सर्जेराव मोरे",
-    designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
-    phone: "+91-937-3356931",
-    email: "rsmore@tkietwarana.ac.in",
-    image: "/images/officers/Ranjeet_More.jpg",
-  },
-  {
-    id: 14,
-    name: "श्रीम. वनिता पांडुरंग ढोले",
-    designation: "उपसरपंच, ग्रामपंचायत, ढोलेवाडी",
-    phone: "+91-233-2654322",
-    email: "aceo.sangli@maharashtra.gov.in",
-    image: "/images/officers/Vaneeta_Dhole.jpg",
-  },
+  }
 ],
 
 sadasya: [
@@ -305,6 +289,22 @@ dignitaries: [
     department: "Legislative Assembly",
     image: "/images/dignitaries/satyajit_deshmukh.jpg",
   },
+   {
+    id: 13,
+    name: "श्री. रणजीत सर्जेराव मोरे",
+    designation: "सरपंच, ग्रामपंचायत, ढोलेवाडी",
+    phone: "+91-937-3356931",
+    email: "rsmore@tkietwarana.ac.in",
+    image: "/images/officers/Ranjeet_More.jpg",
+  },
+  {
+    id: 14,
+    name: "श्रीम. वनिता पांडुरंग ढोले",
+    designation: "उपसरपंच, ग्रामपंचायत, ढोलेवाडी",
+    phone: "+91-233-2654322",
+    email: "aceo.sangli@maharashtra.gov.in",
+    image: "/images/officers/Vaneeta_Dhole.jpg",
+  }
 ],
 
 honorableOfficers: [
