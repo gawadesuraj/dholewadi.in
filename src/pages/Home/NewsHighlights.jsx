@@ -68,7 +68,7 @@ function NewsHighlights() {
           <div className="inline-flex items-center bg-teal-600/10 rounded-full px-6 py-2 mb-4">
             <Newspaper className="w-4 h-4 mr-2 text-teal-700" />
             <span className="font-semibold text-teal-700">
-              📣 ताज्या बातम्या
+               ताज्या बातम्या
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6">
@@ -160,7 +160,7 @@ function NewsHighlights() {
           <div className="text-center py-12 bg-gray-100 rounded-xl shadow-inner text-gray-600">
             <Newspaper className="w-8 h-8 mx-auto mb-3 text-teal-400" />
             <p className="font-medium">
-              📰 अद्याप कोणत्याही बातम्या उपलब्ध नाहीत.
+               अद्याप कोणत्याही बातम्या उपलब्ध नाहीत.
             </p>
             <p className="text-sm mt-1">
               ग्रामपंचायत लवकरच नवीन घोषणा प्रकाशित करेल.
